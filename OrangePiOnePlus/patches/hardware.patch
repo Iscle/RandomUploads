@@ -1,7 +1,7 @@
-Only in ../Desktop/android/hardware: aw
-diff -ur ../aosp/hardware/broadcom/libbt/Android.mk ../Desktop/android/hardware/broadcom/libbt/Android.mk
---- ../aosp/hardware/broadcom/libbt/Android.mk	2018-08-06 15:41:44.912216643 +0200
-+++ ../Desktop/android/hardware/broadcom/libbt/Android.mk	2017-11-23 05:22:09.000000000 +0100
+Only in b/hardware: aw
+diff -ur a/hardware/broadcom/libbt/Android.mk b/hardware/broadcom/libbt/Android.mk
+--- a/hardware/broadcom/libbt/Android.mk	2018-08-06 15:41:44.912216643 +0200
++++ b/hardware/broadcom/libbt/Android.mk	2017-11-23 05:22:09.000000000 +0100
 @@ -1,7 +1,5 @@
  LOCAL_PATH := $(call my-dir)
  
@@ -37,9 +37,9 @@ diff -ur ../aosp/hardware/broadcom/libbt/Android.mk ../Desktop/android/hardware/
  endif
 -
 -endif # BOARD_HAVE_BLUETOOTH_BCM
-diff -ur ../aosp/hardware/broadcom/libbt/include/bt_vendor_brcm.h ../Desktop/android/hardware/broadcom/libbt/include/bt_vendor_brcm.h
---- ../aosp/hardware/broadcom/libbt/include/bt_vendor_brcm.h	2018-08-06 15:41:44.916216694 +0200
-+++ ../Desktop/android/hardware/broadcom/libbt/include/bt_vendor_brcm.h	2017-11-23 05:22:09.000000000 +0100
+diff -ur a/hardware/broadcom/libbt/include/bt_vendor_brcm.h b/hardware/broadcom/libbt/include/bt_vendor_brcm.h
+--- a/hardware/broadcom/libbt/include/bt_vendor_brcm.h	2018-08-06 15:41:44.916216694 +0200
++++ b/hardware/broadcom/libbt/include/bt_vendor_brcm.h	2017-11-23 05:22:09.000000000 +0100
 @@ -61,7 +61,7 @@
  
  /* Location of firmware patch files */
@@ -77,9 +77,9 @@ diff -ur ../aosp/hardware/broadcom/libbt/include/bt_vendor_brcm.h ../Desktop/and
 +
  #endif /* BT_VENDOR_BRCM_H */
  
-diff -ur ../aosp/hardware/broadcom/libbt/src/bt_vendor_brcm.c ../Desktop/android/hardware/broadcom/libbt/src/bt_vendor_brcm.c
---- ../aosp/hardware/broadcom/libbt/src/bt_vendor_brcm.c	2018-08-06 15:41:44.916216694 +0200
-+++ ../Desktop/android/hardware/broadcom/libbt/src/bt_vendor_brcm.c	2017-11-23 05:22:11.000000000 +0100
+diff -ur a/hardware/broadcom/libbt/src/bt_vendor_brcm.c b/hardware/broadcom/libbt/src/bt_vendor_brcm.c
+--- a/hardware/broadcom/libbt/src/bt_vendor_brcm.c	2018-08-06 15:41:44.916216694 +0200
++++ b/hardware/broadcom/libbt/src/bt_vendor_brcm.c	2017-11-23 05:22:11.000000000 +0100
 @@ -31,6 +31,7 @@
  #include "bt_vendor_brcm.h"
  #include "upio.h"
@@ -137,9 +137,9 @@ diff -ur ../aosp/hardware/broadcom/libbt/src/bt_vendor_brcm.c ../Desktop/android
              }
              break;
  
-diff -ur ../aosp/hardware/broadcom/libbt/src/hardware.c ../Desktop/android/hardware/broadcom/libbt/src/hardware.c
---- ../aosp/hardware/broadcom/libbt/src/hardware.c	2018-08-06 15:41:44.920216745 +0200
-+++ ../Desktop/android/hardware/broadcom/libbt/src/hardware.c	2017-11-23 05:22:11.000000000 +0100
+diff -ur a/hardware/broadcom/libbt/src/hardware.c b/hardware/broadcom/libbt/src/hardware.c
+--- a/hardware/broadcom/libbt/src/hardware.c	2018-08-06 15:41:44.920216745 +0200
++++ b/hardware/broadcom/libbt/src/hardware.c	2017-11-23 05:22:11.000000000 +0100
 @@ -172,7 +172,7 @@
  ******************************************************************************/
  
@@ -158,9 +158,9 @@ diff -ur ../aosp/hardware/broadcom/libbt/src/hardware.c ../Desktop/android/hardw
      else if (line_speed == 1000000)
          baud = USERIAL_BAUD_1M;
      else if (line_speed == 921600)
-diff -ur ../aosp/hardware/broadcom/libbt/src/userial_vendor.c ../Desktop/android/hardware/broadcom/libbt/src/userial_vendor.c
---- ../aosp/hardware/broadcom/libbt/src/userial_vendor.c	2018-08-06 15:41:44.920216745 +0200
-+++ ../Desktop/android/hardware/broadcom/libbt/src/userial_vendor.c	2017-11-23 05:22:11.000000000 +0100
+diff -ur a/hardware/broadcom/libbt/src/userial_vendor.c b/hardware/broadcom/libbt/src/userial_vendor.c
+--- a/hardware/broadcom/libbt/src/userial_vendor.c	2018-08-06 15:41:44.920216745 +0200
++++ b/hardware/broadcom/libbt/src/userial_vendor.c	2017-11-23 05:22:11.000000000 +0100
 @@ -94,6 +94,8 @@
          *baud = B3000000;
      else if (cfg_baud == USERIAL_BAUD_2M)
@@ -188,9 +188,9 @@ diff -ur ../aosp/hardware/broadcom/libbt/src/userial_vendor.c ../Desktop/android
      tcflush(vnd_userial.fd, TCIOFLUSH);
  
      tcgetattr(vnd_userial.fd, &vnd_userial.termios);
-diff -ur ../aosp/hardware/broadcom/libbt/vnd_buildcfg.mk ../Desktop/android/hardware/broadcom/libbt/vnd_buildcfg.mk
---- ../aosp/hardware/broadcom/libbt/vnd_buildcfg.mk	2018-08-06 15:41:44.920216745 +0200
-+++ ../Desktop/android/hardware/broadcom/libbt/vnd_buildcfg.mk	2017-11-23 05:22:11.000000000 +0100
+diff -ur a/hardware/broadcom/libbt/vnd_buildcfg.mk b/hardware/broadcom/libbt/vnd_buildcfg.mk
+--- a/hardware/broadcom/libbt/vnd_buildcfg.mk	2018-08-06 15:41:44.920216745 +0200
++++ b/hardware/broadcom/libbt/vnd_buildcfg.mk	2017-11-23 05:22:11.000000000 +0100
 @@ -4,7 +4,7 @@
  ifneq (,$(BOARD_CUSTOM_BT_CONFIG))
  SRC := $(BOARD_CUSTOM_BT_CONFIG)
@@ -200,11 +200,11 @@ diff -ur ../aosp/hardware/broadcom/libbt/vnd_buildcfg.mk ../Desktop/android/hard
  endif
  ifeq (,$(wildcard $(SRC)))
  # configuration file does not exist. Use default one
-Only in ../Desktop/android/hardware/intel/common/bd_prov: .emptycommitmark
-Only in ../Desktop/android/hardware/intel/sensors: .emptycommitmark
-diff -ur ../aosp/hardware/libhardware/include/hardware/audio.h ../Desktop/android/hardware/libhardware/include/hardware/audio.h
---- ../aosp/hardware/libhardware/include/hardware/audio.h	2018-08-06 15:41:56.892370347 +0200
-+++ ../Desktop/android/hardware/libhardware/include/hardware/audio.h	2017-11-23 05:22:16.000000000 +0100
+Only in b/hardware/intel/common/bd_prov: .emptycommitmark
+Only in b/hardware/intel/sensors: .emptycommitmark
+diff -ur a/hardware/libhardware/include/hardware/audio.h b/hardware/libhardware/include/hardware/audio.h
+--- a/hardware/libhardware/include/hardware/audio.h	2018-08-06 15:41:56.892370347 +0200
++++ b/hardware/libhardware/include/hardware/audio.h	2017-11-23 05:22:16.000000000 +0100
 @@ -127,7 +127,7 @@
  #define AUDIO_PARAMETER_STREAM_FRAME_COUNT "frame_count"     /* size_t */
  #define AUDIO_PARAMETER_STREAM_INPUT_SOURCE "input_source"   /* audio_source_t */
@@ -256,10 +256,10 @@ diff -ur ../aosp/hardware/libhardware/include/hardware/audio.h ../Desktop/androi
          chan_samp_sz = audio_bytes_per_sample(format);
          return audio_channel_count_from_in_mask(s->common.get_channels(&s->common)) * chan_samp_sz;
      }
-Only in ../Desktop/android/hardware/libhardware/include/hardware: aw_display.h
-diff -ur ../aosp/hardware/libhardware/include/hardware/bluetooth.h ../Desktop/android/hardware/libhardware/include/hardware/bluetooth.h
---- ../aosp/hardware/libhardware/include/hardware/bluetooth.h	2018-08-06 15:41:56.904370500 +0200
-+++ ../Desktop/android/hardware/libhardware/include/hardware/bluetooth.h	2017-11-23 05:22:16.000000000 +0100
+Only in b/hardware/libhardware/include/hardware: aw_display.h
+diff -ur a/hardware/libhardware/include/hardware/bluetooth.h b/hardware/libhardware/include/hardware/bluetooth.h
+--- a/hardware/libhardware/include/hardware/bluetooth.h	2018-08-06 15:41:56.904370500 +0200
++++ b/hardware/libhardware/include/hardware/bluetooth.h	2017-11-23 05:22:16.000000000 +0100
 @@ -31,6 +31,9 @@
   */
  
@@ -280,10 +280,10 @@ diff -ur ../aosp/hardware/libhardware/include/hardware/bluetooth.h ../Desktop/an
  #define BT_PROFILE_GATT_ID "gatt"
  #define BT_PROFILE_AV_RC_ID "avrcp"
  #define BT_PROFILE_AV_RC_CTRL_ID "avrcp_ctrl"
-Only in ../Desktop/android/hardware/libhardware/include/hardware: bt_rtkbt.h
-diff -ur ../aosp/hardware/libhardware/include/hardware/camera.h ../Desktop/android/hardware/libhardware/include/hardware/camera.h
---- ../aosp/hardware/libhardware/include/hardware/camera.h	2018-08-06 15:41:56.908370552 +0200
-+++ ../Desktop/android/hardware/libhardware/include/hardware/camera.h	2017-11-23 05:22:16.000000000 +0100
+Only in b/hardware/libhardware/include/hardware: bt_rtkbt.h
+diff -ur a/hardware/libhardware/include/hardware/camera.h b/hardware/libhardware/include/hardware/camera.h
+--- a/hardware/libhardware/include/hardware/camera.h	2018-08-06 15:41:56.908370552 +0200
++++ b/hardware/libhardware/include/hardware/camera.h	2017-11-23 05:22:16.000000000 +0100
 @@ -280,6 +280,8 @@
       * Dump state of the camera hardware
       */
@@ -293,9 +293,9 @@ diff -ur ../aosp/hardware/libhardware/include/hardware/camera.h ../Desktop/andro
  } camera_device_ops_t;
  
  typedef struct camera_device {
-diff -ur ../aosp/hardware/libhardware/include/hardware/gralloc.h ../Desktop/android/hardware/libhardware/include/hardware/gralloc.h
---- ../aosp/hardware/libhardware/include/hardware/gralloc.h	2018-08-06 15:41:56.912370604 +0200
-+++ ../Desktop/android/hardware/libhardware/include/hardware/gralloc.h	2017-11-23 05:22:16.000000000 +0100
+diff -ur a/hardware/libhardware/include/hardware/gralloc.h b/hardware/libhardware/include/hardware/gralloc.h
+--- a/hardware/libhardware/include/hardware/gralloc.h	2018-08-06 15:41:56.912370604 +0200
++++ b/hardware/libhardware/include/hardware/gralloc.h	2017-11-23 05:22:16.000000000 +0100
 @@ -137,6 +137,9 @@
       * gralloc modules. */
      GRALLOC_USAGE_ALLOC_MASK            = ~(GRALLOC_USAGE_FOREIGN_BUFFERS),
@@ -306,11 +306,11 @@ diff -ur ../aosp/hardware/libhardware/include/hardware/gralloc.h ../Desktop/andr
      /* implementation-specific private usage flags */
      GRALLOC_USAGE_PRIVATE_0             = 0x10000000,
      GRALLOC_USAGE_PRIVATE_1             = 0x20000000,
-Only in ../Desktop/android/hardware/libhardware/include/hardware: hal_public
-Only in ../Desktop/android/hardware/libhardware/include/hardware: hal_public.h
-diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer2.h ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer2.h
---- ../aosp/hardware/libhardware/include/hardware/hwcomposer2.h	2018-08-06 15:41:56.912370604 +0200
-+++ ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer2.h	2017-11-23 05:22:16.000000000 +0100
+Only in b/hardware/libhardware/include/hardware: hal_public
+Only in b/hardware/libhardware/include/hardware: hal_public.h
+diff -ur a/hardware/libhardware/include/hardware/hwcomposer2.h b/hardware/libhardware/include/hardware/hwcomposer2.h
+--- a/hardware/libhardware/include/hardware/hwcomposer2.h	2018-08-06 15:41:56.912370604 +0200
++++ b/hardware/libhardware/include/hardware/hwcomposer2.h	2017-11-23 05:22:16.000000000 +0100
 @@ -233,6 +233,7 @@
      HWC2_FUNCTION_SET_POWER_MODE,
      HWC2_FUNCTION_SET_VSYNC_ENABLED,
@@ -350,9 +350,9 @@ diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer2.h ../Desktop/
  __END_DECLS
  
  #endif
-diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer_defs.h ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer_defs.h
---- ../aosp/hardware/libhardware/include/hardware/hwcomposer_defs.h	2018-08-06 15:41:56.912370604 +0200
-+++ ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer_defs.h	2017-11-23 05:22:16.000000000 +0100
+diff -ur a/hardware/libhardware/include/hardware/hwcomposer_defs.h b/hardware/libhardware/include/hardware/hwcomposer_defs.h
+--- a/hardware/libhardware/include/hardware/hwcomposer_defs.h	2018-08-06 15:41:56.912370604 +0200
++++ b/hardware/libhardware/include/hardware/hwcomposer_defs.h	2017-11-23 05:22:16.000000000 +0100
 @@ -215,6 +215,12 @@
       * Returns a mask of supported display types.
       */
@@ -366,9 +366,9 @@ diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer_defs.h ../Desk
  };
  
  /* display attributes returned by getDisplayAttributes() */
-diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer.h ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer.h
---- ../aosp/hardware/libhardware/include/hardware/hwcomposer.h	2018-08-06 15:41:56.912370604 +0200
-+++ ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer.h	2017-11-23 05:22:16.000000000 +0100
+diff -ur a/hardware/libhardware/include/hardware/hwcomposer.h b/hardware/libhardware/include/hardware/hwcomposer.h
+--- a/hardware/libhardware/include/hardware/hwcomposer.h	2018-08-06 15:41:56.912370604 +0200
++++ b/hardware/libhardware/include/hardware/hwcomposer.h	2017-11-23 05:22:16.000000000 +0100
 @@ -26,6 +26,8 @@
  
  #include <hardware/hwcomposer_defs.h>
@@ -403,20 +403,20 @@ diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer.h ../Desktop/a
  #endif
  
  } hwc_layer_1_t;
-Only in ../Desktop/android/hardware/libhardware/include/hardware: sunxi_metadata_def.h
-diff -ur ../aosp/hardware/libhardware/modules/Android.mk ../Desktop/android/hardware/libhardware/modules/Android.mk
---- ../aosp/hardware/libhardware/modules/Android.mk	2018-08-06 15:41:56.920370706 +0200
-+++ ../Desktop/android/hardware/libhardware/modules/Android.mk	2017-11-23 05:22:16.000000000 +0100
+Only in b/hardware/libhardware/include/hardware: sunxi_metadata_def.h
+diff -ur a/hardware/libhardware/modules/Android.mk b/hardware/libhardware/modules/Android.mk
+--- a/hardware/libhardware/modules/Android.mk	2018-08-06 15:41:56.920370706 +0200
++++ b/hardware/libhardware/modules/Android.mk	2017-11-23 05:22:16.000000000 +0100
 @@ -1,4 +1,4 @@
  hardware_modules := gralloc hwcomposer audio nfc nfc-nci local_time \
  	power usbaudio audio_remote_submix camera usbcamera consumerir sensors vibrator \
 -	tv_input fingerprint input vehicle thermal vr
 +	tv_input fingerprint input vehicle thermal vr audio_pt71600_remote
  include $(call all-named-subdir-makefiles,$(hardware_modules))
-Only in ../Desktop/android/hardware/libhardware/modules: audio_pt71600_remote
-diff -ur ../aosp/hardware/libhardware_legacy/Android.mk ../Desktop/android/hardware/libhardware_legacy/Android.mk
---- ../aosp/hardware/libhardware_legacy/Android.mk	2018-08-06 15:41:57.956383997 +0200
-+++ ../Desktop/android/hardware/libhardware_legacy/Android.mk	2017-11-23 05:22:16.000000000 +0100
+Only in b/hardware/libhardware/modules: audio_pt71600_remote
+diff -ur a/hardware/libhardware_legacy/Android.mk b/hardware/libhardware_legacy/Android.mk
+--- a/hardware/libhardware_legacy/Android.mk	2018-08-06 15:41:57.956383997 +0200
++++ b/hardware/libhardware_legacy/Android.mk	2017-11-23 05:22:16.000000000 +0100
 @@ -5,6 +5,7 @@
  
  SAVE_MAKEFILES := $(call all-named-subdir-makefiles,$(legacy_modules))
@@ -438,11 +438,11 @@ diff -ur ../aosp/hardware/libhardware_legacy/Android.mk ../Desktop/android/hardw
  # hardware_legacy
  include $(LEGACY_AUDIO_MAKEFILES)
 +include $(LEGACY_WIFI_HARDWARE_INFO_MAKEFILES)
-Only in ../Desktop/android/hardware/libhardware_legacy/include/hardware_legacy: driver_nl80211.h
-Only in ../Desktop/android/hardware/libhardware_legacy/include/hardware_legacy: wifi_hardware_info.h
-diff -ur ../aosp/hardware/libhardware_legacy/uevent/uevent.c ../Desktop/android/hardware/libhardware_legacy/uevent/uevent.c
---- ../aosp/hardware/libhardware_legacy/uevent/uevent.c	2018-08-06 15:41:57.980384305 +0200
-+++ ../Desktop/android/hardware/libhardware_legacy/uevent/uevent.c	2017-11-23 05:22:16.000000000 +0100
+Only in b/hardware/libhardware_legacy/include/hardware_legacy: driver_nl80211.h
+Only in b/hardware/libhardware_legacy/include/hardware_legacy: wifi_hardware_info.h
+diff -ur a/hardware/libhardware_legacy/uevent/uevent.c b/hardware/libhardware_legacy/uevent/uevent.c
+--- a/hardware/libhardware_legacy/uevent/uevent.c	2018-08-06 15:41:57.980384305 +0200
++++ b/hardware/libhardware_legacy/uevent/uevent.c	2017-11-23 05:22:16.000000000 +0100
 @@ -21,13 +21,14 @@
  #include <unistd.h>
  #include <poll.h>
@@ -508,9 +508,9 @@ diff -ur ../aosp/hardware/libhardware_legacy/uevent/uevent.c ../Desktop/android/
      fd = s;
      return (fd > 0);
  }
-diff -ur ../aosp/hardware/libhardware_legacy/wifi/wifi.c ../Desktop/android/hardware/libhardware_legacy/wifi/wifi.c
---- ../aosp/hardware/libhardware_legacy/wifi/wifi.c	2018-08-06 15:41:57.980384305 +0200
-+++ ../Desktop/android/hardware/libhardware_legacy/wifi/wifi.c	2017-11-23 05:22:16.000000000 +0100
+diff -ur a/hardware/libhardware_legacy/wifi/wifi.c b/hardware/libhardware_legacy/wifi/wifi.c
+--- a/hardware/libhardware_legacy/wifi/wifi.c	2018-08-06 15:41:57.980384305 +0200
++++ b/hardware/libhardware_legacy/wifi/wifi.c	2017-11-23 05:22:16.000000000 +0100
 @@ -25,6 +25,7 @@
  #include <poll.h>
  
@@ -794,5 +794,5 @@ diff -ur ../aosp/hardware/libhardware_legacy/wifi/wifi.c ../Desktop/android/hard
      if (fd < 0) {
          ALOGE("Failed to open wlan fw path param (%s)", strerror(errno));
          return -1;
-Only in ../Desktop/android/hardware/libhardware_legacy: wifi_hardware_info
-Only in ../Desktop/android/hardware: realtek
+Only in b/hardware/libhardware_legacy: wifi_hardware_info
+Only in b/hardware: realtek

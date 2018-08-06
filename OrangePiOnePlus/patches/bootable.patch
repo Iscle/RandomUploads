@@ -1,6 +1,6 @@
-diff -ur ../aosp/bootable/recovery/Android.mk ../Desktop/android/bootable/recovery/Android.mk
---- ../aosp/bootable/recovery/Android.mk	2018-08-06 15:34:25.234561368 +0200
-+++ ../Desktop/android/bootable/recovery/Android.mk	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/Android.mk b/bootable/recovery/Android.mk
+--- a/bootable/recovery/Android.mk	2018-08-06 15:34:25.234561368 +0200
++++ b/bootable/recovery/Android.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -34,6 +34,7 @@
      bootloader.cpp \
      device.cpp \
@@ -68,9 +68,9 @@ diff -ur ../aosp/bootable/recovery/Android.mk ../Desktop/android/bootable/recove
      $(LOCAL_PATH)/update_verifier/Android.mk \
 -    $(LOCAL_PATH)/applypatch/Android.mk
 +    $(LOCAL_PATH)/applypatch/Android.mk \
-diff -ur ../aosp/bootable/recovery/device.cpp ../Desktop/android/bootable/recovery/device.cpp
---- ../aosp/bootable/recovery/device.cpp	2018-08-06 15:34:25.310562348 +0200
-+++ ../Desktop/android/bootable/recovery/device.cpp	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/device.cpp b/bootable/recovery/device.cpp
+--- a/bootable/recovery/device.cpp	2018-08-06 15:34:25.310562348 +0200
++++ b/bootable/recovery/device.cpp	2017-11-23 05:17:53.000000000 +0100
 @@ -20,7 +20,8 @@
      "Reboot system now",
      "Reboot to bootloader",
@@ -103,9 +103,9 @@ diff -ur ../aosp/bootable/recovery/device.cpp ../Desktop/android/bootable/recove
      default: return NO_ACTION;
    }
  }
-diff -ur ../aosp/bootable/recovery/device.h ../Desktop/android/bootable/recovery/device.h
---- ../aosp/bootable/recovery/device.h	2018-08-06 15:34:25.310562348 +0200
-+++ ../Desktop/android/bootable/recovery/device.h	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/device.h b/bootable/recovery/device.h
+--- a/bootable/recovery/device.h	2018-08-06 15:34:25.310562348 +0200
++++ b/bootable/recovery/device.h	2017-11-23 05:17:53.000000000 +0100
 @@ -59,9 +59,11 @@
      enum BuiltinAction {
          NO_ACTION = 0,
@@ -120,9 +120,9 @@ diff -ur ../aosp/bootable/recovery/device.h ../Desktop/android/bootable/recovery
          WIPE_DATA = 5,
          WIPE_CACHE = 6,
          REBOOT_BOOTLOADER = 7,
-diff -ur ../aosp/bootable/recovery/etc/init.rc ../Desktop/android/bootable/recovery/etc/init.rc
---- ../aosp/bootable/recovery/etc/init.rc	2018-08-06 15:34:25.310562348 +0200
-+++ ../Desktop/android/bootable/recovery/etc/init.rc	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/etc/init.rc b/bootable/recovery/etc/init.rc
+--- a/bootable/recovery/etc/init.rc	2018-08-06 15:34:25.310562348 +0200
++++ b/bootable/recovery/etc/init.rc	2017-11-23 05:17:53.000000000 +0100
 @@ -19,6 +19,7 @@
      mkdir /data
      mkdir /cache
@@ -131,11 +131,11 @@ diff -ur ../aosp/bootable/recovery/etc/init.rc ../Desktop/android/bootable/recov
      mount tmpfs tmpfs /tmp
  
      chown root shell /tmp
-Only in ../Desktop/android/bootable/recovery: fuse_provider.cpp
-Only in ../Desktop/android/bootable/recovery: fuse_provider.h
-diff -ur ../aosp/bootable/recovery/install.cpp ../Desktop/android/bootable/recovery/install.cpp
---- ../aosp/bootable/recovery/install.cpp	2018-08-06 15:34:25.318562450 +0200
-+++ ../Desktop/android/bootable/recovery/install.cpp	2017-11-23 05:17:53.000000000 +0100
+Only in b/bootable/recovery: fuse_provider.cpp
+Only in b/bootable/recovery: fuse_provider.h
+diff -ur a/bootable/recovery/install.cpp b/bootable/recovery/install.cpp
+--- a/bootable/recovery/install.cpp	2018-08-06 15:34:25.318562450 +0200
++++ b/bootable/recovery/install.cpp	2017-11-23 05:17:53.000000000 +0100
 @@ -42,6 +42,8 @@
  #include "roots.h"
  #include "ui.h"
@@ -346,15 +346,15 @@ diff -ur ../aosp/bootable/recovery/install.cpp ../Desktop/android/bootable/recov
 +
      return result;
  }
-Only in ../Desktop/android/bootable/recovery: ir_keycode.cpp
-Only in ../Desktop/android/bootable/recovery: md5.cpp
-Only in ../Desktop/android/bootable/recovery: md5.h
-Only in ../Desktop/android/bootable/recovery/minui: ir_keycode.h
-Only in ../Desktop/android/bootable/recovery: multi_device.cpp
-Only in ../Desktop/android/bootable/recovery: multi_device.h
-diff -ur ../aosp/bootable/recovery/recovery.cpp ../Desktop/android/bootable/recovery/recovery.cpp
---- ../aosp/bootable/recovery/recovery.cpp	2018-08-06 15:34:25.354562916 +0200
-+++ ../Desktop/android/bootable/recovery/recovery.cpp	2017-11-23 05:17:53.000000000 +0100
+Only in b/bootable/recovery: ir_keycode.cpp
+Only in b/bootable/recovery: md5.cpp
+Only in b/bootable/recovery: md5.h
+Only in b/bootable/recovery/minui: ir_keycode.h
+Only in b/bootable/recovery: multi_device.cpp
+Only in b/bootable/recovery: multi_device.h
+diff -ur a/bootable/recovery/recovery.cpp b/bootable/recovery/recovery.cpp
+--- a/bootable/recovery/recovery.cpp	2018-08-06 15:34:25.354562916 +0200
++++ b/bootable/recovery/recovery.cpp	2017-11-23 05:17:53.000000000 +0100
 @@ -52,6 +52,7 @@
  #include "device.h"
  #include "error_code.h"
@@ -960,9 +960,9 @@ diff -ur ../aosp/bootable/recovery/recovery.cpp ../Desktop/android/bootable/reco
              }
          }
      } else if (should_wipe_data) {
-diff -ur ../aosp/bootable/recovery/roots.cpp ../Desktop/android/bootable/recovery/roots.cpp
---- ../aosp/bootable/recovery/roots.cpp	2018-08-06 15:34:25.590565960 +0200
-+++ ../Desktop/android/bootable/recovery/roots.cpp	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/roots.cpp b/bootable/recovery/roots.cpp
+--- a/bootable/recovery/roots.cpp	2018-08-06 15:34:25.590565960 +0200
++++ b/bootable/recovery/roots.cpp	2017-11-23 05:17:53.000000000 +0100
 @@ -284,9 +284,9 @@
      }
      for (int i = 0; i < fstab->num_entries; ++i) {
@@ -975,9 +975,9 @@ diff -ur ../aosp/bootable/recovery/roots.cpp ../Desktop/android/bootable/recover
              if (ensure_path_mounted(v->mount_point) != 0) {
                  LOGE("failed to mount %s\n", v->mount_point);
                  return -1;
-diff -ur ../aosp/bootable/recovery/ui.cpp ../Desktop/android/bootable/recovery/ui.cpp
---- ../aosp/bootable/recovery/ui.cpp	2018-08-06 15:34:25.602566115 +0200
-+++ ../Desktop/android/bootable/recovery/ui.cpp	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/ui.cpp b/bootable/recovery/ui.cpp
+--- a/bootable/recovery/ui.cpp	2018-08-06 15:34:25.602566115 +0200
++++ b/bootable/recovery/ui.cpp	2017-11-23 05:17:53.000000000 +0100
 @@ -37,9 +37,12 @@
  #include "minui/minui.h"
  #include "screen_ui.h"
@@ -1006,9 +1006,9 @@ diff -ur ../aosp/bootable/recovery/ui.cpp ../Desktop/android/bootable/recovery/u
  
      if (ev.type == EV_SYN) {
          return 0;
-diff -ur ../aosp/bootable/recovery/ui.h ../Desktop/android/bootable/recovery/ui.h
---- ../aosp/bootable/recovery/ui.h	2018-08-06 15:34:25.602566115 +0200
-+++ ../Desktop/android/bootable/recovery/ui.h	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/ui.h b/bootable/recovery/ui.h
+--- a/bootable/recovery/ui.h	2018-08-06 15:34:25.602566115 +0200
++++ b/bootable/recovery/ui.h	2017-11-23 05:17:53.000000000 +0100
 @@ -122,6 +122,11 @@
      // statements will be displayed.
      virtual void EndMenu() = 0;
@@ -1030,9 +1030,9 @@ diff -ur ../aosp/bootable/recovery/ui.h ../Desktop/android/bootable/recovery/ui.
  };
  
  #endif  // RECOVERY_UI_H
-diff -ur ../aosp/bootable/recovery/updater/Android.mk ../Desktop/android/bootable/recovery/updater/Android.mk
---- ../aosp/bootable/recovery/updater/Android.mk	2018-08-06 15:34:25.602566115 +0200
-+++ ../Desktop/android/bootable/recovery/updater/Android.mk	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/updater/Android.mk b/bootable/recovery/updater/Android.mk
+--- a/bootable/recovery/updater/Android.mk	2018-08-06 15:34:25.602566115 +0200
++++ b/bootable/recovery/updater/Android.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -33,7 +33,7 @@
  
  LOCAL_SRC_FILES := $(updater_src_files)
@@ -1065,9 +1065,9 @@ diff -ur ../aosp/bootable/recovery/updater/Android.mk ../Desktop/android/bootabl
  
  # Each library in TARGET_RECOVERY_UPDATER_LIBS should have a function
  # named "Register_<libname>()".  Here we emit a little C function that
-diff -ur ../aosp/bootable/recovery/updater/install.cpp ../Desktop/android/bootable/recovery/updater/install.cpp
---- ../aosp/bootable/recovery/updater/install.cpp	2018-08-06 15:34:25.606566165 +0200
-+++ ../Desktop/android/bootable/recovery/updater/install.cpp	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/bootable/recovery/updater/install.cpp b/bootable/recovery/updater/install.cpp
+--- a/bootable/recovery/updater/install.cpp	2018-08-06 15:34:25.606566165 +0200
++++ b/bootable/recovery/updater/install.cpp	2017-11-23 05:17:53.000000000 +0100
 @@ -56,12 +56,24 @@
  #include "updater.h"
  #include "install.h"
@@ -1468,5 +1468,5 @@ diff -ur ../aosp/bootable/recovery/updater/install.cpp ../Desktop/android/bootab
 +    RegisterFunction("verify_boot_image", VerifyBootImageFn);
 +    RegisterFunction("verify_toc", VerifyTocFn);
  }
-Only in ../Desktop/android/bootable/recovery: usb.cpp
-Only in ../Desktop/android/bootable/recovery: usb.h
+Only in b/bootable/recovery: usb.cpp
+Only in b/bootable/recovery: usb.h

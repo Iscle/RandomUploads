@@ -1,7 +1,7 @@
-Only in ../Desktop/android/external/archive-patcher: .emptycommitmark
-diff -ur ../aosp/external/boringssl/src/crypto/rsa/rsa.c ../Desktop/android/external/boringssl/src/crypto/rsa/rsa.c
---- ../aosp/external/boringssl/src/crypto/rsa/rsa.c	2018-08-06 15:35:56.811741813 +0200
-+++ ../Desktop/android/external/boringssl/src/crypto/rsa/rsa.c	2017-11-23 05:19:22.000000000 +0100
+Only in b/external/archive-patcher: .emptycommitmark
+diff -ur a/external/boringssl/src/crypto/rsa/rsa.c b/external/boringssl/src/crypto/rsa/rsa.c
+--- a/external/boringssl/src/crypto/rsa/rsa.c	2018-08-06 15:35:56.811741813 +0200
++++ b/external/boringssl/src/crypto/rsa/rsa.c	2017-11-23 05:19:22.000000000 +0100
 @@ -471,7 +471,7 @@
    return ret;
  }
@@ -11,11 +11,11 @@ diff -ur ../aosp/external/boringssl/src/crypto/rsa/rsa.c ../Desktop/android/exte
                 const uint8_t *sig, size_t sig_len, RSA *rsa) {
    const size_t rsa_size = RSA_size(rsa);
    uint8_t *buf = NULL;
-Only in ../Desktop/android/external/chromium-webview: AnyBugsReadThis
-Only in ../Desktop/android/external/donuts: .emptycommitmark
-diff -ur ../aosp/external/e2fsprogs/lib/blkid/Android.mk ../Desktop/android/external/e2fsprogs/lib/blkid/Android.mk
---- ../aosp/external/e2fsprogs/lib/blkid/Android.mk	2018-08-06 15:36:49.452419695 +0200
-+++ ../Desktop/android/external/e2fsprogs/lib/blkid/Android.mk	2017-11-23 05:19:46.000000000 +0100
+Only in b/external/chromium-webview: AnyBugsReadThis
+Only in b/external/donuts: .emptycommitmark
+diff -ur a/external/e2fsprogs/lib/blkid/Android.mk b/external/e2fsprogs/lib/blkid/Android.mk
+--- a/external/e2fsprogs/lib/blkid/Android.mk	2018-08-06 15:36:49.452419695 +0200
++++ b/external/e2fsprogs/lib/blkid/Android.mk	2017-11-23 05:19:46.000000000 +0100
 @@ -13,6 +13,7 @@
  	save.c \
  	tag.c \
@@ -24,9 +24,9 @@ diff -ur ../aosp/external/e2fsprogs/lib/blkid/Android.mk ../Desktop/android/exte
  
  
  libext2_blkid_shared_libraries := libext2_uuid
-diff -ur ../aosp/external/e2fsprogs/lib/blkid/probe.c ../Desktop/android/external/e2fsprogs/lib/blkid/probe.c
---- ../aosp/external/e2fsprogs/lib/blkid/probe.c	2018-08-06 15:36:49.476420003 +0200
-+++ ../Desktop/android/external/e2fsprogs/lib/blkid/probe.c	2017-11-23 05:19:46.000000000 +0100
+diff -ur a/external/e2fsprogs/lib/blkid/probe.c b/external/e2fsprogs/lib/blkid/probe.c
+--- a/external/e2fsprogs/lib/blkid/probe.c	2018-08-06 15:36:49.476420003 +0200
++++ b/external/e2fsprogs/lib/blkid/probe.c	2017-11-23 05:19:46.000000000 +0100
 @@ -36,6 +36,10 @@
  #include "uuid/uuid.h"
  #include "probe.h"
@@ -58,10 +58,10 @@ diff -ur ../aosp/external/e2fsprogs/lib/blkid/probe.c ../Desktop/android/externa
    { "jbd",	 1,   0x38,  2, "\123\357",		probe_jbd },
    { "ext4dev",	 1,   0x38,  2, "\123\357",		probe_ext4dev },
    { "ext4",	 1,   0x38,  2, "\123\357",		probe_ext4 },
-Only in ../Desktop/android/external/e2fsprogs/lib/blkid: probe_exfat.c
-diff -ur ../aosp/external/e2fsprogs/lib/blkid/probe.h ../Desktop/android/external/e2fsprogs/lib/blkid/probe.h
---- ../aosp/external/e2fsprogs/lib/blkid/probe.h	2018-08-06 15:36:49.480420055 +0200
-+++ ../Desktop/android/external/e2fsprogs/lib/blkid/probe.h	2017-11-23 05:19:46.000000000 +0100
+Only in b/external/e2fsprogs/lib/blkid: probe_exfat.c
+diff -ur a/external/e2fsprogs/lib/blkid/probe.h b/external/e2fsprogs/lib/blkid/probe.h
+--- a/external/e2fsprogs/lib/blkid/probe.h	2018-08-06 15:36:49.480420055 +0200
++++ b/external/e2fsprogs/lib/blkid/probe.h	2017-11-23 05:19:46.000000000 +0100
 @@ -33,6 +33,9 @@
  typedef int (*blkid_probe_t)(struct blkid_probe *probe,
  			     struct blkid_magic *id, unsigned char *buf);
@@ -72,9 +72,9 @@ diff -ur ../aosp/external/e2fsprogs/lib/blkid/probe.h ../Desktop/android/externa
  struct blkid_magic {
  	const char	*bim_type;	/* type name for this magic */
  	long		bim_kboff;	/* kilobyte offset of superblock */
-diff -ur ../aosp/external/fsck_msdos/check.c ../Desktop/android/external/fsck_msdos/check.c
---- ../aosp/external/fsck_msdos/check.c	2018-08-06 15:37:03.800604383 +0200
-+++ ../Desktop/android/external/fsck_msdos/check.c	2017-11-23 05:19:54.000000000 +0100
+diff -ur a/external/fsck_msdos/check.c b/external/fsck_msdos/check.c
+--- a/external/fsck_msdos/check.c	2018-08-06 15:37:03.800604383 +0200
++++ b/external/fsck_msdos/check.c	2017-11-23 05:19:54.000000000 +0100
 @@ -54,6 +54,7 @@
   * this whole thing and optimize for less memory
   */
@@ -96,9 +96,9 @@ diff -ur ../aosp/external/fsck_msdos/check.c ../Desktop/android/external/fsck_ms
          if (((boot.FATsecs * boot.BytesPerSec) / 1024) > FAT_COMPARE_MAX_KB)
              skip_fat_compare = 1;
  
-diff -ur ../aosp/external/junit/Common.mk ../Desktop/android/external/junit/Common.mk
---- ../aosp/external/junit/Common.mk	2018-08-06 15:37:42.909107618 +0200
-+++ ../Desktop/android/external/junit/Common.mk	2017-11-23 05:20:05.000000000 +0100
+diff -ur a/external/junit/Common.mk b/external/junit/Common.mk
+--- a/external/junit/Common.mk	2018-08-06 15:37:42.909107618 +0200
++++ b/external/junit/Common.mk	2017-11-23 05:20:05.000000000 +0100
 @@ -21,7 +21,8 @@
  src/junit/framework/TestFailure.java \
  src/junit/framework/TestListener.java \
@@ -109,10 +109,10 @@ diff -ur ../aosp/external/junit/Common.mk ../Desktop/android/external/junit/Comm
  
  # List of source to build into the android.test.runner library
  #
-Only in ../Desktop/android/external/junit/src/junit/framework: TestManager.java
-diff -ur ../aosp/external/junit/src/junit/framework/TestResult.java ../Desktop/android/external/junit/src/junit/framework/TestResult.java
---- ../aosp/external/junit/src/junit/framework/TestResult.java	2018-08-06 15:37:42.913107668 +0200
-+++ ../Desktop/android/external/junit/src/junit/framework/TestResult.java	2017-11-23 05:20:05.000000000 +0100
+Only in b/external/junit/src/junit/framework: TestManager.java
+diff -ur a/external/junit/src/junit/framework/TestResult.java b/external/junit/src/junit/framework/TestResult.java
+--- a/external/junit/src/junit/framework/TestResult.java	2018-08-06 15:37:42.913107668 +0200
++++ b/external/junit/src/junit/framework/TestResult.java	2017-11-23 05:20:05.000000000 +0100
 @@ -6,6 +6,7 @@
  import java.util.List;
  import java.util.Vector;
@@ -147,9 +147,9 @@ diff -ur ../aosp/external/junit/src/junit/framework/TestResult.java ../Desktop/a
  				test.runBare();
  			}
  		};
-diff -ur ../aosp/external/libusb/config.h ../Desktop/android/external/libusb/config.h
---- ../aosp/external/libusb/config.h	2018-08-06 15:38:04.265382320 +0200
-+++ ../Desktop/android/external/libusb/config.h	2017-11-23 05:20:15.000000000 +0100
+diff -ur a/external/libusb/config.h b/external/libusb/config.h
+--- a/external/libusb/config.h	2018-08-06 15:38:04.265382320 +0200
++++ b/external/libusb/config.h	2017-11-23 05:20:15.000000000 +0100
 @@ -9,7 +9,7 @@
  /* #undef ENABLE_DEBUG_LOGGING */
  
@@ -200,10 +200,10 @@ diff -ur ../aosp/external/libusb/config.h ../Desktop/android/external/libusb/con
  
  /* Version number of package */
  #define VERSION "1.0.8"
-Only in ../Desktop/android/external/libusb/libusb: Android.mk
-diff -ur ../aosp/external/libusb/libusb/core.c ../Desktop/android/external/libusb/libusb/core.c
---- ../aosp/external/libusb/libusb/core.c	2018-08-06 15:38:04.273382424 +0200
-+++ ../Desktop/android/external/libusb/libusb/core.c	2017-11-23 05:20:15.000000000 +0100
+Only in b/external/libusb/libusb: Android.mk
+diff -ur a/external/libusb/libusb/core.c b/external/libusb/libusb/core.c
+--- a/external/libusb/libusb/core.c	2018-08-06 15:38:04.273382424 +0200
++++ b/external/libusb/libusb/core.c	2017-11-23 05:20:15.000000000 +0100
 @@ -32,6 +32,8 @@
  #include "libusb.h"
  #include "libusbi.h"
@@ -263,9 +263,9 @@ diff -ur ../aosp/external/libusb/libusb/core.c ../Desktop/android/external/libus
 +#endif
  }
  
-diff -ur ../aosp/external/libusb/libusb/io.c ../Desktop/android/external/libusb/libusb/io.c
---- ../aosp/external/libusb/libusb/io.c	2018-08-06 15:38:04.273382424 +0200
-+++ ../Desktop/android/external/libusb/libusb/io.c	2017-11-23 05:20:15.000000000 +0100
+diff -ur a/external/libusb/libusb/io.c b/external/libusb/libusb/io.c
+--- a/external/libusb/libusb/io.c	2018-08-06 15:38:04.273382424 +0200
++++ b/external/libusb/libusb/io.c	2017-11-23 05:20:15.000000000 +0100
 @@ -36,6 +36,12 @@
  
  #include "libusbi.h"
@@ -279,12 +279,12 @@ diff -ur ../aosp/external/libusb/libusb/io.c ../Desktop/android/external/libusb/
  /**
   * \page io Synchronous and asynchronous device I/O
   *
-Only in ../Desktop/android/external/lld: .emptycommitmark
-Only in ../Desktop/android/external: multi_ir
-Only in ../Desktop/android/external/selinux/prebuilts/lib: libpcre.so.3
-diff -ur ../aosp/external/tinyalsa/include/tinyalsa/asoundlib.h ../Desktop/android/external/tinyalsa/include/tinyalsa/asoundlib.h
---- ../aosp/external/tinyalsa/include/tinyalsa/asoundlib.h	2018-08-06 15:39:37.350578870 +0200
-+++ ../Desktop/android/external/tinyalsa/include/tinyalsa/asoundlib.h	2017-11-23 05:20:52.000000000 +0100
+Only in b/external/lld: .emptycommitmark
+Only in b/external: multi_ir
+Only in b/external/selinux/prebuilts/lib: libpcre.so.3
+diff -ur a/external/tinyalsa/include/tinyalsa/asoundlib.h b/external/tinyalsa/include/tinyalsa/asoundlib.h
+--- a/external/tinyalsa/include/tinyalsa/asoundlib.h	2018-08-06 15:39:37.350578870 +0200
++++ b/external/tinyalsa/include/tinyalsa/asoundlib.h	2017-11-23 05:20:52.000000000 +0100
 @@ -31,6 +31,8 @@
  
  #include <sys/time.h>
@@ -453,9 +453,9 @@ diff -ur ../aosp/external/tinyalsa/include/tinyalsa/asoundlib.h ../Desktop/andro
  #if defined(__cplusplus)
  }  /* extern "C" */
  #endif
-diff -ur ../aosp/external/tinyalsa/pcm.c ../Desktop/android/external/tinyalsa/pcm.c
---- ../aosp/external/tinyalsa/pcm.c	2018-08-06 15:39:37.350578870 +0200
-+++ ../Desktop/android/external/tinyalsa/pcm.c	2017-11-23 05:20:52.000000000 +0100
+diff -ur a/external/tinyalsa/pcm.c b/external/tinyalsa/pcm.c
+--- a/external/tinyalsa/pcm.c	2018-08-06 15:39:37.350578870 +0200
++++ b/external/tinyalsa/pcm.c	2017-11-23 05:20:52.000000000 +0100
 @@ -25,6 +25,9 @@
  ** OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  ** DAMAGE.
@@ -1218,9 +1218,9 @@ diff -ur ../aosp/external/tinyalsa/pcm.c ../Desktop/android/external/tinyalsa/pc
 +    assert(obj);
 +    return (const char *)obj->name;
 +}
-diff -ur ../aosp/external/wpa_supplicant_8/hostapd/Android.mk ../Desktop/android/external/wpa_supplicant_8/hostapd/Android.mk
---- ../aosp/external/wpa_supplicant_8/hostapd/Android.mk	2018-08-06 15:40:10.675006930 +0200
-+++ ../Desktop/android/external/wpa_supplicant_8/hostapd/Android.mk	2017-11-23 05:21:05.000000000 +0100
+diff -ur a/external/wpa_supplicant_8/hostapd/Android.mk b/external/wpa_supplicant_8/hostapd/Android.mk
+--- a/external/wpa_supplicant_8/hostapd/Android.mk	2018-08-06 15:40:10.675006930 +0200
++++ b/external/wpa_supplicant_8/hostapd/Android.mk	2017-11-23 05:21:05.000000000 +0100
 @@ -987,6 +987,11 @@
  LOCAL_STATIC_LIBRARIES += libnl_2
  endif
@@ -1233,9 +1233,9 @@ diff -ur ../aosp/external/wpa_supplicant_8/hostapd/Android.mk ../Desktop/android
  LOCAL_CFLAGS := $(L_CFLAGS)
  LOCAL_SRC_FILES := $(OBJS)
  LOCAL_C_INCLUDES := $(INCLUDES)
-diff -ur ../aosp/external/wpa_supplicant_8/hostapd/config_file.c ../Desktop/android/external/wpa_supplicant_8/hostapd/config_file.c
---- ../aosp/external/wpa_supplicant_8/hostapd/config_file.c	2018-08-06 15:40:10.679006981 +0200
-+++ ../Desktop/android/external/wpa_supplicant_8/hostapd/config_file.c	2017-11-23 05:21:05.000000000 +0100
+diff -ur a/external/wpa_supplicant_8/hostapd/config_file.c b/external/wpa_supplicant_8/hostapd/config_file.c
+--- a/external/wpa_supplicant_8/hostapd/config_file.c	2018-08-06 15:40:10.679006981 +0200
++++ b/external/wpa_supplicant_8/hostapd/config_file.c	2017-11-23 05:21:05.000000000 +0100
 @@ -21,6 +21,9 @@
  #include "ap/ap_config.h"
  #include "config_file.h"
@@ -1257,9 +1257,9 @@ diff -ur ../aosp/external/wpa_supplicant_8/hostapd/config_file.c ../Desktop/andr
  	}
  
  	fclose(f);
-diff -ur ../aosp/external/wpa_supplicant_8/wpa_supplicant/Android.mk ../Desktop/android/external/wpa_supplicant_8/wpa_supplicant/Android.mk
---- ../aosp/external/wpa_supplicant_8/wpa_supplicant/Android.mk	2018-08-06 15:40:10.851009190 +0200
-+++ ../Desktop/android/external/wpa_supplicant_8/wpa_supplicant/Android.mk	2017-11-23 05:21:05.000000000 +0100
+diff -ur a/external/wpa_supplicant_8/wpa_supplicant/Android.mk b/external/wpa_supplicant_8/wpa_supplicant/Android.mk
+--- a/external/wpa_supplicant_8/wpa_supplicant/Android.mk	2018-08-06 15:40:10.851009190 +0200
++++ b/external/wpa_supplicant_8/wpa_supplicant/Android.mk	2017-11-23 05:21:05.000000000 +0100
 @@ -1587,6 +1587,11 @@
  LOCAL_STATIC_LIBRARIES += libnl_2
  endif
@@ -1272,9 +1272,9 @@ diff -ur ../aosp/external/wpa_supplicant_8/wpa_supplicant/Android.mk ../Desktop/
  LOCAL_CFLAGS := $(L_CFLAGS)
  LOCAL_SRC_FILES := $(OBJS)
  LOCAL_C_INCLUDES := $(INCLUDES)
-diff -ur ../aosp/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c ../Desktop/android/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c
---- ../aosp/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c	2018-08-06 15:40:10.863009345 +0200
-+++ ../Desktop/android/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c	2017-11-23 05:21:05.000000000 +0100
+diff -ur a/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c b/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c
+--- a/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c	2018-08-06 15:40:10.863009345 +0200
++++ b/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c	2017-11-23 05:21:05.000000000 +0100
 @@ -51,6 +51,9 @@
  #include "offchannel.h"
  #include "drivers/driver.h"
@@ -1318,9 +1318,9 @@ diff -ur ../aosp/external/wpa_supplicant_8/wpa_supplicant/ctrl_iface.c ../Deskto
  	} else if (os_strncmp(buf, "P2P_PROV_DISC ", 14) == 0) {
  		if (p2p_ctrl_prov_disc(wpa_s, buf + 14))
  			reply_len = -1;
-diff -ur ../aosp/external/wpa_supplicant_8/wpa_supplicant/main.c ../Desktop/android/external/wpa_supplicant_8/wpa_supplicant/main.c
---- ../aosp/external/wpa_supplicant_8/wpa_supplicant/main.c	2018-08-06 15:40:10.879009551 +0200
-+++ ../Desktop/android/external/wpa_supplicant_8/wpa_supplicant/main.c	2017-11-23 05:21:05.000000000 +0100
+diff -ur a/external/wpa_supplicant_8/wpa_supplicant/main.c b/external/wpa_supplicant_8/wpa_supplicant/main.c
+--- a/external/wpa_supplicant_8/wpa_supplicant/main.c	2018-08-06 15:40:10.879009551 +0200
++++ b/external/wpa_supplicant_8/wpa_supplicant/main.c	2017-11-23 05:21:05.000000000 +0100
 @@ -17,6 +17,9 @@
  #include "driver_i.h"
  #include "p2p_supplicant.h"

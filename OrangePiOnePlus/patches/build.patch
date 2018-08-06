@@ -1,7 +1,7 @@
-Only in ../Desktop/android/build: build.sh
-diff -ur ../aosp/build/core/base_rules.mk ../Desktop/android/build/core/base_rules.mk
---- ../aosp/build/core/base_rules.mk	2018-08-06 15:34:26.642579529 +0200
-+++ ../Desktop/android/build/core/base_rules.mk	2017-11-23 05:17:53.000000000 +0100
+Only in b/build: build.sh
+diff -ur a/build/core/base_rules.mk b/build/core/base_rules.mk
+--- a/build/core/base_rules.mk	2018-08-06 15:34:26.642579529 +0200
++++ b/build/core/base_rules.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -85,17 +85,17 @@
  
  # User tags are not allowed anymore.  Fail early because it will not be installed
@@ -31,9 +31,9 @@ diff -ur ../aosp/build/core/base_rules.mk ../Desktop/android/build/core/base_rul
  
  # Only the tags mentioned in this test are expected to be set by module
  # makefiles. Anything else is either a typo or a source of unexpected
-diff -ur ../aosp/build/core/binary.mk ../Desktop/android/build/core/binary.mk
---- ../aosp/build/core/binary.mk	2018-08-06 15:34:26.642579529 +0200
-+++ ../Desktop/android/build/core/binary.mk	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/core/binary.mk b/build/core/binary.mk
+--- a/build/core/binary.mk	2018-08-06 15:34:26.642579529 +0200
++++ b/build/core/binary.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -8,7 +8,7 @@
  #######################################
  include $(BUILD_SYSTEM)/base_rules.mk
@@ -43,9 +43,9 @@ diff -ur ../aosp/build/core/binary.mk ../Desktop/android/build/core/binary.mk
  ##################################################
  # Compute the dependency of the shared libraries
  ##################################################
-diff -ur ../aosp/build/core/cleanbuild.mk ../Desktop/android/build/core/cleanbuild.mk
---- ../aosp/build/core/cleanbuild.mk	2018-08-06 15:34:26.654579683 +0200
-+++ ../Desktop/android/build/core/cleanbuild.mk	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/core/cleanbuild.mk b/build/core/cleanbuild.mk
+--- a/build/core/cleanbuild.mk	2018-08-06 15:34:26.654579683 +0200
++++ b/build/core/cleanbuild.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -229,6 +229,7 @@
  	$(HOST_OUT)/obj/NOTICE_FILES \
  	$(HOST_OUT)/sdk \
@@ -62,10 +62,10 @@ diff -ur ../aosp/build/core/cleanbuild.mk ../Desktop/android/build/core/cleanbui
  	$(PRODUCT_OUT)/vendor \
  	$(PRODUCT_OUT)/oem \
  	$(PRODUCT_OUT)/dex_bootjars \
-Only in ../Desktop/android/build/core: device_config.mk
-diff -ur ../aosp/build/core/main.mk ../Desktop/android/build/core/main.mk
---- ../aosp/build/core/main.mk	2018-08-06 15:34:26.678579993 +0200
-+++ ../Desktop/android/build/core/main.mk	2017-11-23 05:17:53.000000000 +0100
+Only in b/build/core: device_config.mk
+diff -ur a/build/core/main.mk b/build/core/main.mk
+--- a/build/core/main.mk	2018-08-06 15:34:26.678579993 +0200
++++ b/build/core/main.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -956,7 +956,8 @@
  	$(INSTALLED_CACHEIMAGE_TARGET) \
  	$(INSTALLED_VENDORIMAGE_TARGET) \
@@ -76,9 +76,9 @@ diff -ur ../aosp/build/core/main.mk ../Desktop/android/build/core/main.mk
  
  # dist_files only for putting your library into the dist directory with a full build.
  .PHONY: dist_files
-diff -ur ../aosp/build/core/Makefile ../Desktop/android/build/core/Makefile
---- ../aosp/build/core/Makefile	2018-08-06 15:34:26.630579375 +0200
-+++ ../Desktop/android/build/core/Makefile	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/core/Makefile b/build/core/Makefile
+--- a/build/core/Makefile	2018-08-06 15:34:26.630579375 +0200
++++ b/build/core/Makefile	2017-11-23 05:17:53.000000000 +0100
 @@ -1194,6 +1194,14 @@
  .PHONY: stnod
  stnod: systemtarball-nodeps
@@ -256,9 +256,9 @@ diff -ur ../aosp/build/core/Makefile ../Desktop/android/build/core/Makefile
  # -----------------------------------------------------------------
  # The update package
  
-diff -ur ../aosp/build/core/pathmap.mk ../Desktop/android/build/core/pathmap.mk
---- ../aosp/build/core/pathmap.mk	2018-08-06 15:34:26.682580045 +0200
-+++ ../Desktop/android/build/core/pathmap.mk	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/core/pathmap.mk b/build/core/pathmap.mk
+--- a/build/core/pathmap.mk	2018-08-06 15:34:26.682580045 +0200
++++ b/build/core/pathmap.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -75,6 +75,7 @@
  #
  FRAMEWORKS_BASE_SUBDIRS := \
@@ -284,9 +284,9 @@ diff -ur ../aosp/build/core/pathmap.mk ../Desktop/android/build/core/pathmap.mk
  	 )
  
  #
-diff -ur ../aosp/build/core/tasks/check_boot_jars/package_whitelist.txt ../Desktop/android/build/core/tasks/check_boot_jars/package_whitelist.txt
---- ../aosp/build/core/tasks/check_boot_jars/package_whitelist.txt	2018-08-06 15:34:26.710580405 +0200
-+++ ../Desktop/android/build/core/tasks/check_boot_jars/package_whitelist.txt	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/core/tasks/check_boot_jars/package_whitelist.txt b/build/core/tasks/check_boot_jars/package_whitelist.txt
+--- a/build/core/tasks/check_boot_jars/package_whitelist.txt	2018-08-06 15:34:26.710580405 +0200
++++ b/build/core/tasks/check_boot_jars/package_whitelist.txt	2017-11-23 05:17:53.000000000 +0100
 @@ -227,3 +227,7 @@
  org\.apache\.xalan\.processor
  org\.apache\.xalan\.transformer
@@ -295,9 +295,9 @@ diff -ur ../aosp/build/core/tasks/check_boot_jars/package_whitelist.txt ../Deskt
 +# com.softwinner
 +com\.softwinner
 +com\.softwinner\..*
-diff -ur ../aosp/build/envsetup.sh ../Desktop/android/build/envsetup.sh
---- ../aosp/build/envsetup.sh	2018-08-06 15:34:26.710580405 +0200
-+++ ../Desktop/android/build/envsetup.sh	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/envsetup.sh b/build/envsetup.sh
+--- a/build/envsetup.sh	2018-08-06 15:34:26.710580405 +0200
++++ b/build/envsetup.sh	2017-11-23 05:17:53.000000000 +0100
 @@ -260,6 +260,8 @@
      unset ANDROID_HOST_OUT
      export ANDROID_HOST_OUT=$(get_abs_build_var HOST_OUT)
@@ -325,9 +325,9 @@ diff -ur ../aosp/build/envsetup.sh ../Desktop/android/build/envsetup.sh
                  -exec grep --color -n "$@" {} +
          }
          ;;
-diff -ur ../aosp/build/target/product/core_minimal.mk ../Desktop/android/build/target/product/core_minimal.mk
---- ../aosp/build/target/product/core_minimal.mk	2018-08-06 15:34:26.726580612 +0200
-+++ ../Desktop/android/build/target/product/core_minimal.mk	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/target/product/core_minimal.mk b/build/target/product/core_minimal.mk
+--- a/build/target/product/core_minimal.mk	2018-08-06 15:34:26.726580612 +0200
++++ b/build/target/product/core_minimal.mk	2017-11-23 05:17:53.000000000 +0100
 @@ -80,7 +80,8 @@
      uncrypt \
      voip-common \
@@ -348,10 +348,10 @@ diff -ur ../aosp/build/target/product/core_minimal.mk ../Desktop/android/build/t
  
  # Adoptable external storage supports both ext4 and f2fs
  PRODUCT_PACKAGES += \
-Only in ../Desktop/android/build/target/product: speed_version
-diff -ur ../aosp/build/tools/releasetools/common.py ../Desktop/android/build/tools/releasetools/common.py
---- ../aosp/build/tools/releasetools/common.py	2018-08-06 15:34:26.902582883 +0200
-+++ ../Desktop/android/build/tools/releasetools/common.py	2017-11-23 05:17:53.000000000 +0100
+Only in b/build/target/product: speed_version
+diff -ur a/build/tools/releasetools/common.py b/build/tools/releasetools/common.py
+--- a/build/tools/releasetools/common.py	2018-08-06 15:34:26.902582883 +0200
++++ b/build/tools/releasetools/common.py	2017-11-23 05:17:53.000000000 +0100
 @@ -1711,3 +1711,13 @@
    print "putting script in", sh_location
  
@@ -366,9 +366,9 @@ diff -ur ../aosp/build/tools/releasetools/common.py ../Desktop/android/build/too
 +  else:
 +    print " %s is not exist " % (path)
 +    return File(name, "")
-diff -ur ../aosp/build/tools/releasetools/edify_generator.py ../Desktop/android/build/tools/releasetools/edify_generator.py
---- ../aosp/build/tools/releasetools/edify_generator.py	2018-08-06 15:34:26.902582883 +0200
-+++ ../Desktop/android/build/tools/releasetools/edify_generator.py	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/tools/releasetools/edify_generator.py b/build/tools/releasetools/edify_generator.py
+--- a/build/tools/releasetools/edify_generator.py	2018-08-06 15:34:26.902582883 +0200
++++ b/build/tools/releasetools/edify_generator.py	2017-11-23 05:17:53.000000000 +0100
 @@ -406,3 +406,26 @@
        data = open(input_path, "rb").read()
      common.ZipWriteStr(output_zip, "META-INF/com/google/android/update-binary",
@@ -396,9 +396,9 @@ diff -ur ../aosp/build/tools/releasetools/edify_generator.py ../Desktop/android/
 +  def VerifyToc(self,num):
 +    """Verify the toc before burning"""
 +    self.script.append('verify_toc(%d)||abort("toc(%d) verify failed\\n\\nOTA package sign failed\\n");'%(num,num))
-diff -ur ../aosp/build/tools/releasetools/img_from_target_files ../Desktop/android/build/tools/releasetools/img_from_target_files
---- ../aosp/build/tools/releasetools/img_from_target_files	2018-08-06 15:34:26.906582933 +0200
-+++ ../Desktop/android/build/tools/releasetools/img_from_target_files	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/tools/releasetools/img_from_target_files b/build/tools/releasetools/img_from_target_files
+--- a/build/tools/releasetools/img_from_target_files	2018-08-06 15:34:26.906582933 +0200
++++ b/build/tools/releasetools/img_from_target_files	2017-11-23 05:17:53.000000000 +0100
 @@ -88,6 +88,9 @@
              continue
            common.ZipWrite(
@@ -419,9 +419,9 @@ diff -ur ../aosp/build/tools/releasetools/img_from_target_files ../Desktop/andro
        def banner(s):
          print "\n\n++++ " + s + " ++++\n\n"
  
-diff -ur ../aosp/build/tools/releasetools/img_from_target_files.py ../Desktop/android/build/tools/releasetools/img_from_target_files.py
---- ../aosp/build/tools/releasetools/img_from_target_files.py	2018-08-06 15:34:26.906582933 +0200
-+++ ../Desktop/android/build/tools/releasetools/img_from_target_files.py	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/tools/releasetools/img_from_target_files.py b/build/tools/releasetools/img_from_target_files.py
+--- a/build/tools/releasetools/img_from_target_files.py	2018-08-06 15:34:26.906582933 +0200
++++ b/build/tools/releasetools/img_from_target_files.py	2017-11-23 05:17:53.000000000 +0100
 @@ -88,6 +88,9 @@
              continue
            common.ZipWrite(
@@ -442,9 +442,9 @@ diff -ur ../aosp/build/tools/releasetools/img_from_target_files.py ../Desktop/an
        def banner(s):
          print "\n\n++++ " + s + " ++++\n\n"
  
-diff -ur ../aosp/build/tools/releasetools/ota_from_target_files ../Desktop/android/build/tools/releasetools/ota_from_target_files
---- ../aosp/build/tools/releasetools/ota_from_target_files	2018-08-06 15:34:26.906582933 +0200
-+++ ../Desktop/android/build/tools/releasetools/ota_from_target_files	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/tools/releasetools/ota_from_target_files b/build/tools/releasetools/ota_from_target_files
+--- a/build/tools/releasetools/ota_from_target_files	2018-08-06 15:34:26.906582933 +0200
++++ b/build/tools/releasetools/ota_from_target_files	2017-11-23 05:17:53.000000000 +0100
 @@ -113,6 +113,12 @@
        Generate a log file that shows the differences in the source and target
        builds for an incremental package. This option is only meaningful when
@@ -971,9 +971,9 @@ diff -ur ../aosp/build/tools/releasetools/ota_from_target_files ../Desktop/andro
  
    common.ZipClose(output_zip)
  
-diff -ur ../aosp/build/tools/releasetools/ota_from_target_files.py ../Desktop/android/build/tools/releasetools/ota_from_target_files.py
---- ../aosp/build/tools/releasetools/ota_from_target_files.py	2018-08-06 15:34:26.906582933 +0200
-+++ ../Desktop/android/build/tools/releasetools/ota_from_target_files.py	2017-11-23 05:17:53.000000000 +0100
+diff -ur a/build/tools/releasetools/ota_from_target_files.py b/build/tools/releasetools/ota_from_target_files.py
+--- a/build/tools/releasetools/ota_from_target_files.py	2018-08-06 15:34:26.906582933 +0200
++++ b/build/tools/releasetools/ota_from_target_files.py	2017-11-23 05:17:53.000000000 +0100
 @@ -113,6 +113,12 @@
        Generate a log file that shows the differences in the source and target
        builds for an incremental package. This option is only meaningful when
@@ -1500,6 +1500,6 @@ diff -ur ../aosp/build/tools/releasetools/ota_from_target_files.py ../Desktop/an
  
    common.ZipClose(output_zip)
  
-Only in ../Desktop/android/build/tools/releasetools: prepare_verify.sh
-Only in ../Desktop/android/build/tools/releasetools: secureboot_sign_tools
-Only in ../Desktop/android/build/tools: verity
+Only in b/build/tools/releasetools: prepare_verify.sh
+Only in b/build/tools/releasetools: secureboot_sign_tools
+Only in b/build/tools: verity

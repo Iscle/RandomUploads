@@ -1,6 +1,6 @@
-diff -ur ../aosp/system/bt/bta/dm/bta_dm_act.c ../Desktop/android/system/bt/bta/dm/bta_dm_act.c
---- ../aosp/system/bt/bta/dm/bta_dm_act.c	2018-08-06 15:48:49.009738963 +0200
-+++ ../Desktop/android/system/bt/bta/dm/bta_dm_act.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/bta/dm/bta_dm_act.c b/system/bt/bta/dm/bta_dm_act.c
+--- a/system/bt/bta/dm/bta_dm_act.c	2018-08-06 15:48:49.009738963 +0200
++++ b/system/bt/bta/dm/bta_dm_act.c	2017-11-23 05:26:57.000000000 +0100
 @@ -48,6 +48,9 @@
  #if (GAP_INCLUDED == TRUE)
  #include "gap_api.h"
@@ -124,9 +124,9 @@ diff -ur ../aosp/system/bt/bta/dm/bta_dm_act.c ../Desktop/android/system/bt/bta/
  
  
  
-diff -ur ../aosp/system/bt/btif/co/bta_hh_co.c ../Desktop/android/system/bt/btif/co/bta_hh_co.c
---- ../aosp/system/bt/btif/co/bta_hh_co.c	2018-08-06 15:48:49.093740067 +0200
-+++ ../Desktop/android/system/bt/btif/co/bta_hh_co.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/btif/co/bta_hh_co.c b/system/bt/btif/co/bta_hh_co.c
+--- a/system/bt/btif/co/bta_hh_co.c	2018-08-06 15:48:49.093740067 +0200
++++ b/system/bt/btif/co/bta_hh_co.c	2017-11-23 05:26:57.000000000 +0100
 @@ -44,6 +44,8 @@
  static tBTA_HH_RPT_CACHE_ENTRY sReportCache[BTA_HH_NV_LOAD_MAX];
  #endif
@@ -202,9 +202,9 @@ diff -ur ../aosp/system/bt/btif/co/bta_hh_co.c ../Desktop/android/system/bt/btif
      // Send the HID data to the kernel.
      if ((p_dev->fd >= 0) && p_dev->ready_for_data) {
          bta_hh_co_write(p_dev->fd, p_rpt, len);
-diff -ur ../aosp/system/bt/btif/include/btif_common.h ../Desktop/android/system/bt/btif/include/btif_common.h
---- ../aosp/system/bt/btif/include/btif_common.h	2018-08-06 15:48:49.093740067 +0200
-+++ ../Desktop/android/system/bt/btif/include/btif_common.h	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/btif/include/btif_common.h b/system/bt/btif/include/btif_common.h
+--- a/system/bt/btif/include/btif_common.h	2018-08-06 15:48:49.093740067 +0200
++++ b/system/bt/btif/include/btif_common.h	2017-11-23 05:26:57.000000000 +0100
 @@ -169,6 +169,9 @@
  
  #define FACTORY_BT_BDADDR_STORAGE_LEN   17
@@ -215,9 +215,9 @@ diff -ur ../aosp/system/bt/btif/include/btif_common.h ../Desktop/android/system/
  
  /*******************************************************************************
  **  Type definitions for callback functions
-diff -ur ../aosp/system/bt/btif/src/bluetooth.c ../Desktop/android/system/bt/btif/src/bluetooth.c
---- ../aosp/system/bt/btif/src/bluetooth.c	2018-08-06 15:48:49.105740225 +0200
-+++ ../Desktop/android/system/bt/btif/src/bluetooth.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/btif/src/bluetooth.c b/system/bt/btif/src/bluetooth.c
+--- a/system/bt/btif/src/bluetooth.c	2018-08-06 15:48:49.105740225 +0200
++++ b/system/bt/btif/src/bluetooth.c	2017-11-23 05:26:57.000000000 +0100
 @@ -50,6 +50,7 @@
  #include "btif_debug.h"
  #include "btsnoop.h"
@@ -267,9 +267,9 @@ diff -ur ../aosp/system/bt/btif/src/bluetooth.c ../Desktop/android/system/bt/bti
    stack_manager_get_interface()->start_up_stack_async();
    return BT_STATUS_SUCCESS;
  }
-diff -ur ../aosp/system/bt/btif/src/btif_core.c ../Desktop/android/system/bt/btif/src/btif_core.c
---- ../aosp/system/bt/btif/src/btif_core.c	2018-08-06 15:48:49.105740225 +0200
-+++ ../Desktop/android/system/bt/btif/src/btif_core.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/btif/src/btif_core.c b/system/bt/btif/src/btif_core.c
+--- a/system/bt/btif/src/btif_core.c	2018-08-06 15:48:49.105740225 +0200
++++ b/system/bt/btif/src/btif_core.c	2017-11-23 05:26:57.000000000 +0100
 @@ -585,7 +585,10 @@
      BTIF_TRACE_DEBUG("%s", __FUNCTION__);
  
@@ -281,9 +281,9 @@ diff -ur ../aosp/system/bt/btif/src/btif_core.c ../Desktop/android/system/bt/bti
  #endif
  
       bte_main_disable();
-diff -ur ../aosp/system/bt/btif/src/btif_dm.c ../Desktop/android/system/bt/btif/src/btif_dm.c
---- ../aosp/system/bt/btif/src/btif_dm.c	2018-08-06 15:48:49.105740225 +0200
-+++ ../Desktop/android/system/bt/btif/src/btif_dm.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/btif/src/btif_dm.c b/system/bt/btif/src/btif_dm.c
+--- a/system/bt/btif/src/btif_dm.c	2018-08-06 15:48:49.105740225 +0200
++++ b/system/bt/btif/src/btif_dm.c	2017-11-23 05:26:57.000000000 +0100
 @@ -60,6 +60,9 @@
  #include "osi/include/properties.h"
  #include "stack_config.h"
@@ -507,9 +507,9 @@ diff -ur ../aosp/system/bt/btif/src/btif_dm.c ../Desktop/android/system/bt/btif/
  }
  
  /* store remote version in bt config to always have access
-diff -ur ../aosp/system/bt/btif/src/btif_gatt_client.c ../Desktop/android/system/bt/btif/src/btif_gatt_client.c
---- ../aosp/system/bt/btif/src/btif_gatt_client.c	2018-08-06 15:48:49.109740276 +0200
-+++ ../Desktop/android/system/bt/btif/src/btif_gatt_client.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/btif/src/btif_gatt_client.c b/system/bt/btif/src/btif_gatt_client.c
+--- a/system/bt/btif/src/btif_gatt_client.c	2018-08-06 15:48:49.109740276 +0200
++++ b/system/bt/btif/src/btif_gatt_client.c	2017-11-23 05:26:57.000000000 +0100
 @@ -54,6 +54,8 @@
  #include "osi/include/log.h"
  #include "vendor_api.h"
@@ -529,9 +529,9 @@ diff -ur ../aosp/system/bt/btif/src/btif_gatt_client.c ../Desktop/android/system
               dev_type =  p_btif_cb->device_type;
               BTIF_STORAGE_FILL_PROPERTY(&properties,
                          BT_PROPERTY_TYPE_OF_DEVICE, sizeof(dev_type), &dev_type);
-diff -ur ../aosp/system/bt/btif/src/btif_storage.c ../Desktop/android/system/bt/btif/src/btif_storage.c
---- ../aosp/system/bt/btif/src/btif_storage.c	2018-08-06 15:48:49.121740434 +0200
-+++ ../Desktop/android/system/bt/btif/src/btif_storage.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/btif/src/btif_storage.c b/system/bt/btif/src/btif_storage.c
+--- a/system/bt/btif/src/btif_storage.c	2018-08-06 15:48:49.121740434 +0200
++++ b/system/bt/btif/src/btif_storage.c	2017-11-23 05:26:57.000000000 +0100
 @@ -197,6 +197,7 @@
                                  BTIF_STORAGE_PATH_REMOTE_NAME, value);
              else btif_config_set_str("Adapter",
@@ -540,9 +540,9 @@ diff -ur ../aosp/system/bt/btif/src/btif_storage.c ../Desktop/android/system/bt/
              break;
          case BT_PROPERTY_REMOTE_FRIENDLY_NAME:
              strncpy(value, (char*)prop->val, prop->len);
-diff -ur ../aosp/system/bt/conf/Android.mk ../Desktop/android/system/bt/conf/Android.mk
---- ../aosp/system/bt/conf/Android.mk	2018-08-06 15:48:49.125740487 +0200
-+++ ../Desktop/android/system/bt/conf/Android.mk	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/conf/Android.mk b/system/bt/conf/Android.mk
+--- a/system/bt/conf/Android.mk	2018-08-06 15:48:49.125740487 +0200
++++ b/system/bt/conf/Android.mk	2017-11-23 05:26:57.000000000 +0100
 @@ -20,3 +20,12 @@
  LOCAL_SRC_FILES := $(LOCAL_MODULE)
  include $(BUILD_PREBUILT)
@@ -556,10 +556,10 @@ diff -ur ../aosp/system/bt/conf/Android.mk ../Desktop/android/system/bt/conf/And
 +LOCAL_MODULE_TAGS := optional
 +LOCAL_SRC_FILES := $(LOCAL_MODULE)
 +include $(BUILD_PREBUILT)
-Only in ../Desktop/android/system/bt/conf: rc.conf
-diff -ur ../aosp/system/bt/hci/Android.mk ../Desktop/android/system/bt/hci/Android.mk
---- ../aosp/system/bt/hci/Android.mk	2018-08-06 15:48:49.129740538 +0200
-+++ ../Desktop/android/system/bt/hci/Android.mk	2017-11-23 05:26:57.000000000 +0100
+Only in b/system/bt/conf: rc.conf
+diff -ur a/system/bt/hci/Android.mk b/system/bt/hci/Android.mk
+--- a/system/bt/hci/Android.mk	2018-08-06 15:48:49.129740538 +0200
++++ b/system/bt/hci/Android.mk	2017-11-23 05:26:57.000000000 +0100
 @@ -13,13 +13,15 @@
      src/hci_hal.c \
      src/hci_hal_h4.c \
@@ -590,19 +590,19 @@ diff -ur ../aosp/system/bt/hci/Android.mk ../Desktop/android/system/bt/hci/Andro
  LOCAL_MODULE := libbt-hci
  
  ifeq ($(BLUETOOTH_HCI_USE_MCT),true)
-diff -ur ../aosp/system/bt/hci/include/hci_hal.h ../Desktop/android/system/bt/hci/include/hci_hal.h
---- ../aosp/system/bt/hci/include/hci_hal.h	2018-08-06 15:48:49.133740592 +0200
-+++ ../Desktop/android/system/bt/hci/include/hci_hal.h	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/hci/include/hci_hal.h b/system/bt/hci/include/hci_hal.h
+--- a/system/bt/hci/include/hci_hal.h	2018-08-06 15:48:49.133740592 +0200
++++ b/system/bt/hci/include/hci_hal.h	2017-11-23 05:26:57.000000000 +0100
 @@ -85,3 +85,5 @@
  
  const hci_hal_t *hci_hal_mct_get_interface(void);
  const hci_hal_t *hci_hal_mct_get_test_interface(vendor_t *vendor_interface);
 +
 +const hci_hal_t *hci_hal_usb_get_interface();
-Only in ../Desktop/android/system/bt/hci/include: usb.h
-diff -ur ../aosp/system/bt/hci/src/hci_hal.c ../Desktop/android/system/bt/hci/src/hci_hal.c
---- ../aosp/system/bt/hci/src/hci_hal.c	2018-08-06 15:48:49.133740592 +0200
-+++ ../Desktop/android/system/bt/hci/src/hci_hal.c	2017-11-23 05:26:57.000000000 +0100
+Only in b/system/bt/hci/include: usb.h
+diff -ur a/system/bt/hci/src/hci_hal.c b/system/bt/hci/src/hci_hal.c
+--- a/system/bt/hci/src/hci_hal.c	2018-08-06 15:48:49.133740592 +0200
++++ b/system/bt/hci/src/hci_hal.c	2017-11-23 05:26:57.000000000 +0100
 @@ -19,10 +19,14 @@
  #include "hci_hal.h"
  
@@ -618,10 +618,10 @@ diff -ur ../aosp/system/bt/hci/src/hci_hal.c ../Desktop/android/system/bt/hci/sr
 +
  }
  
-Only in ../Desktop/android/system/bt/hci/src: hci_hal_usb.c
-diff -ur ../aosp/system/bt/hci/src/hci_layer.c ../Desktop/android/system/bt/hci/src/hci_layer.c
---- ../aosp/system/bt/hci/src/hci_layer.c	2018-08-06 15:48:49.133740592 +0200
-+++ ../Desktop/android/system/bt/hci/src/hci_layer.c	2017-11-23 05:26:57.000000000 +0100
+Only in b/system/bt/hci/src: hci_hal_usb.c
+diff -ur a/system/bt/hci/src/hci_layer.c b/system/bt/hci/src/hci_layer.c
+--- a/system/bt/hci/src/hci_layer.c	2018-08-06 15:48:49.133740592 +0200
++++ b/system/bt/hci/src/hci_layer.c	2017-11-23 05:26:57.000000000 +0100
 @@ -701,12 +701,18 @@
  
    if (wait_entry) {
@@ -643,9 +643,9 @@ diff -ur ../aosp/system/bt/hci/src/hci_layer.c ../Desktop/android/system/bt/hci/
  
      osi_free(wait_entry);
    } else {
-diff -ur ../aosp/system/bt/hci/src/low_power_manager.c ../Desktop/android/system/bt/hci/src/low_power_manager.c
---- ../aosp/system/bt/hci/src/low_power_manager.c	2018-08-06 15:48:49.133740592 +0200
-+++ ../Desktop/android/system/bt/hci/src/low_power_manager.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/hci/src/low_power_manager.c b/system/bt/hci/src/low_power_manager.c
+--- a/system/bt/hci/src/low_power_manager.c	2018-08-06 15:48:49.133740592 +0200
++++ b/system/bt/hci/src/low_power_manager.c	2017-11-23 05:26:57.000000000 +0100
 @@ -141,11 +141,11 @@
        LOG_ERROR(LOG_TAG, "%s still processing prior enable request, ignoring new request to enable.", __func__);
      else
@@ -660,10 +660,10 @@ diff -ur ../aosp/system/bt/hci/src/low_power_manager.c ../Desktop/android/system
      uint8_t command = enable ? BT_VND_LPM_ENABLE : BT_VND_LPM_DISABLE;
      state = enable ? LPM_ENABLING : LPM_DISABLING;
      if (state == LPM_ENABLING)
-Only in ../Desktop/android/system/bt/hci/src: usb.c
-diff -ur ../aosp/system/bt/hci/src/vendor.c ../Desktop/android/system/bt/hci/src/vendor.c
---- ../aosp/system/bt/hci/src/vendor.c	2018-08-06 15:48:49.133740592 +0200
-+++ ../Desktop/android/system/bt/hci/src/vendor.c	2017-11-23 05:26:57.000000000 +0100
+Only in b/system/bt/hci/src: usb.c
+diff -ur a/system/bt/hci/src/vendor.c b/system/bt/hci/src/vendor.c
+--- a/system/bt/hci/src/vendor.c	2018-08-06 15:48:49.133740592 +0200
++++ b/system/bt/hci/src/vendor.c	2017-11-23 05:26:57.000000000 +0100
 @@ -30,7 +30,7 @@
  #include "osi/include/osi.h"
  
@@ -673,9 +673,9 @@ diff -ur ../aosp/system/bt/hci/src/vendor.c ../Desktop/android/system/bt/hci/src
  static const char *VENDOR_LIBRARY_SYMBOL_NAME = "BLUETOOTH_VENDOR_LIB_INTERFACE";
  
  static const vendor_t interface;
-diff -ur ../aosp/system/bt/include/bt_target.h ../Desktop/android/system/bt/include/bt_target.h
---- ../aosp/system/bt/include/bt_target.h	2018-08-06 15:48:49.137740643 +0200
-+++ ../Desktop/android/system/bt/include/bt_target.h	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/include/bt_target.h b/system/bt/include/bt_target.h
+--- a/system/bt/include/bt_target.h	2018-08-06 15:48:49.137740643 +0200
++++ b/system/bt/include/bt_target.h	2017-11-23 05:26:57.000000000 +0100
 @@ -20,6 +20,9 @@
  #ifndef BT_TARGET_H
  #define BT_TARGET_H
@@ -704,9 +704,9 @@ diff -ur ../aosp/system/bt/include/bt_target.h ../Desktop/android/system/bt/incl
  #endif
  
  /*
-diff -ur ../aosp/system/bt/main/Android.mk ../Desktop/android/system/bt/main/Android.mk
---- ../aosp/system/bt/main/Android.mk	2018-08-06 15:48:49.137740643 +0200
-+++ ../Desktop/android/system/bt/main/Android.mk	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/main/Android.mk b/system/bt/main/Android.mk
+--- a/system/bt/main/Android.mk	2018-08-06 15:48:49.137740643 +0200
++++ b/system/bt/main/Android.mk	2017-11-23 05:26:57.000000000 +0100
 @@ -79,9 +79,10 @@
      libbt-stack \
      libbt-utils \
@@ -731,9 +731,9 @@ diff -ur ../aosp/system/bt/main/Android.mk ../Desktop/android/system/bt/main/And
  
  LOCAL_CFLAGS += $(bluetooth_CFLAGS) -DBUILDCFG
  LOCAL_CONLYFLAGS += $(bluetooth_CONLYFLAGS)
-diff -ur ../aosp/system/bt/stack/btm/btm_acl.c ../Desktop/android/system/bt/stack/btm/btm_acl.c
---- ../aosp/system/bt/stack/btm/btm_acl.c	2018-08-06 15:48:49.201741485 +0200
-+++ ../Desktop/android/system/bt/stack/btm/btm_acl.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/stack/btm/btm_acl.c b/system/bt/stack/btm/btm_acl.c
+--- a/system/bt/stack/btm/btm_acl.c	2018-08-06 15:48:49.201741485 +0200
++++ b/system/bt/stack/btm/btm_acl.c	2017-11-23 05:26:57.000000000 +0100
 @@ -1299,6 +1299,7 @@
  *******************************************************************************/
  tBTM_STATUS BTM_SetLinkSuperTout (BD_ADDR remote_bda, UINT16 timeout)
@@ -752,9 +752,9 @@ diff -ur ../aosp/system/bt/stack/btm/btm_acl.c ../Desktop/android/system/bt/stac
  }
  
  /*******************************************************************************
-diff -ur ../aosp/system/bt/stack/btm/btm_ble_adv_filter.c ../Desktop/android/system/bt/stack/btm/btm_ble_adv_filter.c
---- ../aosp/system/bt/stack/btm/btm_ble_adv_filter.c	2018-08-06 15:48:49.201741485 +0200
-+++ ../Desktop/android/system/bt/stack/btm/btm_ble_adv_filter.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/stack/btm/btm_ble_adv_filter.c b/system/bt/stack/btm/btm_ble_adv_filter.c
+--- a/system/bt/stack/btm/btm_ble_adv_filter.c	2018-08-06 15:48:49.201741485 +0200
++++ b/system/bt/stack/btm/btm_ble_adv_filter.c	2017-11-23 05:26:57.000000000 +0100
 @@ -1030,6 +1030,167 @@
      return st;
  }
@@ -923,9 +923,9 @@ diff -ur ../aosp/system/bt/stack/btm/btm_ble_adv_filter.c ../Desktop/android/sys
  /*******************************************************************************
  **
  ** Function         BTM_BleAdvFilterParamSetup
-diff -ur ../aosp/system/bt/stack/btm/btm_devctl.c ../Desktop/android/system/bt/stack/btm/btm_devctl.c
---- ../aosp/system/bt/stack/btm/btm_devctl.c	2018-08-06 15:48:49.205741536 +0200
-+++ ../Desktop/android/system/bt/stack/btm/btm_devctl.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/stack/btm/btm_devctl.c b/system/bt/stack/btm/btm_devctl.c
+--- a/system/bt/stack/btm/btm_devctl.c	2018-08-06 15:48:49.205741536 +0200
++++ b/system/bt/stack/btm/btm_devctl.c	2017-11-23 05:26:57.000000000 +0100
 @@ -39,6 +39,7 @@
  #include "l2c_int.h"
  #include "btcore/include/module.h"
@@ -949,9 +949,9 @@ diff -ur ../aosp/system/bt/stack/btm/btm_devctl.c ../Desktop/android/system/bt/s
      /* If there was a callback address for vcs complete, call it */
      if (p_vsc_cplt_cback)
      {
-diff -ur ../aosp/system/bt/stack/btu/btu_hcif.c ../Desktop/android/system/bt/stack/btu/btu_hcif.c
---- ../aosp/system/bt/stack/btu/btu_hcif.c	2018-08-06 15:48:49.209741589 +0200
-+++ ../Desktop/android/system/bt/stack/btu/btu_hcif.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/stack/btu/btu_hcif.c b/system/bt/stack/btu/btu_hcif.c
+--- a/system/bt/stack/btu/btu_hcif.c	2018-08-06 15:48:49.209741589 +0200
++++ b/system/bt/stack/btu/btu_hcif.c	2017-11-23 05:26:57.000000000 +0100
 @@ -1112,7 +1112,9 @@
        stream,
        hack->context);
@@ -962,9 +962,9 @@ diff -ur ../aosp/system/bt/stack/btu/btu_hcif.c ../Desktop/android/system/bt/sta
      osi_free(event);
  }
  
-diff -ur ../aosp/system/bt/stack/hcic/hcicmds.c ../Desktop/android/system/bt/stack/hcic/hcicmds.c
---- ../aosp/system/bt/stack/hcic/hcicmds.c	2018-08-06 15:48:49.213741642 +0200
-+++ ../Desktop/android/system/bt/stack/hcic/hcicmds.c	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/stack/hcic/hcicmds.c b/system/bt/stack/hcic/hcicmds.c
+--- a/system/bt/stack/hcic/hcicmds.c	2018-08-06 15:48:49.213741642 +0200
++++ b/system/bt/stack/hcic/hcicmds.c	2017-11-23 05:26:57.000000000 +0100
 @@ -35,6 +35,41 @@
  
  #include "btm_int.h"    /* Included for UIPC_* macro definitions */
@@ -1007,9 +1007,9 @@ diff -ur ../aosp/system/bt/stack/hcic/hcicmds.c ../Desktop/android/system/bt/sta
  BOOLEAN btsnd_hcic_inquiry(const LAP inq_lap, UINT8 duration, UINT8 response_cnt)
  {
      BT_HDR *p = (BT_HDR *)osi_malloc(HCI_CMD_BUF_SIZE);
-diff -ur ../aosp/system/bt/stack/include/hcidefs.h ../Desktop/android/system/bt/stack/include/hcidefs.h
---- ../aosp/system/bt/stack/include/hcidefs.h	2018-08-06 15:48:49.281742532 +0200
-+++ ../Desktop/android/system/bt/stack/include/hcidefs.h	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/stack/include/hcidefs.h b/system/bt/stack/include/hcidefs.h
+--- a/system/bt/stack/include/hcidefs.h	2018-08-06 15:48:49.281742532 +0200
++++ b/system/bt/stack/include/hcidefs.h	2017-11-23 05:26:57.000000000 +0100
 @@ -367,6 +367,8 @@
  /* Energy info OCF */
  #define HCI_BLE_ENERGY_INFO_OCF   (0x0159 | HCI_GRP_VENDOR_SPECIFIC)
@@ -1028,9 +1028,9 @@ diff -ur ../aosp/system/bt/stack/include/hcidefs.h ../Desktop/android/system/bt/
  /* Define values for LMP Test Control parameters
  ** Test Scenario, Hopping Mode, Power Control Mode
  */
-diff -ur ../aosp/system/bt/stack/include/hcimsgs.h ../Desktop/android/system/bt/stack/include/hcimsgs.h
---- ../aosp/system/bt/stack/include/hcimsgs.h	2018-08-06 15:48:49.281742532 +0200
-+++ ../Desktop/android/system/bt/stack/include/hcimsgs.h	2017-11-23 05:26:57.000000000 +0100
+diff -ur a/system/bt/stack/include/hcimsgs.h b/system/bt/stack/include/hcimsgs.h
+--- a/system/bt/stack/include/hcimsgs.h	2018-08-06 15:48:49.281742532 +0200
++++ b/system/bt/stack/include/hcimsgs.h	2017-11-23 05:26:57.000000000 +0100
 @@ -27,6 +27,13 @@
  void bte_main_lpm_allow_bt_device_sleep(void);
  
@@ -1045,9 +1045,9 @@ diff -ur ../aosp/system/bt/stack/include/hcimsgs.h ../Desktop/android/system/bt/
  
  extern BOOLEAN btsnd_hcic_inquiry(const LAP inq_lap, UINT8 duration,
                                    UINT8 response_cnt);
-diff -ur ../aosp/system/core/fs_mgr/Android.mk ../Desktop/android/system/core/fs_mgr/Android.mk
---- ../aosp/system/core/fs_mgr/Android.mk	2018-08-06 15:48:53.337795782 +0200
-+++ ../Desktop/android/system/core/fs_mgr/Android.mk	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/fs_mgr/Android.mk b/system/core/fs_mgr/Android.mk
+--- a/system/core/fs_mgr/Android.mk	2018-08-06 15:48:53.337795782 +0200
++++ b/system/core/fs_mgr/Android.mk	2017-11-23 05:26:58.000000000 +0100
 @@ -20,7 +20,8 @@
      fs_mgr_format.c \
      fs_mgr_fstab.c \
@@ -1066,9 +1066,9 @@ diff -ur ../aosp/system/core/fs_mgr/Android.mk ../Desktop/android/system/core/fs
      libsparse_static \
      libz \
      libselinux
-diff -ur ../aosp/system/core/fs_mgr/fs_mgr.c ../Desktop/android/system/core/fs_mgr/fs_mgr.c
---- ../aosp/system/core/fs_mgr/fs_mgr.c	2018-08-06 15:48:53.337795782 +0200
-+++ ../Desktop/android/system/core/fs_mgr/fs_mgr.c	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/fs_mgr/fs_mgr.c b/system/core/fs_mgr/fs_mgr.c
+--- a/system/core/fs_mgr/fs_mgr.c	2018-08-06 15:48:53.337795782 +0200
++++ b/system/core/fs_mgr/fs_mgr.c	2017-11-23 05:26:58.000000000 +0100
 @@ -49,12 +49,15 @@
  
  #include "fs_mgr_priv.h"
@@ -1386,11 +1386,11 @@ diff -ur ../aosp/system/core/fs_mgr/fs_mgr.c ../Desktop/android/system/core/fs_m
          if ((fstab->recs[i].fs_mgr_flags & MF_VERIFY) && device_is_secure()) {
              int rc = fs_mgr_setup_verity(&fstab->recs[i]);
              if (device_is_debuggable() && rc == FS_MGR_SETUP_VERITY_DISABLED) {
-Only in ../Desktop/android/system/core/fs_mgr: fs_mgr_fivm.c
-Only in ../Desktop/android/system/core/fs_mgr: fs_mgr_fivm.h
-diff -ur ../aosp/system/core/fs_mgr/fs_mgr_fstab.c ../Desktop/android/system/core/fs_mgr/fs_mgr_fstab.c
---- ../aosp/system/core/fs_mgr/fs_mgr_fstab.c	2018-08-06 15:48:53.337795782 +0200
-+++ ../Desktop/android/system/core/fs_mgr/fs_mgr_fstab.c	2017-11-23 05:26:58.000000000 +0100
+Only in b/system/core/fs_mgr: fs_mgr_fivm.c
+Only in b/system/core/fs_mgr: fs_mgr_fivm.h
+diff -ur a/system/core/fs_mgr/fs_mgr_fstab.c b/system/core/fs_mgr/fs_mgr_fstab.c
+--- a/system/core/fs_mgr/fs_mgr_fstab.c	2018-08-06 15:48:53.337795782 +0200
++++ b/system/core/fs_mgr/fs_mgr_fstab.c	2017-11-23 05:26:58.000000000 +0100
 @@ -72,12 +72,14 @@
      { "swapprio=",   MF_SWAPPRIO },
      { "zramsize=",   MF_ZRAMSIZE },
@@ -1406,9 +1406,9 @@ diff -ur ../aosp/system/core/fs_mgr/fs_mgr_fstab.c ../Desktop/android/system/cor
      { 0,             0 },
  };
  
-diff -ur ../aosp/system/core/fs_mgr/fs_mgr_priv.h ../Desktop/android/system/core/fs_mgr/fs_mgr_priv.h
---- ../aosp/system/core/fs_mgr/fs_mgr_priv.h	2018-08-06 15:48:53.337795782 +0200
-+++ ../Desktop/android/system/core/fs_mgr/fs_mgr_priv.h	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/fs_mgr/fs_mgr_priv.h b/system/core/fs_mgr/fs_mgr_priv.h
+--- a/system/core/fs_mgr/fs_mgr_priv.h	2018-08-06 15:48:53.337795782 +0200
++++ b/system/core/fs_mgr/fs_mgr_priv.h	2017-11-23 05:26:58.000000000 +0100
 @@ -84,7 +84,8 @@
  #define MF_SLOTSELECT   0x8000
  #define MF_FORCEFDEORFBE 0x10000
@@ -1419,10 +1419,10 @@ diff -ur ../aosp/system/core/fs_mgr/fs_mgr_priv.h ../Desktop/android/system/core
  #define DM_BUF_SIZE 4096
  
  int fs_mgr_set_blk_ro(const char *blockdev);
-Only in ../Desktop/android/system/core/include: ion
-diff -ur ../aosp/system/core/include/system/camera.h ../Desktop/android/system/core/include/system/camera.h
---- ../aosp/system/core/include/system/camera.h	2018-08-06 15:48:53.593799144 +0200
-+++ ../Desktop/android/system/core/include/system/camera.h	2017-11-23 05:26:58.000000000 +0100
+Only in b/system/core/include: ion
+diff -ur a/system/core/include/system/camera.h b/system/core/include/system/camera.h
+--- a/system/core/include/system/camera.h	2018-08-06 15:48:53.593799144 +0200
++++ b/system/core/include/system/camera.h	2017-11-23 05:26:58.000000000 +0100
 @@ -88,6 +88,12 @@
      // Notify on autofocus start and stop. This is useful in continuous
      // autofocus - FOCUS_MODE_CONTINUOUS_VIDEO and FOCUS_MODE_CONTINUOUS_PICTURE.
@@ -1497,9 +1497,9 @@ diff -ur ../aosp/system/core/include/system/camera.h ../Desktop/android/system/c
  __END_DECLS
  
  #endif /* SYSTEM_CORE_INCLUDE_ANDROID_CAMERA_H */
-diff -ur ../aosp/system/core/include/system/graphics.h ../Desktop/android/system/core/include/system/graphics.h
---- ../aosp/system/core/include/system/graphics.h	2018-08-06 15:48:53.593799144 +0200
-+++ ../Desktop/android/system/core/include/system/graphics.h	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/include/system/graphics.h b/system/core/include/system/graphics.h
+--- a/system/core/include/system/graphics.h	2018-08-06 15:48:53.593799144 +0200
++++ b/system/core/include/system/graphics.h	2017-11-23 05:26:58.000000000 +0100
 @@ -60,6 +60,28 @@
      HAL_PIXEL_FORMAT_BGRA_8888          = 5,
  
@@ -1573,9 +1573,9 @@ diff -ur ../aosp/system/core/include/system/graphics.h ../Desktop/android/system
      HAL_PIXEL_FORMAT_YCbCr_422_I        = 0x14, // YUY2
  } android_pixel_format_t;
  
-diff -ur ../aosp/system/core/include/system/window.h ../Desktop/android/system/core/include/system/window.h
---- ../aosp/system/core/include/system/window.h	2018-08-06 15:48:53.593799144 +0200
-+++ ../Desktop/android/system/core/include/system/window.h	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/include/system/window.h b/system/core/include/system/window.h
+--- a/system/core/include/system/window.h	2018-08-06 15:48:53.593799144 +0200
++++ b/system/core/include/system/window.h	2017-11-23 05:26:58.000000000 +0100
 @@ -314,6 +314,9 @@
      NATIVE_WINDOW_SET_SURFACE_DAMAGE        = 20,   /* private */
      NATIVE_WINDOW_SET_SHARED_BUFFER_MODE    = 21,
@@ -1586,9 +1586,9 @@ diff -ur ../aosp/system/core/include/system/window.h ../Desktop/android/system/c
  };
  
  /* parameter for NATIVE_WINDOW_[API_][DIS]CONNECT */
-diff -ur ../aosp/system/core/include/utils/FileMap.h ../Desktop/android/system/core/include/utils/FileMap.h
---- ../aosp/system/core/include/utils/FileMap.h	2018-08-06 15:48:53.621799510 +0200
-+++ ../Desktop/android/system/core/include/utils/FileMap.h	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/include/utils/FileMap.h b/system/core/include/utils/FileMap.h
+--- a/system/core/include/utils/FileMap.h	2018-08-06 15:48:53.621799510 +0200
++++ b/system/core/include/utils/FileMap.h	2017-11-23 05:26:58.000000000 +0100
 @@ -89,6 +89,19 @@
      off64_t getDataOffset(void) const { return mDataOffset; }
  
@@ -1617,9 +1617,9 @@ diff -ur ../aosp/system/core/include/utils/FileMap.h ../Desktop/android/system/c
      char*       mFileName;      // original file name, if known
      void*       mBasePtr;       // base of mmap area; page aligned
      size_t      mBaseLength;    // length, measured from "mBasePtr"
-diff -ur ../aosp/system/core/init/Android.mk ../Desktop/android/system/core/init/Android.mk
---- ../aosp/system/core/init/Android.mk	2018-08-06 15:48:53.629799615 +0200
-+++ ../Desktop/android/system/core/init/Android.mk	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/init/Android.mk b/system/core/init/Android.mk
+--- a/system/core/init/Android.mk	2018-08-06 15:48:53.629799615 +0200
++++ b/system/core/init/Android.mk	2017-11-23 05:26:58.000000000 +0100
 @@ -7,11 +7,21 @@
  ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
  init_options += -DALLOW_LOCAL_PROP_OVERRIDE=1 -DALLOW_PERMISSIVE_SELINUX=1
@@ -1678,10 +1678,10 @@ diff -ur ../aosp/system/core/init/Android.mk ../Desktop/android/system/core/init
  # Create symlinks
  LOCAL_POST_INSTALL_CMD := $(hide) mkdir -p $(TARGET_ROOT_OUT)/sbin; \
      ln -sf ../init $(TARGET_ROOT_OUT)/sbin/ueventd; \
-Only in ../Desktop/android/system/core/init: boostup.cpp
-diff -ur ../aosp/system/core/init/builtins.cpp ../Desktop/android/system/core/init/builtins.cpp
---- ../aosp/system/core/init/builtins.cpp	2018-08-06 15:48:53.629799615 +0200
-+++ ../Desktop/android/system/core/init/builtins.cpp	2017-11-23 05:26:58.000000000 +0100
+Only in b/system/core/init: boostup.cpp
+diff -ur a/system/core/init/builtins.cpp b/system/core/init/builtins.cpp
+--- a/system/core/init/builtins.cpp	2018-08-06 15:48:53.629799615 +0200
++++ b/system/core/init/builtins.cpp	2017-11-23 05:26:58.000000000 +0100
 @@ -49,6 +49,7 @@
  #include <bootloader_message_writer.h>
  #include <cutils/partition_utils.h>
@@ -1787,10 +1787,10 @@ diff -ur ../aosp/system/core/init/builtins.cpp ../Desktop/android/system/core/in
      };
      return builtin_functions;
  }
-Only in ../Desktop/android/system/core/init: display
-diff -ur ../aosp/system/core/init/init.cpp ../Desktop/android/system/core/init/init.cpp
---- ../aosp/system/core/init/init.cpp	2018-08-06 15:48:53.633799669 +0200
-+++ ../Desktop/android/system/core/init/init.cpp	2017-11-23 05:26:58.000000000 +0100
+Only in b/system/core/init: display
+diff -ur a/system/core/init/init.cpp b/system/core/init/init.cpp
+--- a/system/core/init/init.cpp	2018-08-06 15:48:53.633799669 +0200
++++ b/system/core/init/init.cpp	2017-11-23 05:26:58.000000000 +0100
 @@ -85,6 +85,8 @@
  
  static int epoll_fd = -1;
@@ -1905,9 +1905,9 @@ diff -ur ../aosp/system/core/init/init.cpp ../Desktop/android/system/core/init/i
      ActionManager& am = ActionManager::GetInstance();
  
      am.QueueEventTrigger("early-init");
-diff -ur ../aosp/system/core/init/init.h ../Desktop/android/system/core/init/init.h
---- ../aosp/system/core/init/init.h	2018-08-06 15:48:53.633799669 +0200
-+++ ../Desktop/android/system/core/init/init.h	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/init/init.h b/system/core/init/init.h
+--- a/system/core/init/init.h	2018-08-06 15:48:53.633799669 +0200
++++ b/system/core/init/init.h	2017-11-23 05:26:58.000000000 +0100
 @@ -41,4 +41,6 @@
  
  int add_environment(const char* key, const char* val);
@@ -1915,10 +1915,10 @@ diff -ur ../aosp/system/core/init/init.h ../Desktop/android/system/core/init/ini
 +int checkService(const char *path,const char * sevice_name);
 +
  #endif  /* _INIT_INIT_H */
-Only in ../Desktop/android/system/core/init: libboot.h
-diff -ur ../aosp/system/core/init/property_service.cpp ../Desktop/android/system/core/init/property_service.cpp
---- ../aosp/system/core/init/property_service.cpp	2018-08-06 15:48:53.649799878 +0200
-+++ ../Desktop/android/system/core/init/property_service.cpp	2017-11-23 05:26:58.000000000 +0100
+Only in b/system/core/init: libboot.h
+diff -ur a/system/core/init/property_service.cpp b/system/core/init/property_service.cpp
+--- a/system/core/init/property_service.cpp	2018-08-06 15:48:53.649799878 +0200
++++ b/system/core/init/property_service.cpp	2017-11-23 05:26:58.000000000 +0100
 @@ -62,7 +62,9 @@
  static int persistent_properties_loaded = 0;
  
@@ -1943,9 +1943,9 @@ diff -ur ../aosp/system/core/init/property_service.cpp ../Desktop/android/system
      property_changed(name, value);
      return 0;
  }
-diff -ur ../aosp/system/core/init/util.cpp ../Desktop/android/system/core/init/util.cpp
---- ../aosp/system/core/init/util.cpp	2018-08-06 15:48:53.649799878 +0200
-+++ ../Desktop/android/system/core/init/util.cpp	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/init/util.cpp b/system/core/init/util.cpp
+--- a/system/core/init/util.cpp	2018-08-06 15:48:53.649799878 +0200
++++ b/system/core/init/util.cpp	2017-11-23 05:26:58.000000000 +0100
 @@ -492,6 +492,8 @@
      return S_ISDIR(info.st_mode);
  }
@@ -2030,18 +2030,18 @@ diff -ur ../aosp/system/core/init/util.cpp ../Desktop/android/system/core/init/u
 +	}
 +}
 +
-diff -ur ../aosp/system/core/init/util.h ../Desktop/android/system/core/init/util.h
---- ../aosp/system/core/init/util.h	2018-08-06 15:48:53.649799878 +0200
-+++ ../Desktop/android/system/core/init/util.h	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/init/util.h b/system/core/init/util.h
+--- a/system/core/init/util.h	2018-08-06 15:48:53.649799878 +0200
++++ b/system/core/init/util.h	2017-11-23 05:26:58.000000000 +0100
 @@ -66,4 +66,5 @@
  std::string bytes_to_hex(const uint8_t *bytes, size_t bytes_len);
  bool is_dir(const char* pathname);
  bool expand_props(const std::string& src, std::string* dst);
 +void get_kernel_cmdline_partitions(void);
  #endif
-diff -ur ../aosp/system/core/libcutils/Android.mk ../Desktop/android/system/core/libcutils/Android.mk
---- ../aosp/system/core/libcutils/Android.mk	2018-08-06 15:48:53.653799931 +0200
-+++ ../Desktop/android/system/core/libcutils/Android.mk	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/libcutils/Android.mk b/system/core/libcutils/Android.mk
+--- a/system/core/libcutils/Android.mk	2018-08-06 15:48:53.653799931 +0200
++++ b/system/core/libcutils/Android.mk	2017-11-23 05:26:58.000000000 +0100
 @@ -97,6 +97,7 @@
          ashmem-dev.c \
          debugger.c \
@@ -2050,9 +2050,9 @@ diff -ur ../aosp/system/core/libcutils/Android.mk ../Desktop/android/system/core
          partition_utils.c \
          properties.c \
          qtaguid.c \
-diff -ur ../aosp/system/core/libcutils/android_reboot.c ../Desktop/android/system/core/libcutils/android_reboot.c
---- ../aosp/system/core/libcutils/android_reboot.c	2018-08-06 15:48:53.653799931 +0200
-+++ ../Desktop/android/system/core/libcutils/android_reboot.c	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/libcutils/android_reboot.c b/system/core/libcutils/android_reboot.c
+--- a/system/core/libcutils/android_reboot.c	2018-08-06 15:48:53.653799931 +0200
++++ b/system/core/libcutils/android_reboot.c	2017-11-23 05:26:58.000000000 +0100
 @@ -209,6 +209,8 @@
      free_entries(&ro_entries);
  }
@@ -2075,10 +2075,10 @@ diff -ur ../aosp/system/core/libcutils/android_reboot.c ../Desktop/android/syste
              break;
  
          default:
-Only in ../Desktop/android/system/core/libcutils: misc_rw.c
-diff -ur ../aosp/system/core/libion/include/ion/ion.h ../Desktop/android/system/core/libion/include/ion/ion.h
---- ../aosp/system/core/libion/include/ion/ion.h	2018-08-06 15:48:53.661800035 +0200
-+++ ../Desktop/android/system/core/libion/include/ion/ion.h	2017-11-23 05:26:58.000000000 +0100
+Only in b/system/core/libcutils: misc_rw.c
+diff -ur a/system/core/libion/include/ion/ion.h b/system/core/libion/include/ion/ion.h
+--- a/system/core/libion/include/ion/ion.h	2018-08-06 15:48:53.661800035 +0200
++++ b/system/core/libion/include/ion/ion.h	2017-11-23 05:26:58.000000000 +0100
 @@ -40,6 +40,7 @@
              int flags, off_t offset, unsigned char **ptr, int *map_fd);
  int ion_share(int fd, ion_user_handle_t handle, int *share_fd);
@@ -2087,9 +2087,9 @@ diff -ur ../aosp/system/core/libion/include/ion/ion.h ../Desktop/android/system/
  
  __END_DECLS
  
-diff -ur ../aosp/system/core/libion/ion.c ../Desktop/android/system/core/libion/ion.c
---- ../aosp/system/core/libion/ion.c	2018-08-06 15:48:53.661800035 +0200
-+++ ../Desktop/android/system/core/libion/ion.c	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/libion/ion.c b/system/core/libion/ion.c
+--- a/system/core/libion/ion.c	2018-08-06 15:48:53.661800035 +0200
++++ b/system/core/libion/ion.c	2017-11-23 05:26:58.000000000 +0100
 @@ -31,6 +31,18 @@
  #include <linux/ion.h>
  #include <ion/ion.h>
@@ -2127,9 +2127,9 @@ diff -ur ../aosp/system/core/libion/ion.c ../Desktop/android/system/core/libion/
 +		return 0;
 +    return phys_data.phys_addr;
 +}
-diff -ur ../aosp/system/core/lmkd/lmkd.c ../Desktop/android/system/core/lmkd/lmkd.c
---- ../aosp/system/core/lmkd/lmkd.c	2018-08-06 15:48:53.745801138 +0200
-+++ ../Desktop/android/system/core/lmkd/lmkd.c	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/lmkd/lmkd.c b/system/core/lmkd/lmkd.c
+--- a/system/core/lmkd/lmkd.c	2018-08-06 15:48:53.745801138 +0200
++++ b/system/core/lmkd/lmkd.c	2017-11-23 05:26:58.000000000 +0100
 @@ -14,7 +14,7 @@
   * limitations under the License.
   */
@@ -2150,9 +2150,9 @@ diff -ur ../aosp/system/core/lmkd/lmkd.c ../Desktop/android/system/core/lmkd/lmk
      r = kill(pid, SIGKILL);
      killProcessGroup(uid, pid, SIGKILL);
      pid_remove(pid);
-diff -ur ../aosp/system/core/logd/main.cpp ../Desktop/android/system/core/logd/main.cpp
---- ../aosp/system/core/logd/main.cpp	2018-08-06 15:48:53.749801191 +0200
-+++ ../Desktop/android/system/core/logd/main.cpp	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/logd/main.cpp b/system/core/logd/main.cpp
+--- a/system/core/logd/main.cpp	2018-08-06 15:48:53.749801191 +0200
++++ b/system/core/logd/main.cpp	2017-11-23 05:26:58.000000000 +0100
 @@ -371,11 +371,12 @@
  // transitory per-client threads are created for each reader.
  int main(int argc, char *argv[]) {
@@ -2168,9 +2168,9 @@ diff -ur ../aosp/system/core/logd/main.cpp ../Desktop/android/system/core/logd/m
      if (klogd) {
          fdPmesg = open("/proc/kmsg", O_RDONLY | O_NDELAY);
      }
-diff -ur ../aosp/system/core/rootdir/init.rc ../Desktop/android/system/core/rootdir/init.rc
---- ../aosp/system/core/rootdir/init.rc	2018-08-06 15:48:53.765801400 +0200
-+++ ../Desktop/android/system/core/rootdir/init.rc	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/rootdir/init.rc b/system/core/rootdir/init.rc
+--- a/system/core/rootdir/init.rc	2018-08-06 15:48:53.765801400 +0200
++++ b/system/core/rootdir/init.rc	2017-11-23 05:26:58.000000000 +0100
 @@ -469,6 +469,9 @@
      # set RLIMIT_NICE to allow priorities from 19 to -20
      setrlimit 13 40 40
@@ -2181,9 +2181,9 @@ diff -ur ../aosp/system/core/rootdir/init.rc ../Desktop/android/system/core/root
      # Memory management.  Basic kernel parameters, and allow the high
      # level system server to be able to adjust the kernel OOM driver
      # parameters to match how it is managing things.
-diff -ur ../aosp/system/core/sdcard/sdcard.c ../Desktop/android/system/core/sdcard/sdcard.c
---- ../aosp/system/core/sdcard/sdcard.c	2018-08-06 15:48:53.769801453 +0200
-+++ ../Desktop/android/system/core/sdcard/sdcard.c	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/core/sdcard/sdcard.c b/system/core/sdcard/sdcard.c
+--- a/system/core/sdcard/sdcard.c	2018-08-06 15:48:53.769801453 +0200
++++ b/system/core/sdcard/sdcard.c	2017-11-23 05:26:58.000000000 +0100
 @@ -95,6 +95,7 @@
  
  #define PROP_SDCARDFS_DEVICE "ro.sys.sdcardfs"
@@ -2213,9 +2213,9 @@ diff -ur ../aosp/system/core/sdcard/sdcard.c ../Desktop/android/system/core/sdca
              ERROR("failed to fuse_setup\n");
              exit(1);
          }
-diff -ur ../aosp/system/extras/ext4_utils/setup_fs.c ../Desktop/android/system/extras/ext4_utils/setup_fs.c
---- ../aosp/system/extras/ext4_utils/setup_fs.c	2018-08-06 15:48:55.113819097 +0200
-+++ ../Desktop/android/system/extras/ext4_utils/setup_fs.c	2017-11-23 05:26:58.000000000 +0100
+diff -ur a/system/extras/ext4_utils/setup_fs.c b/system/extras/ext4_utils/setup_fs.c
+--- a/system/extras/ext4_utils/setup_fs.c	2018-08-06 15:48:55.113819097 +0200
++++ b/system/extras/ext4_utils/setup_fs.c	2017-11-23 05:26:58.000000000 +0100
 @@ -2,6 +2,7 @@
  #include <stdlib.h>
  #include <string.h>
@@ -2276,9 +2276,9 @@ diff -ur ../aosp/system/extras/ext4_utils/setup_fs.c ../Desktop/android/system/e
  }
  
  
-diff -ur ../aosp/system/media/audio/include/system/audio.h ../Desktop/android/system/media/audio/include/system/audio.h
---- ../aosp/system/media/audio/include/system/audio.h	2018-08-06 15:48:58.893868717 +0200
-+++ ../Desktop/android/system/media/audio/include/system/audio.h	2017-11-23 05:27:03.000000000 +0100
+diff -ur a/system/media/audio/include/system/audio.h b/system/media/audio/include/system/audio.h
+--- a/system/media/audio/include/system/audio.h	2018-08-06 15:48:58.893868717 +0200
++++ b/system/media/audio/include/system/audio.h	2017-11-23 05:27:03.000000000 +0100
 @@ -613,6 +613,8 @@
      AUDIO_MODE_RINGTONE         = 1,
      AUDIO_MODE_IN_CALL          = 2,
@@ -2354,10 +2354,10 @@ diff -ur ../aosp/system/media/audio/include/system/audio.h ../Desktop/android/sy
          size = sizeof(int16_t);
          break;
      case AUDIO_FORMAT_PCM_8_BIT:
-Only in ../Desktop/android/system/nvram: .emptycommitmark
-diff -ur ../aosp/system/sepolicy/domain.te ../Desktop/android/system/sepolicy/domain.te
---- ../aosp/system/sepolicy/domain.te	2018-08-06 15:49:02.373914396 +0200
-+++ ../Desktop/android/system/sepolicy/domain.te	2017-11-23 05:27:03.000000000 +0100
+Only in b/system/nvram: .emptycommitmark
+diff -ur a/system/sepolicy/domain.te b/system/sepolicy/domain.te
+--- a/system/sepolicy/domain.te	2018-08-06 15:49:02.373914396 +0200
++++ b/system/sepolicy/domain.te	2017-11-23 05:27:03.000000000 +0100
 @@ -158,6 +158,7 @@
    -vold
    -dumpstate
@@ -2366,9 +2366,9 @@ diff -ur ../aosp/system/sepolicy/domain.te ../Desktop/android/system/sepolicy/do
    userdebug_or_eng(`-perfprofd')
  } self:capability sys_ptrace;
  
-diff -ur ../aosp/system/vold/Android.mk ../Desktop/android/system/vold/Android.mk
---- ../aosp/system/vold/Android.mk	2018-08-06 15:49:04.845946843 +0200
-+++ ../Desktop/android/system/vold/Android.mk	2017-11-23 05:27:04.000000000 +0100
+diff -ur a/system/vold/Android.mk b/system/vold/Android.mk
+--- a/system/vold/Android.mk	2018-08-06 15:49:04.845946843 +0200
++++ b/system/vold/Android.mk	2017-11-23 05:27:04.000000000 +0100
 @@ -31,6 +31,8 @@
  	KeyStorage.cpp \
  	ScryptParameters.cpp \
@@ -2396,9 +2396,9 @@ diff -ur ../aosp/system/vold/Android.mk ../Desktop/android/system/vold/Android.m
  
  common_static_libraries := \
  	libbootloader_message_writer \
-diff -ur ../aosp/system/vold/cryptfs.c ../Desktop/android/system/vold/cryptfs.c
---- ../aosp/system/vold/cryptfs.c	2018-08-06 15:49:04.905947633 +0200
-+++ ../Desktop/android/system/vold/cryptfs.c	2017-11-23 05:27:04.000000000 +0100
+diff -ur a/system/vold/cryptfs.c b/system/vold/cryptfs.c
+--- a/system/vold/cryptfs.c	2018-08-06 15:49:04.905947633 +0200
++++ b/system/vold/cryptfs.c	2017-11-23 05:27:04.000000000 +0100
 @@ -3037,7 +3037,7 @@
      /* The init files are setup to stop the class main and late start when
       * vold sets trigger_shutdown_framework.
@@ -2408,9 +2408,9 @@ diff -ur ../aosp/system/vold/cryptfs.c ../Desktop/android/system/vold/cryptfs.c
      SLOGD("Just asked init to shut down class main\n");
  
      /* Ask vold to unmount all devices that it manages */
-diff -ur ../aosp/system/vold/Disk.cpp ../Desktop/android/system/vold/Disk.cpp
---- ../aosp/system/vold/Disk.cpp	2018-08-06 15:49:04.857947000 +0200
-+++ ../Desktop/android/system/vold/Disk.cpp	2017-11-23 05:27:04.000000000 +0100
+diff -ur a/system/vold/Disk.cpp b/system/vold/Disk.cpp
+--- a/system/vold/Disk.cpp	2018-08-06 15:49:04.857947000 +0200
++++ b/system/vold/Disk.cpp	2017-11-23 05:27:04.000000000 +0100
 @@ -170,7 +170,6 @@
          vol->destroy();
          vol->setSilent(false);
@@ -2463,11 +2463,11 @@ diff -ur ../aosp/system/vold/Disk.cpp ../Desktop/android/system/vold/Disk.cpp
          LOG(WARNING) << mId << " has unknown partition table; trying entire device";
  
          std::string fsType;
-Only in ../Desktop/android/system/vold: Exfat.cpp
-Only in ../Desktop/android/system/vold: Exfat.h
-diff -ur ../aosp/system/vold/main.cpp ../Desktop/android/system/vold/main.cpp
---- ../aosp/system/vold/main.cpp	2018-08-06 15:49:04.905947633 +0200
-+++ ../Desktop/android/system/vold/main.cpp	2017-11-23 05:27:04.000000000 +0100
+Only in b/system/vold: Exfat.cpp
+Only in b/system/vold: Exfat.h
+diff -ur a/system/vold/main.cpp b/system/vold/main.cpp
+--- a/system/vold/main.cpp	2018-08-06 15:49:04.905947633 +0200
++++ b/system/vold/main.cpp	2017-11-23 05:27:04.000000000 +0100
 @@ -39,10 +39,18 @@
  #include <dirent.h>
  #include <fs_mgr.h>
@@ -2516,11 +2516,11 @@ diff -ur ../aosp/system/vold/main.cpp ../Desktop/android/system/vold/main.cpp
  static void parse_args(int argc, char** argv) {
      static struct option opts[] = {
          {"blkid_context", required_argument, 0, 'b' },
-Only in ../Desktop/android/system/vold: Ntfs.cpp
-Only in ../Desktop/android/system/vold: Ntfs.h
-diff -ur ../aosp/system/vold/PublicVolume.cpp ../Desktop/android/system/vold/PublicVolume.cpp
---- ../aosp/system/vold/PublicVolume.cpp	2018-08-06 15:49:04.905947633 +0200
-+++ ../Desktop/android/system/vold/PublicVolume.cpp	2017-11-23 05:27:04.000000000 +0100
+Only in b/system/vold: Ntfs.cpp
+Only in b/system/vold: Ntfs.h
+diff -ur a/system/vold/PublicVolume.cpp b/system/vold/PublicVolume.cpp
+--- a/system/vold/PublicVolume.cpp	2018-08-06 15:49:04.905947633 +0200
++++ b/system/vold/PublicVolume.cpp	2017-11-23 05:27:04.000000000 +0100
 @@ -15,6 +15,8 @@
   */
  
@@ -2607,9 +2607,9 @@ diff -ur ../aosp/system/vold/PublicVolume.cpp ../Desktop/android/system/vold/Pub
          return OK;
      }
  
-diff -ur ../aosp/system/vold/Utils.cpp ../Desktop/android/system/vold/Utils.cpp
---- ../aosp/system/vold/Utils.cpp	2018-08-06 15:49:04.905947633 +0200
-+++ ../Desktop/android/system/vold/Utils.cpp	2017-11-23 05:27:04.000000000 +0100
+diff -ur a/system/vold/Utils.cpp b/system/vold/Utils.cpp
+--- a/system/vold/Utils.cpp	2018-08-06 15:49:04.905947633 +0200
++++ b/system/vold/Utils.cpp	2017-11-23 05:27:04.000000000 +0100
 @@ -153,17 +153,17 @@
      if (Process::killProcessesWithOpenFiles(cpath, SIGINT) == 0) {
          return OK;
@@ -2631,9 +2631,9 @@ diff -ur ../aosp/system/vold/Utils.cpp ../Desktop/android/system/vold/Utils.cpp
  
      // Send SIGKILL a second time to determine if we've
      // actually killed everyone with open files
-diff -ur ../aosp/system/vold/VolumeManager.cpp ../Desktop/android/system/vold/VolumeManager.cpp
---- ../aosp/system/vold/VolumeManager.cpp	2018-08-06 15:49:04.905947633 +0200
-+++ ../Desktop/android/system/vold/VolumeManager.cpp	2017-11-23 05:27:04.000000000 +0100
+diff -ur a/system/vold/VolumeManager.cpp b/system/vold/VolumeManager.cpp
+--- a/system/vold/VolumeManager.cpp	2018-08-06 15:49:04.905947633 +0200
++++ b/system/vold/VolumeManager.cpp	2017-11-23 05:27:04.000000000 +0100
 @@ -276,18 +276,44 @@
      return 0;
  }
@@ -2691,9 +2691,9 @@ diff -ur ../aosp/system/vold/VolumeManager.cpp ../Desktop/android/system/vold/Vo
                  break;
              }
          }
-diff -ur ../aosp/system/vold/VolumeManager.h ../Desktop/android/system/vold/VolumeManager.h
---- ../aosp/system/vold/VolumeManager.h	2018-08-06 15:49:04.905947633 +0200
-+++ ../Desktop/android/system/vold/VolumeManager.h	2017-11-23 05:27:04.000000000 +0100
+diff -ur a/system/vold/VolumeManager.h b/system/vold/VolumeManager.h
+--- a/system/vold/VolumeManager.h	2018-08-06 15:49:04.905947633 +0200
++++ b/system/vold/VolumeManager.h	2017-11-23 05:27:04.000000000 +0100
 @@ -93,6 +93,7 @@
      int stop();
  

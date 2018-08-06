@@ -1,6 +1,6 @@
-diff -ur ../aosp/packages/apps/Bluetooth/AndroidManifest.xml ../Desktop/android/packages/apps/Bluetooth/AndroidManifest.xml
---- ../aosp/packages/apps/Bluetooth/AndroidManifest.xml	2018-08-06 15:42:22.108693819 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/AndroidManifest.xml	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/AndroidManifest.xml b/packages/apps/Bluetooth/AndroidManifest.xml
+--- a/packages/apps/Bluetooth/AndroidManifest.xml	2018-08-06 15:42:22.108693819 +0200
++++ b/packages/apps/Bluetooth/AndroidManifest.xml	2017-11-23 05:22:29.000000000 +0100
 @@ -385,5 +385,13 @@
                  android:name="android.accounts.AccountAuthenticator"
                  android:resource="@xml/authenticator" />
@@ -15,9 +15,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/AndroidManifest.xml ../Desktop/android/
 +        </service>
      </application>
  </manifest>
-diff -ur ../aosp/packages/apps/Bluetooth/Android.mk ../Desktop/android/packages/apps/Bluetooth/Android.mk
---- ../aosp/packages/apps/Bluetooth/Android.mk	2018-08-06 15:42:22.084693511 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/Android.mk	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/Android.mk b/packages/apps/Bluetooth/Android.mk
+--- a/packages/apps/Bluetooth/Android.mk	2018-08-06 15:42:22.084693511 +0200
++++ b/packages/apps/Bluetooth/Android.mk	2017-11-23 05:22:29.000000000 +0100
 @@ -26,7 +26,7 @@
  LOCAL_STATIC_JAVA_LIBRARIES := com.android.vcard bluetooth.mapsapi sap-api-java-static android-support-v4 services.net
  LOCAL_PROTOC_OPTIMIZE_TYPE := micro
@@ -27,9 +27,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/Android.mk ../Desktop/android/packages/
  LOCAL_MULTILIB := 32
  
  LOCAL_PROGUARD_ENABLED := disabled
-diff -ur ../aosp/packages/apps/Bluetooth/jni/Android.mk ../Desktop/android/packages/apps/Bluetooth/jni/Android.mk
---- ../aosp/packages/apps/Bluetooth/jni/Android.mk	2018-08-06 15:42:22.108693819 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/jni/Android.mk	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/jni/Android.mk b/packages/apps/Bluetooth/jni/Android.mk
+--- a/packages/apps/Bluetooth/jni/Android.mk	2018-08-06 15:42:22.108693819 +0200
++++ b/packages/apps/Bluetooth/jni/Android.mk	2017-11-23 05:22:29.000000000 +0100
 @@ -16,8 +16,17 @@
      com_android_bluetooth_gatt.cpp \
      com_android_bluetooth_sdp.cpp
@@ -57,9 +57,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/jni/Android.mk ../Desktop/android/packa
  LOCAL_MULTILIB := 32
  
  LOCAL_CFLAGS += -Wall -Wextra -Wno-unused-parameter
-diff -ur ../aosp/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp ../Desktop/android/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp
---- ../aosp/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp	2018-08-06 15:42:22.108693819 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp b/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp
+--- a/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp	2018-08-06 15:42:22.108693819 +0200
++++ b/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_AdapterService.cpp	2017-11-23 05:22:29.000000000 +0100
 @@ -23,6 +23,10 @@
  #include "android_runtime/AndroidRuntime.h"
  #include "android_runtime/Log.h"
@@ -114,9 +114,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/jni/com_android_bluetooth_btservice_Ada
 +#endif
      return JNI_VERSION_1_6;
  }
-diff -ur ../aosp/packages/apps/Bluetooth/jni/com_android_bluetooth.h ../Desktop/android/packages/apps/Bluetooth/jni/com_android_bluetooth.h
---- ../aosp/packages/apps/Bluetooth/jni/com_android_bluetooth.h	2018-08-06 15:42:22.108693819 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/jni/com_android_bluetooth.h	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/jni/com_android_bluetooth.h b/packages/apps/Bluetooth/jni/com_android_bluetooth.h
+--- a/packages/apps/Bluetooth/jni/com_android_bluetooth.h	2018-08-06 15:42:22.108693819 +0200
++++ b/packages/apps/Bluetooth/jni/com_android_bluetooth.h	2017-11-23 05:22:29.000000000 +0100
 @@ -54,6 +54,9 @@
  
  int register_com_android_bluetooth_sdp (JNIEnv* env);
@@ -127,10 +127,10 @@ diff -ur ../aosp/packages/apps/Bluetooth/jni/com_android_bluetooth.h ../Desktop/
  }
  
  #endif /* COM_ANDROID_BLUETOOTH_H */
-Only in ../Desktop/android/packages/apps/Bluetooth/jni: com_android_bluetooth_rtkbt.cpp
-diff -ur ../aosp/packages/apps/Bluetooth/res/values/config.xml ../Desktop/android/packages/apps/Bluetooth/res/values/config.xml
---- ../aosp/packages/apps/Bluetooth/res/values/config.xml	2018-08-06 15:42:22.168694588 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/res/values/config.xml	2017-11-23 05:22:29.000000000 +0100
+Only in b/packages/apps/Bluetooth/jni: com_android_bluetooth_rtkbt.cpp
+diff -ur a/packages/apps/Bluetooth/res/values/config.xml b/packages/apps/Bluetooth/res/values/config.xml
+--- a/packages/apps/Bluetooth/res/values/config.xml	2018-08-06 15:42:22.168694588 +0200
++++ b/packages/apps/Bluetooth/res/values/config.xml	2017-11-23 05:22:29.000000000 +0100
 @@ -13,6 +13,7 @@
     limitations under the License.
  -->
@@ -139,9 +139,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/res/values/config.xml ../Desktop/androi
      <bool name="profile_supported_a2dp">true</bool>
      <bool name="profile_supported_a2dp_sink">false</bool>
      <bool name="profile_supported_hdp">true</bool>
-diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java
---- ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java	2018-08-06 15:42:22.172694640 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java b/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java
+--- a/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java	2018-08-06 15:42:22.172694640 +0200
++++ b/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.java	2017-11-23 05:22:29.000000000 +0100
 @@ -289,6 +289,7 @@
                  if (DEBUG) Log.v(TAG, "MESSAGE_GET_RC_FEATURES: address="+address+
                                                               ", features="+msg.arg1);
@@ -150,9 +150,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/avrcp/Avrcp.j
                  mFeatures = modifyRcFeatureFromBlacklist(mFeatures, address);
                  mAudioManager.avrcpSupportsAbsoluteVolume(address, isAbsoluteVolumeSupported());
                  mLastLocalVolume = -1;
-diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java
---- ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java	2018-08-06 15:42:22.176694691 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java b/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java
+--- a/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java	2018-08-06 15:42:22.176694691 +0200
++++ b/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Config.java	2017-11-23 05:22:29.000000000 +0100
 @@ -41,6 +41,7 @@
  import com.android.bluetooth.map.BluetoothMapService;
  import com.android.bluetooth.sap.SapService;
@@ -220,9 +220,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/btservice/Con
 +        return false;
 +    }
  }
-diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java
---- ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java	2018-08-06 15:42:22.224695306 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java b/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java
+--- a/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java	2018-08-06 15:42:22.224695306 +0200
++++ b/packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppNotification.java	2017-11-23 05:22:29.000000000 +0100
 @@ -503,6 +503,9 @@
            Intent baseIntent = new Intent().setDataAndNormalize(contentUri)
                .setClassName(Constants.THIS_PACKAGE_NAME, BluetoothOppReceiver.class.getName());
@@ -233,9 +233,9 @@ diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/opp/Bluetooth
            Notification n = new Notification.Builder(mContext)
                .setOnlyAlertOnce(true)
                .setOngoing(true)
-diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java
---- ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java	2018-08-06 15:42:22.248695615 +0200
-+++ ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java	2017-11-23 05:22:29.000000000 +0100
+diff -ur a/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java b/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java
+--- a/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java	2018-08-06 15:42:22.248695615 +0200
++++ b/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanService.java	2017-11-23 05:22:29.000000000 +0100
 @@ -57,7 +57,7 @@
   */
  public class PanService extends ProfileService {
@@ -245,10 +245,10 @@ diff -ur ../aosp/packages/apps/Bluetooth/src/com/android/bluetooth/pan/PanServic
  
      private static final String BLUETOOTH_IFACE_ADDR_START= "192.168.44.1";
      private static final int BLUETOOTH_MAX_PAN_CONNECTIONS = 5;
-Only in ../Desktop/android/packages/apps/Bluetooth/src/com/android/bluetooth: rtkbt
-diff -ur ../aosp/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java ../Desktop/android/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java
---- ../aosp/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java	2018-08-06 15:42:23.004705311 +0200
-+++ ../Desktop/android/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java	2017-11-23 05:22:32.000000000 +0100
+Only in b/packages/apps/Bluetooth/src/com/android/bluetooth: rtkbt
+diff -ur a/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java b/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java
+--- a/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java	2018-08-06 15:42:23.004705311 +0200
++++ b/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBrowserActivity.java	2017-11-23 05:22:32.000000000 +0100
 @@ -6,6 +6,7 @@
  
  import android.Manifest;
@@ -268,9 +268,9 @@ diff -ur ../aosp/packages/apps/Browser2/src/org/chromium/webview_shell/WebViewBr
          super.onCreate(savedInstanceState);
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
              WebView.setWebContentsDebuggingEnabled(true);
-diff -ur ../aosp/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java ../Desktop/android/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java
---- ../aosp/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java	2018-08-06 15:42:25.392735942 +0200
-+++ ../Desktop/android/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java	2017-11-23 05:22:35.000000000 +0100
+diff -ur a/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java b/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java
+--- a/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java	2018-08-06 15:42:25.392735942 +0200
++++ b/packages/apps/Camera2/src/com/android/camera/settings/SettingsUtil.java	2017-11-23 05:22:35.000000000 +0100
 @@ -133,13 +133,10 @@
  
      /** Video qualities sorted by size. */
@@ -288,9 +288,9 @@ diff -ur ../aosp/packages/apps/Camera2/src/com/android/camera/settings/SettingsU
      };
  
      public static SparseArray<SelectedPictureSizes> sCachedSelectedPictureSizes =
-diff -ur ../aosp/packages/apps/Camera2/src/com/android/camera/VideoModule.java ../Desktop/android/packages/apps/Camera2/src/com/android/camera/VideoModule.java
---- ../aosp/packages/apps/Camera2/src/com/android/camera/VideoModule.java	2018-08-06 15:42:25.356735481 +0200
-+++ ../Desktop/android/packages/apps/Camera2/src/com/android/camera/VideoModule.java	2017-11-23 05:22:35.000000000 +0100
+diff -ur a/packages/apps/Camera2/src/com/android/camera/VideoModule.java b/packages/apps/Camera2/src/com/android/camera/VideoModule.java
+--- a/packages/apps/Camera2/src/com/android/camera/VideoModule.java	2018-08-06 15:42:25.356735481 +0200
++++ b/packages/apps/Camera2/src/com/android/camera/VideoModule.java	2017-11-23 05:22:35.000000000 +0100
 @@ -340,6 +340,7 @@
          mActivity.setPreviewStatusListener(mUI);
  
@@ -319,9 +319,9 @@ diff -ur ../aosp/packages/apps/Camera2/src/com/android/camera/VideoModule.java .
  
          mCameraSettings.setRecordingHintEnabled(true);
  
-diff -ur ../aosp/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java ../Desktop/android/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java
---- ../aosp/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java	2018-08-06 15:42:30.320799146 +0200
-+++ ../Desktop/android/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java	2017-11-23 05:22:36.000000000 +0100
+diff -ur a/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java b/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java
+--- a/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java	2018-08-06 15:42:30.320799146 +0200
++++ b/packages/apps/Contacts/src/com/android/contacts/activities/PeopleActivity.java	2017-11-23 05:22:36.000000000 +0100
 @@ -19,6 +19,7 @@
  import android.app.Fragment;
  import android.app.FragmentManager;
@@ -341,9 +341,9 @@ diff -ur ../aosp/packages/apps/Contacts/src/com/android/contacts/activities/Peop
          if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
              Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate start");
          }
-diff -ur ../aosp/packages/apps/DeskClock/res/xml/dream_settings.xml ../Desktop/android/packages/apps/DeskClock/res/xml/dream_settings.xml
---- ../aosp/packages/apps/DeskClock/res/xml/dream_settings.xml	2018-08-06 15:42:35.512865735 +0200
-+++ ../Desktop/android/packages/apps/DeskClock/res/xml/dream_settings.xml	2017-11-23 05:22:36.000000000 +0100
+diff -ur a/packages/apps/DeskClock/res/xml/dream_settings.xml b/packages/apps/DeskClock/res/xml/dream_settings.xml
+--- a/packages/apps/DeskClock/res/xml/dream_settings.xml	2018-08-06 15:42:35.512865735 +0200
++++ b/packages/apps/DeskClock/res/xml/dream_settings.xml	2017-11-23 05:22:36.000000000 +0100
 @@ -20,11 +20,10 @@
          android:title="@string/clock_style"
          android:entries="@array/clock_style_entries"
@@ -357,9 +357,9 @@ diff -ur ../aosp/packages/apps/DeskClock/res/xml/dream_settings.xml ../Desktop/a
 -        android:defaultValue="true" />
 +        />
  </PreferenceScreen>
-diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java
---- ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java	2018-08-06 15:42:35.520865837 +0200
-+++ ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java	2017-11-23 05:22:36.000000000 +0100
+diff -ur a/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java b/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java
+--- a/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java	2018-08-06 15:42:35.520865837 +0200
++++ b/packages/apps/DeskClock/src/com/android/deskclock/data/DataModel.java	2017-11-23 05:22:36.000000000 +0100
 @@ -570,6 +570,21 @@
          return mSettingsModel.getScreensaverClockStyle();
      }
@@ -389,9 +389,9 @@ diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/DataMode
 -}
 \ No newline at end of file
 +}
-diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java
---- ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java	2018-08-06 15:42:35.520865837 +0200
-+++ ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java	2017-11-23 05:22:36.000000000 +0100
+diff -ur a/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java b/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java
+--- a/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java	2018-08-06 15:42:35.520865837 +0200
++++ b/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsDAO.java	2017-11-23 05:22:36.000000000 +0100
 @@ -30,7 +30,6 @@
  
  import java.util.Locale;
@@ -432,9 +432,9 @@ diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/Settings
      private static SharedPreferences getSharedPreferences(Context context) {
          if (sPrefs == null) {
              sPrefs = Utils.getDefaultSharedPreferences(context.getApplicationContext());
-diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java
---- ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java	2018-08-06 15:42:35.520865837 +0200
-+++ ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java	2017-11-23 05:22:36.000000000 +0100
+diff -ur a/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java b/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java
+--- a/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java	2018-08-06 15:42:35.520865837 +0200
++++ b/packages/apps/DeskClock/src/com/android/deskclock/data/SettingsModel.java	2017-11-23 05:22:36.000000000 +0100
 @@ -63,6 +63,19 @@
          return SettingsDAO.getScreensaverClockStyle(mContext);
      }
@@ -462,9 +462,9 @@ diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/data/Settings
 -}
 \ No newline at end of file
 +}
-diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java
---- ../aosp/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java	2018-08-06 15:42:35.520865837 +0200
-+++ ../Desktop/android/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java	2017-11-23 05:22:36.000000000 +0100
+diff -ur a/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java b/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java
+--- a/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java	2018-08-06 15:42:35.520865837 +0200
++++ b/packages/apps/DeskClock/src/com/android/deskclock/settings/ScreensaverSettingsActivity.java	2017-11-23 05:22:36.000000000 +0100
 @@ -18,21 +18,23 @@
  
  import android.os.Bundle;
@@ -567,9 +567,9 @@ diff -ur ../aosp/packages/apps/DeskClock/src/com/android/deskclock/settings/Scre
          }
      }
  }
-diff -ur ../aosp/packages/apps/Gallery2/AndroidManifest.xml ../Desktop/android/packages/apps/Gallery2/AndroidManifest.xml
---- ../aosp/packages/apps/Gallery2/AndroidManifest.xml	2018-08-06 15:42:42.512955506 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/AndroidManifest.xml	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/AndroidManifest.xml b/packages/apps/Gallery2/AndroidManifest.xml
+--- a/packages/apps/Gallery2/AndroidManifest.xml	2018-08-06 15:42:42.512955506 +0200
++++ b/packages/apps/Gallery2/AndroidManifest.xml	2017-11-23 05:22:37.000000000 +0100
 @@ -50,6 +50,8 @@
          <activity android:name="com.android.gallery3d.app.MovieActivity"
                  android:label="@string/movie_view_label"
@@ -596,9 +596,9 @@ diff -ur ../aosp/packages/apps/Gallery2/AndroidManifest.xml ../Desktop/android/p
          </activity>
  
          <activity android:name="com.android.gallery3d.app.GalleryActivity" android:label="@string/app_name"
-diff -ur ../aosp/packages/apps/Gallery2/res/menu/albumset.xml ../Desktop/android/packages/apps/Gallery2/res/menu/albumset.xml
---- ../aosp/packages/apps/Gallery2/res/menu/albumset.xml	2018-08-06 15:42:43.184964125 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/res/menu/albumset.xml	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/res/menu/albumset.xml b/packages/apps/Gallery2/res/menu/albumset.xml
+--- a/packages/apps/Gallery2/res/menu/albumset.xml	2018-08-06 15:42:43.184964125 +0200
++++ b/packages/apps/Gallery2/res/menu/albumset.xml	2017-11-23 05:22:37.000000000 +0100
 @@ -21,15 +21,9 @@
      <item android:id="@+id/action_select"
              android:title="@string/select_album"
@@ -615,9 +615,9 @@ diff -ur ../aosp/packages/apps/Gallery2/res/menu/albumset.xml ../Desktop/android
      <item android:id="@+id/action_general_help"
              android:title="@string/help"
              android:visible="false"
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java	2018-08-06 15:42:43.232964740 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java b/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java	2018-08-06 15:42:43.232964740 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGalleryActivity.java	2017-11-23 05:22:37.000000000 +0100
 @@ -36,6 +36,8 @@
  import android.view.Menu;
  import android.view.MenuItem;
@@ -661,9 +661,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AbstractGa
      protected void onStorageReady() {
          if (mAlertDialog != null) {
              mAlertDialog.dismiss();
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java	2018-08-06 15:42:43.232964740 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java b/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java	2018-08-06 15:42:43.232964740 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.java	2017-11-23 05:22:37.000000000 +0100
 @@ -29,6 +29,7 @@
  import android.view.Menu;
  import android.view.MenuInflater;
@@ -689,9 +689,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumPage.
          protected void render(GLCanvas canvas) {
              canvas.save(GLCanvas.SAVE_FLAG_MATRIX);
              canvas.multiplyMatrix(mMatrix, 0);
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java	2018-08-06 15:42:43.232964740 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java b/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java	2018-08-06 15:42:43.232964740 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPage.java	2017-11-23 05:22:37.000000000 +0100
 @@ -29,6 +29,7 @@
  import android.view.MenuItem;
  import android.view.View;
@@ -740,9 +740,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/AlbumSetPa
              default:
                  return false;
          }
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java	2018-08-06 15:42:43.232964740 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java b/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java	2018-08-06 15:42:43.232964740 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryActivity.java	2017-11-23 05:22:37.000000000 +0100
 @@ -25,6 +25,7 @@
  import android.os.Bundle;
  import android.view.InputDevice;
@@ -763,9 +763,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/GalleryAct
 +    	return super.onKeyDown(keyCode,event);
 +    }
  }
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java	2018-08-06 15:42:43.236964791 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java b/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java	2018-08-06 15:42:43.236964791 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.java	2017-11-23 05:22:37.000000000 +0100
 @@ -36,6 +36,7 @@
  import android.view.Menu;
  import android.view.MenuItem;
@@ -797,9 +797,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/app/PhotoPage.
  
              pda.setDataListener(new PhotoDataAdapter.DataListener() {
  
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java	2018-08-06 15:42:43.244964894 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java b/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java	2018-08-06 15:42:43.244964894 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/FilterShowActivity.java	2017-11-23 05:22:37.000000000 +0100
 @@ -347,7 +347,7 @@
  
      private void loadXML() {
@@ -818,9 +818,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/filtershow/Fil
          mImageShow = (ImageShow) findViewById(R.id.imageShow);
          mImageViews.add(mImageShow);
  
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java	2018-08-06 15:42:43.272965253 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java b/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java	2018-08-06 15:42:43.272965253 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.java	2017-11-23 05:22:37.000000000 +0100
 @@ -23,9 +23,11 @@
  import android.opengl.GLSurfaceView;
  import android.os.Build;
@@ -856,9 +856,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLRootView.
      public boolean dispatchTouchEvent(MotionEvent event) {
          if (!isEnabled()) return false;
  
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java	2018-08-06 15:42:43.272965253 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java b/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java	2018-08-06 15:42:43.272965253 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java	2017-11-23 05:22:37.000000000 +0100
 @@ -19,6 +19,7 @@
  import android.graphics.Rect;
  import android.os.SystemClock;
@@ -888,9 +888,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/GLView.java
      protected boolean dispatchTouchEvent(MotionEvent event,
              int x, int y, GLView component, boolean checkBounds) {
          Rect rect = component.mBounds;
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java	2018-08-06 15:42:43.272965253 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java b/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java	2018-08-06 15:42:43.272965253 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.java	2017-11-23 05:22:37.000000000 +0100
 @@ -24,6 +24,8 @@
  import android.os.Build;
  import android.os.Message;
@@ -931,9 +931,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/PhotoView.j
      protected void onLayout(
              boolean changeSize, int left, int top, int right, int bottom) {
          int w = right - left;
-diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java
---- ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java	2018-08-06 15:42:43.276965304 +0200
-+++ ../Desktop/android/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java	2017-11-23 05:22:37.000000000 +0100
+diff -ur a/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java b/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java
+--- a/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java	2018-08-06 15:42:43.276965304 +0200
++++ b/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.java	2017-11-23 05:22:37.000000000 +0100
 @@ -17,15 +17,21 @@
  package com.android.gallery3d.ui;
  
@@ -1116,9 +1116,9 @@ diff -ur ../aosp/packages/apps/Gallery2/src/com/android/gallery3d/ui/SlotView.ja
  
              if (!WIDE && columnIdx >= mUnitCount) {
                  return INDEX_NONE;
-diff -ur ../aosp/packages/apps/Music/res/layout-land/buttonbar.xml ../Desktop/android/packages/apps/Music/res/layout-land/buttonbar.xml
---- ../aosp/packages/apps/Music/res/layout-land/buttonbar.xml	2018-08-06 15:42:52.153079125 +0200
-+++ ../Desktop/android/packages/apps/Music/res/layout-land/buttonbar.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/Music/res/layout-land/buttonbar.xml b/packages/apps/Music/res/layout-land/buttonbar.xml
+--- a/packages/apps/Music/res/layout-land/buttonbar.xml	2018-08-06 15:42:52.153079125 +0200
++++ b/packages/apps/Music/res/layout-land/buttonbar.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -75,6 +75,7 @@
  
      <TextView
@@ -1145,9 +1145,9 @@ diff -ur ../aosp/packages/apps/Music/res/layout-land/buttonbar.xml ../Desktop/an
          android:layout_marginRight="-3dip"
          android:layout_width="match_parent"
          android:layout_height="64dip" />
-diff -ur ../aosp/packages/apps/Music/src/com/android/music/AudioPreview.java ../Desktop/android/packages/apps/Music/src/com/android/music/AudioPreview.java
---- ../aosp/packages/apps/Music/src/com/android/music/AudioPreview.java	2018-08-06 15:42:52.173079382 +0200
-+++ ../Desktop/android/packages/apps/Music/src/com/android/music/AudioPreview.java	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/Music/src/com/android/music/AudioPreview.java b/packages/apps/Music/src/com/android/music/AudioPreview.java
+--- a/packages/apps/Music/src/com/android/music/AudioPreview.java	2018-08-06 15:42:52.173079382 +0200
++++ b/packages/apps/Music/src/com/android/music/AudioPreview.java	2017-11-23 05:22:39.000000000 +0100
 @@ -49,6 +49,10 @@
  import android.widget.Toast;
  
@@ -1255,9 +1255,9 @@ diff -ur ../aosp/packages/apps/Music/src/com/android/music/AudioPreview.java ../
      @Override
      public boolean onKeyDown(int keyCode, KeyEvent event) {
          switch (keyCode) {
-diff -ur ../aosp/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java ../Desktop/android/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java
---- ../aosp/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java	2018-08-06 15:42:52.177079433 +0200
-+++ ../Desktop/android/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java b/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java
+--- a/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java	2018-08-06 15:42:52.177079433 +0200
++++ b/packages/apps/Music/src/com/android/music/MediaPlaybackActivity.java	2017-11-23 05:22:39.000000000 +0100
 @@ -151,6 +151,7 @@
              seeker.setOnSeekBarChangeListener(mSeekListener);
          }
@@ -1266,9 +1266,9 @@ diff -ur ../aosp/packages/apps/Music/src/com/android/music/MediaPlaybackActivity
  
          mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
      }
-diff -ur ../aosp/packages/apps/Music/src/com/android/music/MediaPlaybackService.java ../Desktop/android/packages/apps/Music/src/com/android/music/MediaPlaybackService.java
---- ../aosp/packages/apps/Music/src/com/android/music/MediaPlaybackService.java	2018-08-06 15:42:52.177079433 +0200
-+++ ../Desktop/android/packages/apps/Music/src/com/android/music/MediaPlaybackService.java	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/Music/src/com/android/music/MediaPlaybackService.java b/packages/apps/Music/src/com/android/music/MediaPlaybackService.java
+--- a/packages/apps/Music/src/com/android/music/MediaPlaybackService.java	2018-08-06 15:42:52.177079433 +0200
++++ b/packages/apps/Music/src/com/android/music/MediaPlaybackService.java	2017-11-23 05:22:39.000000000 +0100
 @@ -335,7 +335,7 @@
                  | RemoteControlClient.FLAG_KEY_MEDIA_STOP;
          mRemoteControlClient.setTransportControlFlags(flags);
@@ -1278,9 +1278,9 @@ diff -ur ../aosp/packages/apps/Music/src/com/android/music/MediaPlaybackService.
          mCardId = MusicUtils.getCardId(this);
          
          registerExternalStorageListener();
-diff -ur ../aosp/packages/apps/Music/src/com/android/music/MusicUtils.java ../Desktop/android/packages/apps/Music/src/com/android/music/MusicUtils.java
---- ../aosp/packages/apps/Music/src/com/android/music/MusicUtils.java	2018-08-06 15:42:52.181079485 +0200
-+++ ../Desktop/android/packages/apps/Music/src/com/android/music/MusicUtils.java	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/Music/src/com/android/music/MusicUtils.java b/packages/apps/Music/src/com/android/music/MusicUtils.java
+--- a/packages/apps/Music/src/com/android/music/MusicUtils.java	2018-08-06 15:42:52.181079485 +0200
++++ b/packages/apps/Music/src/com/android/music/MusicUtils.java	2017-11-23 05:22:39.000000000 +0100
 @@ -1167,16 +1167,9 @@
              v.setOnFocusChangeListener(new View.OnFocusChangeListener() {
  
@@ -1301,9 +1301,9 @@ diff -ur ../aosp/packages/apps/Music/src/com/android/music/MusicUtils.java ../De
              
              v.setOnClickListener(new View.OnClickListener() {
  
-diff -ur ../aosp/packages/apps/Music/src/com/android/music/TouchInterceptor.java ../Desktop/android/packages/apps/Music/src/com/android/music/TouchInterceptor.java
---- ../aosp/packages/apps/Music/src/com/android/music/TouchInterceptor.java	2018-08-06 15:42:52.181079485 +0200
-+++ ../Desktop/android/packages/apps/Music/src/com/android/music/TouchInterceptor.java	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/Music/src/com/android/music/TouchInterceptor.java b/packages/apps/Music/src/com/android/music/TouchInterceptor.java
+--- a/packages/apps/Music/src/com/android/music/TouchInterceptor.java	2018-08-06 15:42:52.181079485 +0200
++++ b/packages/apps/Music/src/com/android/music/TouchInterceptor.java	2017-11-23 05:22:39.000000000 +0100
 @@ -77,7 +77,7 @@
  
      public TouchInterceptor(Context context, AttributeSet attrs) {
@@ -1313,9 +1313,9 @@ diff -ur ../aosp/packages/apps/Music/src/com/android/music/TouchInterceptor.java
          mRemoveMode = pref.getInt("deletemode", -1);
          mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
          Resources res = getResources();
-diff -ur ../aosp/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java ../Desktop/android/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java
---- ../aosp/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java	2018-08-06 15:42:52.181079485 +0200
-+++ ../Desktop/android/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java b/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java
+--- a/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java	2018-08-06 15:42:52.181079485 +0200
++++ b/packages/apps/Music/src/com/android/music/TrackBrowserActivity.java	2017-11-23 05:22:39.000000000 +0100
 @@ -433,7 +433,7 @@
              } catch (Exception ex) {
              }
@@ -1325,9 +1325,9 @@ diff -ur ../aosp/packages/apps/Music/src/com/android/music/TrackBrowserActivity.
          mTrackList.setCacheColorHint(0);
      }
  
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values/strings.xml	2018-08-06 15:42:56.597136110 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values/strings.xml b/packages/apps/PackageInstaller/res/values/strings.xml
+--- a/packages/apps/PackageInstaller/res/values/strings.xml	2018-08-06 15:42:56.597136110 +0200
++++ b/packages/apps/PackageInstaller/res/values/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -63,9 +63,9 @@
      <string name="install_failed_incompatible" product="tv">This app isn\'t
          compatible with your TV.</string>
@@ -1359,9 +1359,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values/strings.xml ../Deskto
      <!-- Message presented in a dialog box when the device administrator restricts the installation of apps from unknown sources. [CHAR LIMIT=none] -->
      <string name="unknown_apps_admin_dlg_text">Your administrator doesn\'t allow installation of apps obtained from unknown sources.</string>
  
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml	2018-08-06 15:42:56.569135750 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml b/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml	2018-08-06 15:42:56.569135750 +0200
++++ b/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"The package conflicts with an existing package by the same name."</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"This app isn\'t compatible with your tablet."</string>
@@ -1381,9 +1381,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-en-rAU/strings.xml ..
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"Your administrator doesn\'t allow installation of apps obtained from unknown sources."</string>
      <string name="ok" msgid="3468756155452870475">"OK"</string>
      <string name="settings" msgid="6743583734099755409">"Settings"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml	2018-08-06 15:42:56.569135750 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml b/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml	2018-08-06 15:42:56.569135750 +0200
++++ b/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"The package conflicts with an existing package by the same name."</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"This app isn\'t compatible with your tablet."</string>
@@ -1403,9 +1403,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-en-rGB/strings.xml ..
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"Your administrator doesn\'t allow installation of apps obtained from unknown sources."</string>
      <string name="ok" msgid="3468756155452870475">"OK"</string>
      <string name="settings" msgid="6743583734099755409">"Settings"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml	2018-08-06 15:42:56.569135750 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml b/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml	2018-08-06 15:42:56.569135750 +0200
++++ b/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"The package conflicts with an existing package by the same name."</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"This app isn\'t compatible with your tablet."</string>
@@ -1425,9 +1425,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-en-rIN/strings.xml ..
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"Your administrator doesn\'t allow installation of apps obtained from unknown sources."</string>
      <string name="ok" msgid="3468756155452870475">"OK"</string>
      <string name="settings" msgid="6743583734099755409">"Settings"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-fr/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-fr/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-fr/strings.xml	2018-08-06 15:42:56.573135801 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-fr/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-fr/strings.xml b/packages/apps/PackageInstaller/res/values-fr/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-fr/strings.xml	2018-08-06 15:42:56.573135801 +0200
++++ b/packages/apps/PackageInstaller/res/values-fr/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"Le package est en conflit avec un autre package ayant le même nom."</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"Cette application n\'est pas compatible avec votre tablette."</string>
@@ -1447,9 +1447,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-fr/strings.xml ../Des
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"Votre administrateur n\'autorise pas l\'installation d\'applications obtenues à partir de sources inconnues."</string>
      <string name="ok" msgid="3468756155452870475">"OK"</string>
      <string name="settings" msgid="6743583734099755409">"Paramètres"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml	2018-08-06 15:42:56.573135801 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml b/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml	2018-08-06 15:42:56.573135801 +0200
++++ b/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"Le paquet est en conflit avec un paquet existant du même nom."</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"Cette application n\'est pas compatible avec votre tablette."</string>
@@ -1469,9 +1469,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-fr-rCA/strings.xml ..
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"Votre administrateur n\'autorise pas l\'installation d\'applications obtenues à partir de sources inconnues."</string>
      <string name="ok" msgid="3468756155452870475">"OK"</string>
      <string name="settings" msgid="6743583734099755409">"Paramètres"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-pt/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-pt/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-pt/strings.xml	2018-08-06 15:42:56.589136007 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-pt/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-pt/strings.xml b/packages/apps/PackageInstaller/res/values-pt/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-pt/strings.xml	2018-08-06 15:42:56.589136007 +0200
++++ b/packages/apps/PackageInstaller/res/values-pt/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,7 +36,7 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"Já existe um pacote com esse mesmo nome."</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"Este aplicativo não é compatível com seu tablet."</string>
@@ -1481,9 +1481,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-pt/strings.xml ../Des
      <string name="install_failed_invalid_apk" msgid="1287935707565682604">"Parece que o pacote está corrompido."</string>
      <string name="install_failed_msg" product="tablet" msgid="8368835262605608787">"Não foi possível instalar <xliff:g id="APP_NAME">%1$s</xliff:g> em seu tablet."</string>
      <string name="install_failed_msg" product="tv" msgid="3990457938384021566">"Não foi possível instalar <xliff:g id="APP_NAME">%1$s</xliff:g> na sua TV."</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml	2018-08-06 15:42:56.589136007 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml b/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml	2018-08-06 15:42:56.589136007 +0200
++++ b/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,7 +36,7 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"Já existe um pacote com esse mesmo nome."</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"Este aplicativo não é compatível com seu tablet."</string>
@@ -1493,9 +1493,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-pt-rBR/strings.xml ..
      <string name="install_failed_invalid_apk" msgid="1287935707565682604">"Parece que o pacote está corrompido."</string>
      <string name="install_failed_msg" product="tablet" msgid="8368835262605608787">"Não foi possível instalar <xliff:g id="APP_NAME">%1$s</xliff:g> em seu tablet."</string>
      <string name="install_failed_msg" product="tv" msgid="3990457938384021566">"Não foi possível instalar <xliff:g id="APP_NAME">%1$s</xliff:g> na sua TV."</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-tl/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-tl/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-tl/strings.xml	2018-08-06 15:42:56.593136058 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-tl/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-tl/strings.xml b/packages/apps/PackageInstaller/res/values-tl/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-tl/strings.xml	2018-08-06 15:42:56.593136058 +0200
++++ b/packages/apps/PackageInstaller/res/values-tl/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -44,7 +44,7 @@
      <string name="launch" msgid="4826921505917605463">"Buksan"</string>
      <string name="unknown_apps_dlg_text" product="tablet" msgid="7504186369474734767">"Pra sa seguridad, nka-set ang tablet mong i-block ang pag-install ng apps mula sa di-klalang source."</string>
@@ -1505,9 +1505,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-tl/strings.xml ../Des
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"Hindi pinapayagan ng iyong administrator ang pag-install ng mga app na nakuha mula sa mga hindi alam na pinagmulan."</string>
      <string name="ok" msgid="3468756155452870475">"OK"</string>
      <string name="settings" msgid="6743583734099755409">"Mga Setting"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml	2018-08-06 15:42:56.597136110 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml b/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml	2018-08-06 15:42:56.597136110 +0200
++++ b/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"该文件包与具有同一名称的现有文件包存在冲突。"</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"此应用与您的平板电脑不兼容。"</string>
@@ -1527,9 +1527,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-zh-rCN/strings.xml ..
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"您的管理员不允许安装来源不明的应用。"</string>
      <string name="ok" msgid="3468756155452870475">"确定"</string>
      <string name="settings" msgid="6743583734099755409">"设置"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml	2018-08-06 15:42:56.597136110 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml b/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml	2018-08-06 15:42:56.597136110 +0200
++++ b/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"此套件與現有的套件發生衝突，套件名稱相同。"</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"此應用程式與您的平板電腦不相容。"</string>
@@ -1549,9 +1549,9 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-zh-rHK/strings.xml ..
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"您的管理員不允許安裝來源不明的應用程式。"</string>
      <string name="ok" msgid="3468756155452870475">"確定"</string>
      <string name="settings" msgid="6743583734099755409">"設定"</string>
-diff -ur ../aosp/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml ../Desktop/android/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml
---- ../aosp/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml	2018-08-06 15:42:56.597136110 +0200
-+++ ../Desktop/android/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml	2017-11-23 05:22:39.000000000 +0100
+diff -ur a/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml b/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml
+--- a/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml	2018-08-06 15:42:56.597136110 +0200
++++ b/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -36,15 +36,15 @@
      <string name="install_failed_conflict" msgid="5349055145440204106">"這個套件與同名的現有套件相衝突。"</string>
      <string name="install_failed_incompatible" product="tablet" msgid="119054044615117271">"這個應用程式與您的平板電腦不相容。"</string>
@@ -1571,10 +1571,10 @@ diff -ur ../aosp/packages/apps/PackageInstaller/res/values-zh-rTW/strings.xml ..
      <string name="unknown_apps_admin_dlg_text" msgid="1189146324736698462">"管理員不允許安裝來源不明的應用程式。"</string>
      <string name="ok" msgid="3468756155452870475">"確定"</string>
      <string name="settings" msgid="6743583734099755409">"設定"</string>
-Only in ../Desktop/android/packages/apps/Phone: .emptycommitmark
-diff -ur ../aosp/packages/apps/Provision/AndroidManifest.xml ../Desktop/android/packages/apps/Provision/AndroidManifest.xml
---- ../aosp/packages/apps/Provision/AndroidManifest.xml	2018-08-06 15:42:59.417172269 +0200
-+++ ../Desktop/android/packages/apps/Provision/AndroidManifest.xml	2017-11-23 05:22:39.000000000 +0100
+Only in b/packages/apps/Phone: .emptycommitmark
+diff -ur a/packages/apps/Provision/AndroidManifest.xml b/packages/apps/Provision/AndroidManifest.xml
+--- a/packages/apps/Provision/AndroidManifest.xml	2018-08-06 15:42:59.417172269 +0200
++++ b/packages/apps/Provision/AndroidManifest.xml	2017-11-23 05:22:39.000000000 +0100
 @@ -25,6 +25,7 @@
  
      <application>
@@ -1583,9 +1583,9 @@ diff -ur ../aosp/packages/apps/Provision/AndroidManifest.xml ../Desktop/android/
                  android:excludeFromRecents="true">
              <intent-filter android:priority="1">
                  <action android:name="android.intent.action.MAIN" />
-diff -ur ../aosp/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java ../Desktop/android/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java
---- ../aosp/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java	2018-08-06 15:42:59.673175551 +0200
-+++ ../Desktop/android/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java	2017-11-23 05:22:40.000000000 +0100
+diff -ur a/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java b/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java
+--- a/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java	2018-08-06 15:42:59.673175551 +0200
++++ b/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/SearchActivity.java	2017-11-23 05:22:40.000000000 +0100
 @@ -17,6 +17,7 @@
  package com.android.quicksearchbox;
  
@@ -1605,9 +1605,9 @@ diff -ur ../aosp/packages/apps/QuickSearchBox/src/com/android/quicksearchbox/Sea
          mTraceStartUp = getIntent().hasExtra(INTENT_EXTRA_TRACE_START_UP);
          if (mTraceStartUp) {
              String traceFile = new File(getDir("traces", 0), "qsb-start.trace").getAbsolutePath();
-diff -ur ../aosp/packages/apps/Settings/AndroidManifest.xml ../Desktop/android/packages/apps/Settings/AndroidManifest.xml
---- ../aosp/packages/apps/Settings/AndroidManifest.xml	2018-08-06 15:43:01.969204991 +0200
-+++ ../Desktop/android/packages/apps/Settings/AndroidManifest.xml	2017-11-23 05:22:40.000000000 +0100
+diff -ur a/packages/apps/Settings/AndroidManifest.xml b/packages/apps/Settings/AndroidManifest.xml
+--- a/packages/apps/Settings/AndroidManifest.xml	2018-08-06 15:43:01.969204991 +0200
++++ b/packages/apps/Settings/AndroidManifest.xml	2017-11-23 05:22:40.000000000 +0100
 @@ -432,6 +432,44 @@
                  android:value="com.android.settings.bluetooth.BluetoothSettings" />
          </activity>
@@ -1687,9 +1687,9 @@ diff -ur ../aosp/packages/apps/Settings/AndroidManifest.xml ../Desktop/android/p
          <!-- Keep compatibility with old shortcuts. -->
          <activity-alias android:name="DisplaySettings"
                  android:label="@string/display_settings"
-diff -ur ../aosp/packages/apps/Settings/res/color/storage_wizard_button_red.xml ../Desktop/android/packages/apps/Settings/res/color/storage_wizard_button_red.xml
---- ../aosp/packages/apps/Settings/res/color/storage_wizard_button_red.xml	2018-08-06 15:43:01.997205349 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/color/storage_wizard_button_red.xml	2017-11-23 05:22:40.000000000 +0100
+diff -ur a/packages/apps/Settings/res/color/storage_wizard_button_red.xml b/packages/apps/Settings/res/color/storage_wizard_button_red.xml
+--- a/packages/apps/Settings/res/color/storage_wizard_button_red.xml	2018-08-06 15:43:01.997205349 +0200
++++ b/packages/apps/Settings/res/color/storage_wizard_button_red.xml	2017-11-23 05:22:40.000000000 +0100
 @@ -17,6 +17,7 @@
  <selector xmlns:android="http://schemas.android.com/apk/res/android">
      <item android:state_enabled="false"
@@ -1700,17 +1700,17 @@ diff -ur ../aosp/packages/apps/Settings/res/color/storage_wizard_button_red.xml 
 +    <item android:state_focused="false" android:color="#ffC0C0C0" />
 +    <item android:state_focused="true" android:color="#fff4511e" />
  </selector>
-Only in ../Desktop/android/packages/apps/Settings/res/drawable-hdpi: ic_settings_ethernet.png
-Only in ../Desktop/android/packages/apps/Settings/res/drawable-mdpi: ic_settings_ethernet.png
-Only in ../Desktop/android/packages/apps/Settings/res/drawable-xhdpi: ic_settings_ethernet.png
-Only in ../Desktop/android/packages/apps/Settings/res/layout: audio_channels_select.xml
-Only in ../Desktop/android/packages/apps/Settings/res/layout: eth_dhcp_dialog.xml
-Only in ../Desktop/android/packages/apps/Settings/res/layout: eth_static_dialog.xml
-Only in ../Desktop/android/packages/apps/Settings/res/layout: pppoe_dialog.xml
-Only in ../Desktop/android/packages/apps/Settings/res/layout: preference_dialog_saturation.xml
-diff -ur ../aosp/packages/apps/Settings/res/layout/storage_wizard_navigation.xml ../Desktop/android/packages/apps/Settings/res/layout/storage_wizard_navigation.xml
---- ../aosp/packages/apps/Settings/res/layout/storage_wizard_navigation.xml	2018-08-06 15:43:02.181207709 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/layout/storage_wizard_navigation.xml	2017-11-23 05:22:40.000000000 +0100
+Only in b/packages/apps/Settings/res/drawable-hdpi: ic_settings_ethernet.png
+Only in b/packages/apps/Settings/res/drawable-mdpi: ic_settings_ethernet.png
+Only in b/packages/apps/Settings/res/drawable-xhdpi: ic_settings_ethernet.png
+Only in b/packages/apps/Settings/res/layout: audio_channels_select.xml
+Only in b/packages/apps/Settings/res/layout: eth_dhcp_dialog.xml
+Only in b/packages/apps/Settings/res/layout: eth_static_dialog.xml
+Only in b/packages/apps/Settings/res/layout: pppoe_dialog.xml
+Only in b/packages/apps/Settings/res/layout: preference_dialog_saturation.xml
+diff -ur a/packages/apps/Settings/res/layout/storage_wizard_navigation.xml b/packages/apps/Settings/res/layout/storage_wizard_navigation.xml
+--- a/packages/apps/Settings/res/layout/storage_wizard_navigation.xml	2018-08-06 15:43:02.181207709 +0200
++++ b/packages/apps/Settings/res/layout/storage_wizard_navigation.xml	2017-11-23 05:22:40.000000000 +0100
 @@ -47,6 +47,6 @@
          android:layout_marginEnd="16dp"
          android:text="@string/wizard_next"
@@ -1719,10 +1719,10 @@ diff -ur ../aosp/packages/apps/Settings/res/layout/storage_wizard_navigation.xml
 +        android:backgroundTint="@color/storage_wizard_button_red" />
  
  </LinearLayout>
-Only in ../Desktop/android/packages/apps/Settings/res/values: arrays_custom.xml
-diff -ur ../aosp/packages/apps/Settings/res/values/arrays.xml ../Desktop/android/packages/apps/Settings/res/values/arrays.xml
---- ../aosp/packages/apps/Settings/res/values/arrays.xml	2018-08-06 15:43:02.849216274 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/values/arrays.xml	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/res/values: arrays_custom.xml
+diff -ur a/packages/apps/Settings/res/values/arrays.xml b/packages/apps/Settings/res/values/arrays.xml
+--- a/packages/apps/Settings/res/values/arrays.xml	2018-08-06 15:43:02.849216274 +0200
++++ b/packages/apps/Settings/res/values/arrays.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -83,7 +83,7 @@
      <!-- Do not translate. -->
      <string-array name="dream_timeout_values" translatable="false">
@@ -1742,10 +1742,10 @@ diff -ur ../aosp/packages/apps/Settings/res/values/arrays.xml ../Desktop/android
 +    </string-array>
 +
  </resources>
-Only in ../Desktop/android/packages/apps/Settings/res/values: strings_custom.xml
-diff -ur ../aosp/packages/apps/Settings/res/values/strings.xml ../Desktop/android/packages/apps/Settings/res/values/strings.xml
---- ../aosp/packages/apps/Settings/res/values/strings.xml	2018-08-06 15:43:02.853216325 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/values/strings.xml	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/res/values: strings_custom.xml
+diff -ur a/packages/apps/Settings/res/values/strings.xml b/packages/apps/Settings/res/values/strings.xml
+--- a/packages/apps/Settings/res/values/strings.xml	2018-08-06 15:43:02.853216325 +0200
++++ b/packages/apps/Settings/res/values/strings.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -2246,7 +2246,7 @@
      <!-- Advanced (used for diagnostics) device info activity title [CHAR LIMIT=40] -->
      <string name="device_info_settings" product="tablet">Tablet status</string>
@@ -1844,10 +1844,10 @@ diff -ur ../aosp/packages/apps/Settings/res/values/strings.xml ../Desktop/androi
 +    <string name="display_support_type">The Current HDMI format is not support</string>
 +    <string name="display_support_type_title">Warning</string>
  </resources>
-Only in ../Desktop/android/packages/apps/Settings/res/values-ja: strings_custom.xml
-diff -ur ../aosp/packages/apps/Settings/res/values-zh-rCN/arrays.xml ../Desktop/android/packages/apps/Settings/res/values-zh-rCN/arrays.xml
---- ../aosp/packages/apps/Settings/res/values-zh-rCN/arrays.xml	2018-08-06 15:43:02.837216120 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/values-zh-rCN/arrays.xml	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/res/values-ja: strings_custom.xml
+diff -ur a/packages/apps/Settings/res/values-zh-rCN/arrays.xml b/packages/apps/Settings/res/values-zh-rCN/arrays.xml
+--- a/packages/apps/Settings/res/values-zh-rCN/arrays.xml	2018-08-06 15:43:02.837216120 +0200
++++ b/packages/apps/Settings/res/values-zh-rCN/arrays.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -250,7 +250,7 @@
      <item msgid="7674458294386319722">"修改日历"</item>
      <item msgid="8281201165558093009">"WLAN扫描"</item>
@@ -1894,10 +1894,10 @@ diff -ur ../aosp/packages/apps/Settings/res/values-zh-rCN/arrays.xml ../Desktop/
 +     <item>4</item>
 +   </string-array>
  </resources>
-Only in ../Desktop/android/packages/apps/Settings/res/values-zh-rCN: strings_custom.xml
-diff -ur ../aosp/packages/apps/Settings/res/values-zh-rCN/strings.xml ../Desktop/android/packages/apps/Settings/res/values-zh-rCN/strings.xml
---- ../aosp/packages/apps/Settings/res/values-zh-rCN/strings.xml	2018-08-06 15:43:02.841216171 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/values-zh-rCN/strings.xml	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/res/values-zh-rCN: strings_custom.xml
+diff -ur a/packages/apps/Settings/res/values-zh-rCN/strings.xml b/packages/apps/Settings/res/values-zh-rCN/strings.xml
+--- a/packages/apps/Settings/res/values-zh-rCN/strings.xml	2018-08-06 15:43:02.841216171 +0200
++++ b/packages/apps/Settings/res/values-zh-rCN/strings.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -121,16 +121,16 @@
      <string name="bluetooth_permission_request" msgid="1523129741266262748">"蓝牙权限请求"</string>
      <string name="bluetooth_ask_enablement" msgid="1712443355224737143">"某个应用想要开启此设备的蓝牙功能。"</string>
@@ -2461,9 +2461,9 @@ diff -ur ../aosp/packages/apps/Settings/res/values-zh-rCN/strings.xml ../Desktop
 +    <string name="pip_settings" msgid="8615463912185280814">"画中画"</string>
 +
  </resources>
-diff -ur ../aosp/packages/apps/Settings/res/xml/development_prefs.xml ../Desktop/android/packages/apps/Settings/res/xml/development_prefs.xml
---- ../aosp/packages/apps/Settings/res/xml/development_prefs.xml	2018-08-06 15:43:02.869216530 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/xml/development_prefs.xml	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/res/xml/development_prefs.xml b/packages/apps/Settings/res/xml/development_prefs.xml
+--- a/packages/apps/Settings/res/xml/development_prefs.xml	2018-08-06 15:43:02.869216530 +0200
++++ b/packages/apps/Settings/res/xml/development_prefs.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -106,6 +106,10 @@
              android:key="enable_adb"
              android:title="@string/enable_adb"
@@ -2475,9 +2475,9 @@ diff -ur ../aosp/packages/apps/Settings/res/xml/development_prefs.xml ../Desktop
  
          <Preference android:key="clear_adb_keys"
                  android:title="@string/clear_adb_keys" />
-diff -ur ../aosp/packages/apps/Settings/res/xml/display_settings.xml ../Desktop/android/packages/apps/Settings/res/xml/display_settings.xml
---- ../aosp/packages/apps/Settings/res/xml/display_settings.xml	2018-08-06 15:43:02.869216530 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/xml/display_settings.xml	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/res/xml/display_settings.xml b/packages/apps/Settings/res/xml/display_settings.xml
+--- a/packages/apps/Settings/res/xml/display_settings.xml	2018-08-06 15:43:02.869216530 +0200
++++ b/packages/apps/Settings/res/xml/display_settings.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -19,12 +19,13 @@
          android:title="@string/display_settings"
          settings:keywords="@string/keywords_display">
@@ -2536,14 +2536,14 @@ diff -ur ../aosp/packages/apps/Settings/res/xml/display_settings.xml ../Desktop/
 +                android:fragment="com.android.settings.pipSettings.PipSettings"/>
 +
  </PreferenceScreen>
-Only in ../Desktop/android/packages/apps/Settings/res/xml: ethernet_no_settings.xml
-Only in ../Desktop/android/packages/apps/Settings/res/xml: ethernet_settings.xml
-Only in ../Desktop/android/packages/apps/Settings/res/xml: hdr_settings.xml
-Only in ../Desktop/android/packages/apps/Settings/res/xml: pip_settings.xml
-Only in ../Desktop/android/packages/apps/Settings/res/xml: pppoe_settings.xml
-diff -ur ../aosp/packages/apps/Settings/res/xml/sound_settings.xml ../Desktop/android/packages/apps/Settings/res/xml/sound_settings.xml
---- ../aosp/packages/apps/Settings/res/xml/sound_settings.xml	2018-08-06 15:43:02.869216530 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/xml/sound_settings.xml	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/res/xml: ethernet_no_settings.xml
+Only in b/packages/apps/Settings/res/xml: ethernet_settings.xml
+Only in b/packages/apps/Settings/res/xml: hdr_settings.xml
+Only in b/packages/apps/Settings/res/xml: pip_settings.xml
+Only in b/packages/apps/Settings/res/xml: pppoe_settings.xml
+diff -ur a/packages/apps/Settings/res/xml/sound_settings.xml b/packages/apps/Settings/res/xml/sound_settings.xml
+--- a/packages/apps/Settings/res/xml/sound_settings.xml	2018-08-06 15:43:02.869216530 +0200
++++ b/packages/apps/Settings/res/xml/sound_settings.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -44,6 +44,16 @@
                  android:icon="@*android:drawable/ic_audio_ring_notif"
                  android:title="@string/notification_volume_option_title" />
@@ -2576,9 +2576,9 @@ diff -ur ../aosp/packages/apps/Settings/res/xml/sound_settings.xml ../Desktop/an
  
          <!-- Cast -->
          <PreferenceScreen
-diff -ur ../aosp/packages/apps/Settings/res/xml/suggestion_ordering.xml ../Desktop/android/packages/apps/Settings/res/xml/suggestion_ordering.xml
---- ../aosp/packages/apps/Settings/res/xml/suggestion_ordering.xml	2018-08-06 15:43:02.869216530 +0200
-+++ ../Desktop/android/packages/apps/Settings/res/xml/suggestion_ordering.xml	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/res/xml/suggestion_ordering.xml b/packages/apps/Settings/res/xml/suggestion_ordering.xml
+--- a/packages/apps/Settings/res/xml/suggestion_ordering.xml	2018-08-06 15:43:02.869216530 +0200
++++ b/packages/apps/Settings/res/xml/suggestion_ordering.xml	2017-11-23 05:22:41.000000000 +0100
 @@ -15,7 +15,6 @@
  -->
  
@@ -2587,9 +2587,9 @@ diff -ur ../aosp/packages/apps/Settings/res/xml/suggestion_ordering.xml ../Deskt
      <step category="com.android.settings.suggested.category.EMAIL" />
      <step category="com.android.settings.suggested.category.PARTNER_ACCOUNT"
          multiple="true" />
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java	2018-08-06 15:43:02.965217761 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java b/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java
+--- a/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java	2018-08-06 15:43:02.965217761 +0200
++++ b/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDevicePreference.java	2017-11-23 05:22:41.000000000 +0100
 @@ -32,6 +32,7 @@
  import android.util.TypedValue;
  import android.view.View;
@@ -2638,9 +2638,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/Bluet
      public boolean equals(Object o) {
          if ((o == null) || !(o instanceof BluetoothDevicePreference)) {
              return false;
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java	2018-08-06 15:43:02.973217862 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java b/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java
+--- a/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java	2018-08-06 15:43:02.973217862 +0200
++++ b/packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothSettings.java	2017-11-23 05:22:41.000000000 +0100
 @@ -439,6 +439,8 @@
          // discoverability to be set again
          if (BluetoothAdapter.STATE_ON == bluetoothState)
@@ -2650,9 +2650,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/Bluet
          updateContent(bluetoothState);
      }
  
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java	2018-08-06 15:43:02.973217862 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java b/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java
+--- a/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java	2018-08-06 15:43:02.973217862 +0200
++++ b/packages/apps/Settings/src/com/android/settings/bluetooth/DeviceListPreferenceFragment.java	2017-11-23 05:22:41.000000000 +0100
 @@ -179,6 +179,11 @@
          String key = cachedDevice.getDevice().getAddress();
          BluetoothDevicePreference preference = (BluetoothDevicePreference) getCachedPreference(key);
@@ -2665,9 +2665,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/bluetooth/Devic
          if (preference == null) {
              preference = new BluetoothDevicePreference(getPrefContext(), cachedDevice);
              preference.setKey(key);
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java	2018-08-06 15:43:02.981217966 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java b/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java
+--- a/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java	2018-08-06 15:43:02.981217966 +0200
++++ b/packages/apps/Settings/src/com/android/settings/dashboard/DashboardSummary.java	2017-11-23 05:22:41.000000000 +0100
 @@ -53,6 +53,7 @@
  
      public static final String[] INITIAL_ITEMS = new String[] {
@@ -2676,9 +2676,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/dashboard/Dashb
              Settings.BluetoothSettingsActivity.class.getName(),
              Settings.DataUsageSummaryActivity.class.getName(),
              Settings.PowerUsageSummaryActivity.class.getName(),
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java	2018-08-06 15:43:02.925217248 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java b/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java
+--- a/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java	2018-08-06 15:43:02.925217248 +0200
++++ b/packages/apps/Settings/src/com/android/settings/DevelopmentSettings.java	2017-11-23 05:22:41.000000000 +0100
 @@ -112,6 +112,7 @@
      public static final String PREF_SHOW = "show";
  
@@ -2724,9 +2724,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/DevelopmentSett
              if (mAdbKeysDialog != null) dismissDialogs();
              mAdbKeysDialog = new AlertDialog.Builder(getActivity())
                          .setMessage(R.string.adb_keys_warning_message)
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java	2018-08-06 15:43:03.005218274 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java b/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java
+--- a/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java	2018-08-06 15:43:03.005218274 +0200
++++ b/packages/apps/Settings/src/com/android/settings/deviceinfo/Status.java	2017-11-23 05:22:41.000000000 +0100
 @@ -188,6 +188,11 @@
              mWimaxMacAddress = null;
          }
@@ -2739,9 +2739,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/deviceinfo/Stat
          mConnectivityIntentFilter = new IntentFilter();
          for (String intent: CONNECTIVITY_INTENTS) {
               mConnectivityIntentFilter.addAction(intent);
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java	2018-08-06 15:43:03.005218274 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java b/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java
+--- a/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java	2018-08-06 15:43:03.005218274 +0200
++++ b/packages/apps/Settings/src/com/android/settings/deviceinfo/StorageSettings.java	2017-11-23 05:22:41.000000000 +0100
 @@ -219,7 +219,7 @@
              getPreferenceScreen().addPreference(mExternalCategory);
          }
@@ -2780,11 +2780,11 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/deviceinfo/Stor
              }
  
          } else if (key.startsWith("disk:")) {
-Only in ../Desktop/android/packages/apps/Settings/src/com/android/settings: DisplayOutputModeListPreference.java
-Only in ../Desktop/android/packages/apps/Settings/src/com/android/settings: DisplayPercentPreference.java
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/DisplaySettings.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/DisplaySettings.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/DisplaySettings.java	2018-08-06 15:43:02.925217248 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/DisplaySettings.java	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/src/com/android/settings: DisplayOutputModeListPreference.java
+Only in b/packages/apps/Settings/src/com/android/settings: DisplayPercentPreference.java
+diff -ur a/packages/apps/Settings/src/com/android/settings/DisplaySettings.java b/packages/apps/Settings/src/com/android/settings/DisplaySettings.java
+--- a/packages/apps/Settings/src/com/android/settings/DisplaySettings.java	2018-08-06 15:43:02.925217248 +0200
++++ b/packages/apps/Settings/src/com/android/settings/DisplaySettings.java	2017-11-23 05:22:41.000000000 +0100
 @@ -19,7 +19,12 @@
  import android.app.Activity;
  import android.app.ActivityManager;
@@ -3144,11 +3144,11 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/DisplaySettings
      private void disablePreferenceIfManaged(String key, String restriction) {
          final RestrictedPreference pref = (RestrictedPreference) findPreference(key);
          if (pref != null) {
-Only in ../Desktop/android/packages/apps/Settings/src/com/android/settings: ethernet
-Only in ../Desktop/android/packages/apps/Settings/src/com/android/settings: HDRSettings.java
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java	2018-08-06 15:43:03.017218427 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/src/com/android/settings: ethernet
+Only in b/packages/apps/Settings/src/com/android/settings: HDRSettings.java
+diff -ur a/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java b/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java
+--- a/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java	2018-08-06 15:43:03.017218427 +0200
++++ b/packages/apps/Settings/src/com/android/settings/localepicker/LocaleDragAndDropAdapter.java	2017-11-23 05:22:41.000000000 +0100
 @@ -257,8 +257,9 @@
      }
  
@@ -3160,10 +3160,10 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/localepicker/Lo
          doTheUpdate();
      }
  
-Only in ../Desktop/android/packages/apps/Settings/src/com/android/settings/notification: AudioChannelsSelect.java
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java	2018-08-06 15:43:03.025218531 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/src/com/android/settings/notification: AudioChannelsSelect.java
+diff -ur a/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java b/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java
+--- a/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java	2018-08-06 15:43:03.025218531 +0200
++++ b/packages/apps/Settings/src/com/android/settings/notification/SoundSettings.java	2017-11-23 05:22:41.000000000 +0100
 @@ -51,6 +51,7 @@
  import android.text.TextUtils;
  import android.util.Log;
@@ -3226,11 +3226,11 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/notification/So
          if (preference instanceof RingtonePreference) {
              mRequestPreference = (RingtonePreference) preference;
              mRequestPreference.onPrepareRingtonePickerIntent(mRequestPreference.getIntent());
-Only in ../Desktop/android/packages/apps/Settings/src/com/android/settings: pipSettings
-Only in ../Desktop/android/packages/apps/Settings/src/com/android/settings: pppoe
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/PrivacySettings.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/PrivacySettings.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/PrivacySettings.java	2018-08-06 15:43:02.941217453 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/PrivacySettings.java	2017-11-23 05:22:41.000000000 +0100
+Only in b/packages/apps/Settings/src/com/android/settings: pipSettings
+Only in b/packages/apps/Settings/src/com/android/settings: pppoe
+diff -ur a/packages/apps/Settings/src/com/android/settings/PrivacySettings.java b/packages/apps/Settings/src/com/android/settings/PrivacySettings.java
+--- a/packages/apps/Settings/src/com/android/settings/PrivacySettings.java	2018-08-06 15:43:02.941217453 +0200
++++ b/packages/apps/Settings/src/com/android/settings/PrivacySettings.java	2017-11-23 05:22:41.000000000 +0100
 @@ -246,8 +246,8 @@
                                      R.string.backup_configure_account_default_summary));
                          }
@@ -3242,9 +3242,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/PrivacySettings
                      }
                  } catch (RemoteException e) {
                  }
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/SettingsActivity.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/SettingsActivity.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/SettingsActivity.java	2018-08-06 15:43:02.953217607 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/SettingsActivity.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/SettingsActivity.java b/packages/apps/Settings/src/com/android/settings/SettingsActivity.java
+--- a/packages/apps/Settings/src/com/android/settings/SettingsActivity.java	2018-08-06 15:43:02.953217607 +0200
++++ b/packages/apps/Settings/src/com/android/settings/SettingsActivity.java	2017-11-23 05:22:41.000000000 +0100
 @@ -35,6 +35,7 @@
  import android.os.Bundle;
  import android.os.UserHandle;
@@ -3398,9 +3398,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/SettingsActivit
  
          setTileEnabled(new ComponentName(packageName,
                  Settings.UserSettingsActivity.class.getName()),
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/Settings.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/Settings.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/Settings.java	2018-08-06 15:43:02.945217505 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/Settings.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/Settings.java b/packages/apps/Settings/src/com/android/settings/Settings.java
+--- a/packages/apps/Settings/src/com/android/settings/Settings.java	2018-08-06 15:43:02.945217505 +0200
++++ b/packages/apps/Settings/src/com/android/settings/Settings.java	2017-11-23 05:22:41.000000000 +0100
 @@ -155,4 +155,7 @@
      public static class DeviceSettings extends SettingsActivity { /* empty */ }
      public static class PersonalSettings extends SettingsActivity { /* empty */ }
@@ -3409,9 +3409,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/Settings.java .
 +    public static class PppoeSettingsActivity extends SettingsActivity { /* empty */ }
 +    public static class HDRSettingsActivity extends SettingsActivity { /* empty */ }
  }
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java	2018-08-06 15:43:03.037218684 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java b/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java
+--- a/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java	2018-08-06 15:43:03.037218684 +0200
++++ b/packages/apps/Settings/src/com/android/settings/wifi/WifiConfigController.java	2017-11-23 05:22:41.000000000 +0100
 @@ -695,8 +695,8 @@
              staticIpConfiguration.ipAddress = new LinkAddress(inetAddr, networkPrefixLength);
          } catch (NumberFormatException e) {
@@ -3446,9 +3446,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/wifi/WifiConfig
          } else {
              dnsAddr = getIPv4Address(dns);
              if (dnsAddr == null) {
-diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java ../Desktop/android/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java
---- ../aosp/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java	2018-08-06 15:43:03.041218736 +0200
-+++ ../Desktop/android/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java	2017-11-23 05:22:41.000000000 +0100
+diff -ur a/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java b/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java
+--- a/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java	2018-08-06 15:43:03.041218736 +0200
++++ b/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupActivity.java	2017-11-23 05:22:41.000000000 +0100
 @@ -110,7 +110,6 @@
          super.onRestoreInstanceState(savedInstanceState);
          mUserSelectedNetwork = savedInstanceState.getBoolean(PARAM_USER_SELECTED_NETWORK, true);
@@ -3466,9 +3466,9 @@ diff -ur ../aosp/packages/apps/Settings/src/com/android/settings/wifi/WifiSetupA
              if (mAutoFinishOnConnection && mUserSelectedNetwork) {
                  Log.d(TAG, "Auto-finishing with connection");
                  finish(Activity.RESULT_OK);
-diff -ur ../aosp/packages/apps/TvSettings/Settings/AndroidManifest.xml ../Desktop/android/packages/apps/TvSettings/Settings/AndroidManifest.xml
---- ../aosp/packages/apps/TvSettings/Settings/AndroidManifest.xml	2018-08-06 15:43:12.541340537 +0200
-+++ ../Desktop/android/packages/apps/TvSettings/Settings/AndroidManifest.xml	2017-11-23 05:22:55.000000000 +0100
+diff -ur a/packages/apps/TvSettings/Settings/AndroidManifest.xml b/packages/apps/TvSettings/Settings/AndroidManifest.xml
+--- a/packages/apps/TvSettings/Settings/AndroidManifest.xml	2018-08-06 15:43:12.541340537 +0200
++++ b/packages/apps/TvSettings/Settings/AndroidManifest.xml	2017-11-23 05:22:55.000000000 +0100
 @@ -395,12 +395,14 @@
              android:configChanges="keyboard|keyboardHidden|navigation"
              android:excludeFromRecents="true"
@@ -3552,9 +3552,9 @@ diff -ur ../aosp/packages/apps/TvSettings/Settings/AndroidManifest.xml ../Deskto
                  <category android:name="android.intent.category.DEFAULT" />
              </intent-filter>
          </activity>
-diff -ur ../aosp/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml ../Desktop/android/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml
---- ../aosp/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml	2018-08-06 15:43:12.785343665 +0200
-+++ ../Desktop/android/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml	2017-11-23 05:22:55.000000000 +0100
+diff -ur a/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml b/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml
+--- a/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml	2018-08-06 15:43:12.785343665 +0200
++++ b/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml	2017-11-23 05:22:55.000000000 +0100
 @@ -116,6 +116,8 @@
              android:title="@string/system_developer_options"
              android:fragment="com.android.tv.settings.system.development.DevelopmentFragment" />
@@ -3572,9 +3572,9 @@ diff -ur ../aosp/packages/apps/TvSettings/Settings/res/xml/main_prefs.xml ../Des
  
      <PreferenceCategory
          android:key="personal"
-diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java
---- ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java	2018-08-06 15:43:12.817344076 +0200
-+++ ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java	2017-11-23 05:22:55.000000000 +0100
+diff -ur a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java
+--- a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java	2018-08-06 15:43:12.817344076 +0200
++++ b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/device/storage/NewStorageActivity.java	2017-11-23 05:22:55.000000000 +0100
 @@ -444,10 +444,10 @@
                  }
                  final DiskInfo disk = info.getDisk();
@@ -3590,9 +3590,9 @@ diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/d
                      break;
                  }
              }
-diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java
---- ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java	2018-08-06 15:43:12.785343665 +0200
-+++ ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java	2017-11-23 05:22:55.000000000 +0100
+diff -ur a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java
+--- a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java	2018-08-06 15:43:12.785343665 +0200
++++ b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainFragment.java	2017-11-23 05:22:55.000000000 +0100
 @@ -123,11 +123,11 @@
          final TvInputManager manager = (TvInputManager) getContext().getSystemService(
                  Context.TV_INPUT_SERVICE);
@@ -3607,9 +3607,9 @@ diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/M
          }
          super.onCreate(savedInstanceState);
      }
-diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java
---- ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java	2018-08-06 15:43:12.785343665 +0200
-+++ ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java	2017-11-23 05:22:55.000000000 +0100
+diff -ur a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java
+--- a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java	2018-08-06 15:43:12.785343665 +0200
++++ b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/MainSettings.java	2017-11-23 05:22:55.000000000 +0100
 @@ -17,6 +17,7 @@
  package com.android.tv.settings;
  
@@ -3632,9 +3632,9 @@ diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/M
 +    }
 +
  }
-diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java
---- ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java	2018-08-06 15:43:12.825344178 +0200
-+++ ../Desktop/android/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java	2017-11-23 05:22:55.000000000 +0100
+diff -ur a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java
+--- a/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java	2018-08-06 15:43:12.825344178 +0200
++++ b/packages/apps/TvSettings/Settings/src/com/android/tv/settings/system/development/DevelopmentFragment.java	2017-11-23 05:22:55.000000000 +0100
 @@ -670,7 +670,7 @@
  
      private void updatePasswordSummary() {
@@ -3644,9 +3644,9 @@ diff -ur ../aosp/packages/apps/TvSettings/Settings/src/com/android/tv/settings/s
                  mPassword.setSummary(R.string.local_backup_password_summary_change);
              } else {
                  mPassword.setSummary(R.string.local_backup_password_summary_none);
-diff -ur ../aosp/packages/inputmethods/LatinIME/java/res/values/config-common.xml ../Desktop/android/packages/inputmethods/LatinIME/java/res/values/config-common.xml
---- ../aosp/packages/inputmethods/LatinIME/java/res/values/config-common.xml	2018-08-06 15:43:18.013410691 +0200
-+++ ../Desktop/android/packages/inputmethods/LatinIME/java/res/values/config-common.xml	2017-11-23 05:22:57.000000000 +0100
+diff -ur a/packages/inputmethods/LatinIME/java/res/values/config-common.xml b/packages/inputmethods/LatinIME/java/res/values/config-common.xml
+--- a/packages/inputmethods/LatinIME/java/res/values/config-common.xml	2018-08-06 15:43:18.013410691 +0200
++++ b/packages/inputmethods/LatinIME/java/res/values/config-common.xml	2017-11-23 05:22:57.000000000 +0100
 @@ -44,9 +44,9 @@
      <bool name="config_default_vibration_enabled">true</bool>
      <integer name="config_max_vibration_duration">100</integer>
@@ -3669,9 +3669,9 @@ diff -ur ../aosp/packages/inputmethods/LatinIME/java/res/values/config-common.xm
      <integer name="config_delay_in_milliseconds_to_update_old_suggestions">300</integer>
  
      <!-- Common more suggestions configuraion. -->
-diff -ur ../aosp/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml ../Desktop/android/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml
---- ../aosp/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml	2018-08-06 15:43:18.013410691 +0200
-+++ ../Desktop/android/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml	2017-11-23 05:22:57.000000000 +0100
+diff -ur a/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml b/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml
+--- a/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml	2018-08-06 15:43:18.013410691 +0200
++++ b/packages/inputmethods/LatinIME/java/res/values/config-per-form-factor.xml	2017-11-23 05:22:57.000000000 +0100
 @@ -23,7 +23,7 @@
      <bool name="config_enable_show_key_preview_popup_option">true</bool>
      <!-- Whether or not Popup on key press is enabled by default -->
@@ -3681,9 +3681,9 @@ diff -ur ../aosp/packages/inputmethods/LatinIME/java/res/values/config-per-form-
      <bool name="config_enable_show_voice_key_option">true</bool>
      <bool name="config_key_selection_by_dragging_finger">true</bool>
      <!-- Showing more keys keyboard, just above the touched point if true, aligned to the key if
-diff -ur ../aosp/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml ../Desktop/android/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml
---- ../aosp/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml	2018-08-06 15:43:17.993410435 +0200
-+++ ../Desktop/android/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml	2017-11-23 05:22:57.000000000 +0100
+diff -ur a/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml b/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml
+--- a/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml	2018-08-06 15:43:17.993410435 +0200
++++ b/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-per-form-factor.xml	2017-11-23 05:22:57.000000000 +0100
 @@ -23,7 +23,7 @@
      <bool name="config_enable_show_key_preview_popup_option">true</bool>
      <!-- Whether or not Popup on key press is enabled by default -->
@@ -3693,9 +3693,9 @@ diff -ur ../aosp/packages/inputmethods/LatinIME/java/res/values-sw430dp/config-p
      <bool name="config_enable_show_voice_key_option">true</bool>
      <bool name="config_key_selection_by_dragging_finger">true</bool>
      <!-- Showing more keys keyboard, just above the touched point if true, aligned to the key if
-diff -ur ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java ../Desktop/android/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java
---- ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java	2018-08-06 15:43:18.041411049 +0200
-+++ ../Desktop/android/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java	2017-11-23 05:22:57.000000000 +0100
+diff -ur a/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java b/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java
+--- a/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java	2018-08-06 15:43:18.041411049 +0200
++++ b/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/Keyboard.java	2017-11-23 05:22:57.000000000 +0100
 @@ -27,7 +27,7 @@
  import java.util.ArrayList;
  import java.util.Collections;
@@ -3770,9 +3770,9 @@ diff -ur ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod
      @Override
      public String toString() {
          return mId.toString();
-diff -ur ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java ../Desktop/android/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java
---- ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java	2018-08-06 15:43:18.041411049 +0200
-+++ ../Desktop/android/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java	2017-11-23 05:22:57.000000000 +0100
+diff -ur a/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java b/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java
+--- a/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java	2018-08-06 15:43:18.041411049 +0200
++++ b/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/keyboard/MainKeyboardView.java	2017-11-23 05:22:57.000000000 +0100
 @@ -63,6 +63,12 @@
  import java.util.Locale;
  import java.util.WeakHashMap;
@@ -3867,9 +3867,9 @@ diff -ur ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod
 +    /* make LatinIME support key operations */
 +    /* add by Chenjd. end   -----------------------------------}} */
  }
-diff -ur ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java ../Desktop/android/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java
---- ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java	2018-08-06 15:43:18.057411254 +0200
-+++ ../Desktop/android/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java	2017-11-23 05:22:57.000000000 +0100
+diff -ur a/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java b/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java
+--- a/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java	2018-08-06 15:43:18.057411254 +0200
++++ b/packages/inputmethods/LatinIME/java/src/com/android/inputmethod/latin/LatinIME.java	2017-11-23 05:22:57.000000000 +0100
 @@ -37,6 +37,7 @@
  import android.os.Debug;
  import android.os.IBinder;
@@ -4223,9 +4223,9 @@ diff -ur ../aosp/packages/inputmethods/LatinIME/java/src/com/android/inputmethod
          }
          final long keyIdentifier = keyEvent.getDeviceId() << 32 + keyEvent.getKeyCode();
          if (mInputLogic.mCurrentlyPressedHardwareKeys.remove(keyIdentifier)) {
-diff -ur ../aosp/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java ../Desktop/android/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java
---- ../aosp/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java	2018-08-06 15:43:26.189515503 +0200
-+++ ../Desktop/android/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java	2017-11-23 05:22:59.000000000 +0100
+diff -ur a/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java b/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java
+--- a/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java	2018-08-06 15:43:26.189515503 +0200
++++ b/packages/providers/MediaProvider/src/com/android/providers/media/MtpService.java	2017-11-23 05:22:59.000000000 +0100
 @@ -140,7 +140,7 @@
  
      private void updateDisabledStateLocked() {

@@ -1,6 +1,6 @@
-diff -ur ../aosp/frameworks/av/include/media/IOMX.h ../Desktop/android/frameworks/av/include/media/IOMX.h
---- ../aosp/frameworks/av/include/media/IOMX.h	2018-08-06 15:40:15.111063901 +0200
-+++ ../Desktop/android/frameworks/av/include/media/IOMX.h	2017-11-23 05:21:06.000000000 +0100
+diff -ur a/frameworks/av/include/media/IOMX.h b/frameworks/av/include/media/IOMX.h
+--- a/frameworks/av/include/media/IOMX.h	2018-08-06 15:40:15.111063901 +0200
++++ b/frameworks/av/include/media/IOMX.h	2017-11-23 05:21:06.000000000 +0100
 @@ -232,6 +232,11 @@
              OMX_U32 range_length;
              OMX_U32 flags;
@@ -13,9 +13,9 @@ diff -ur ../aosp/frameworks/av/include/media/IOMX.h ../Desktop/android/framework
          } extended_buffer_data;
  
          // if type == FRAME_RENDERED
-diff -ur ../aosp/frameworks/av/include/media/mediaplayer.h ../Desktop/android/frameworks/av/include/media/mediaplayer.h
---- ../aosp/frameworks/av/include/media/mediaplayer.h	2018-08-06 15:40:15.115063952 +0200
-+++ ../Desktop/android/frameworks/av/include/media/mediaplayer.h	2017-11-23 05:21:06.000000000 +0100
+diff -ur a/frameworks/av/include/media/mediaplayer.h b/frameworks/av/include/media/mediaplayer.h
+--- a/frameworks/av/include/media/mediaplayer.h	2018-08-06 15:40:15.115063952 +0200
++++ b/frameworks/av/include/media/mediaplayer.h	2017-11-23 05:21:06.000000000 +0100
 @@ -54,6 +54,9 @@
      MEDIA_INFO              = 200,
      MEDIA_SUBTITLE_DATA     = 201,
@@ -78,10 +78,10 @@ diff -ur ../aosp/frameworks/av/include/media/mediaplayer.h ../Desktop/android/fr
  };
  
  // Keep MEDIA_TRACK_TYPE_* in sync with MediaPlayer.java.
-Only in ../Desktop/android/frameworks/av/include/media: mediaplayerinfo.h
-diff -ur ../aosp/frameworks/av/include/media/MediaPlayerInterface.h ../Desktop/android/frameworks/av/include/media/MediaPlayerInterface.h
---- ../aosp/frameworks/av/include/media/MediaPlayerInterface.h	2018-08-06 15:40:15.111063901 +0200
-+++ ../Desktop/android/frameworks/av/include/media/MediaPlayerInterface.h	2017-11-23 05:21:06.000000000 +0100
+Only in b/frameworks/av/include/media: mediaplayerinfo.h
+diff -ur a/frameworks/av/include/media/MediaPlayerInterface.h b/frameworks/av/include/media/MediaPlayerInterface.h
+--- a/frameworks/av/include/media/MediaPlayerInterface.h	2018-08-06 15:40:15.111063901 +0200
++++ b/frameworks/av/include/media/MediaPlayerInterface.h	2017-11-23 05:21:06.000000000 +0100
 @@ -52,6 +52,8 @@
      // The shared library with the test player is passed passed as an
      // argument to the 'test:' url in the setDataSource call.
@@ -91,9 +91,9 @@ diff -ur ../aosp/frameworks/av/include/media/MediaPlayerInterface.h ../Desktop/a
  };
  
  
-diff -ur ../aosp/frameworks/av/include/media/stagefright/ACodec.h ../Desktop/android/frameworks/av/include/media/stagefright/ACodec.h
---- ../aosp/frameworks/av/include/media/stagefright/ACodec.h	2018-08-06 15:40:15.123064056 +0200
-+++ ../Desktop/android/frameworks/av/include/media/stagefright/ACodec.h	2017-11-23 05:21:06.000000000 +0100
+diff -ur a/frameworks/av/include/media/stagefright/ACodec.h b/frameworks/av/include/media/stagefright/ACodec.h
+--- a/frameworks/av/include/media/stagefright/ACodec.h	2018-08-06 15:40:15.123064056 +0200
++++ b/frameworks/av/include/media/stagefright/ACodec.h	2017-11-23 05:21:06.000000000 +0100
 @@ -200,6 +200,10 @@
          int mFenceFd;
          FrameRenderTracker::Info *mRenderInfo;
@@ -115,9 +115,9 @@ diff -ur ../aosp/frameworks/av/include/media/stagefright/ACodec.h ../Desktop/and
      status_t setCyclicIntraMacroblockRefresh(const sp<AMessage> &msg, int32_t mode);
      status_t allocateBuffersOnPort(OMX_U32 portIndex);
      status_t freeBuffersOnPort(OMX_U32 portIndex);
-diff -ur ../aosp/frameworks/av/include/media/stagefright/MediaDefs.h ../Desktop/android/frameworks/av/include/media/stagefright/MediaDefs.h
---- ../aosp/frameworks/av/include/media/stagefright/MediaDefs.h	2018-08-06 15:40:15.127064107 +0200
-+++ ../Desktop/android/frameworks/av/include/media/stagefright/MediaDefs.h	2017-11-23 05:21:06.000000000 +0100
+diff -ur a/frameworks/av/include/media/stagefright/MediaDefs.h b/frameworks/av/include/media/stagefright/MediaDefs.h
+--- a/frameworks/av/include/media/stagefright/MediaDefs.h	2018-08-06 15:40:15.127064107 +0200
++++ b/frameworks/av/include/media/stagefright/MediaDefs.h	2017-11-23 05:21:06.000000000 +0100
 @@ -31,7 +31,19 @@
  extern const char *MEDIA_MIMETYPE_VIDEO_MPEG2;
  extern const char *MEDIA_MIMETYPE_VIDEO_RAW;
@@ -147,11 +147,11 @@ diff -ur ../aosp/frameworks/av/include/media/stagefright/MediaDefs.h ../Desktop/
  extern const char *MEDIA_MIMETYPE_TEXT_CEA_708;
  extern const char *MEDIA_MIMETYPE_DATA_TIMED_ID3;
  
-Only in ../Desktop/android/frameworks/av/media: libcedarc
-Only in ../Desktop/android/frameworks/av/media: libcedarx
-diff -ur ../aosp/frameworks/av/media/libmedia/AudioTrack.cpp ../Desktop/android/frameworks/av/media/libmedia/AudioTrack.cpp
---- ../aosp/frameworks/av/media/libmedia/AudioTrack.cpp	2018-08-06 15:40:15.227065392 +0200
-+++ ../Desktop/android/frameworks/av/media/libmedia/AudioTrack.cpp	2017-11-23 05:21:08.000000000 +0100
+Only in b/frameworks/av/media: libcedarc
+Only in b/frameworks/av/media: libcedarx
+diff -ur a/frameworks/av/media/libmedia/AudioTrack.cpp b/frameworks/av/media/libmedia/AudioTrack.cpp
+--- a/frameworks/av/media/libmedia/AudioTrack.cpp	2018-08-06 15:40:15.227065392 +0200
++++ b/frameworks/av/media/libmedia/AudioTrack.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -380,6 +380,8 @@
          format = AUDIO_FORMAT_PCM_16_BIT;
      } else if (format == AUDIO_FORMAT_IEC61937) { // HDMI pass-through?
@@ -161,9 +161,9 @@ diff -ur ../aosp/frameworks/av/media/libmedia/AudioTrack.cpp ../Desktop/android/
      }
  
      // validate parameters
-diff -ur ../aosp/frameworks/av/media/libmedia/ICrypto.cpp ../Desktop/android/frameworks/av/media/libmedia/ICrypto.cpp
---- ../aosp/frameworks/av/media/libmedia/ICrypto.cpp	2018-08-06 15:40:15.231065443 +0200
-+++ ../Desktop/android/frameworks/av/media/libmedia/ICrypto.cpp	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libmedia/ICrypto.cpp b/frameworks/av/media/libmedia/ICrypto.cpp
+--- a/frameworks/av/media/libmedia/ICrypto.cpp	2018-08-06 15:40:15.231065443 +0200
++++ b/frameworks/av/media/libmedia/ICrypto.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -315,6 +315,10 @@
              if (dstType == kDestinationTypeNativeHandle) {
                  nativeHandle = data.readNativeHandle();
@@ -175,9 +175,9 @@ diff -ur ../aosp/frameworks/av/media/libmedia/ICrypto.cpp ../Desktop/android/fra
              } else if (dstType == kDestinationTypeOpaqueHandle) {
                  secureBufferId = reinterpret_cast<void *>(static_cast<uintptr_t>(data.readInt64()));
                  dstPtr = secureBufferId;
-diff -ur ../aosp/frameworks/av/media/libmedia/MediaScanner.cpp ../Desktop/android/frameworks/av/media/libmedia/MediaScanner.cpp
---- ../aosp/frameworks/av/media/libmedia/MediaScanner.cpp	2018-08-06 15:40:15.235065494 +0200
-+++ ../Desktop/android/frameworks/av/media/libmedia/MediaScanner.cpp	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libmedia/MediaScanner.cpp b/frameworks/av/media/libmedia/MediaScanner.cpp
+--- a/frameworks/av/media/libmedia/MediaScanner.cpp	2018-08-06 15:40:15.235065494 +0200
++++ b/frameworks/av/media/libmedia/MediaScanner.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -128,6 +128,15 @@
      return false;
  }
@@ -206,9 +206,9 @@ diff -ur ../aosp/frameworks/av/media/libmedia/MediaScanner.cpp ../Desktop/androi
      }
  
      return MEDIA_SCAN_RESULT_OK;
-diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/Android.mk ../Desktop/android/frameworks/av/media/libmediaplayerservice/Android.mk
---- ../aosp/frameworks/av/media/libmediaplayerservice/Android.mk	2018-08-06 15:40:15.239065545 +0200
-+++ ../Desktop/android/frameworks/av/media/libmediaplayerservice/Android.mk	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libmediaplayerservice/Android.mk b/frameworks/av/media/libmediaplayerservice/Android.mk
+--- a/frameworks/av/media/libmediaplayerservice/Android.mk	2018-08-06 15:40:15.239065545 +0200
++++ b/frameworks/av/media/libmediaplayerservice/Android.mk	2017-11-23 05:21:08.000000000 +0100
 @@ -5,6 +5,7 @@
  #
  
@@ -249,9 +249,9 @@ diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/Android.mk ../Desktop
  
  LOCAL_CFLAGS += -Werror -Wno-error=deprecated-declarations -Wall
  LOCAL_CLANG := true
-diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp ../Desktop/android/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp
---- ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp	2018-08-06 15:40:15.239065545 +0200
-+++ ../Desktop/android/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp b/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp
+--- a/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp	2018-08-06 15:40:15.239065545 +0200
++++ b/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -24,6 +24,7 @@
  #include <media/stagefright/DataSource.h>
  #include <media/stagefright/FileSource.h>
@@ -580,9 +580,9 @@ diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cp
      registerFactory_l(new NuPlayerFactory(), NU_PLAYER);
      registerFactory_l(new TestPlayerFactory(), TEST_PLAYER);
  
-diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp ../Desktop/android/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp
---- ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp	2018-08-06 15:40:15.239065545 +0200
-+++ ../Desktop/android/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp b/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp
+--- a/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp	2018-08-06 15:40:15.239065545 +0200
++++ b/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -72,6 +72,7 @@
  #include "MediaPlayerService.h"
  #include "MetadataRetrieverClient.h"
@@ -863,9 +863,9 @@ diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerService.cp
  }
  
  status_t MediaPlayerService::Client::setAudioStreamType(audio_stream_type_t type)
-diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h ../Desktop/android/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h
---- ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h	2018-08-06 15:40:15.239065545 +0200
-+++ ../Desktop/android/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h b/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h
+--- a/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h	2018-08-06 15:40:15.239065545 +0200
++++ b/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h	2017-11-23 05:21:08.000000000 +0100
 @@ -227,6 +227,7 @@
  
              void                removeClient(wp<Client> client);
@@ -902,9 +902,9 @@ diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MediaPlayerService.h 
  #if CALLBACK_ANTAGONIZER
                      Antagonizer*                mAntagonizer;
  #endif
-diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp ../Desktop/android/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp
---- ../aosp/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp	2018-08-06 15:40:15.239065545 +0200
-+++ ../Desktop/android/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp b/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp
+--- a/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp	2018-08-06 15:40:15.239065545 +0200
++++ b/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClient.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -40,6 +40,7 @@
  #include "MetadataRetrieverClient.h"
  #include "StagefrightMetadataRetriever.h"
@@ -925,11 +925,11 @@ diff -ur ../aosp/frameworks/av/media/libmediaplayerservice/MetadataRetrieverClie
          default:
              // TODO:
              // support for TEST_PLAYER
-Only in ../Desktop/android/frameworks/av/media/libmediaplayerservice: SimpleMediaFormatProbe.cpp
-Only in ../Desktop/android/frameworks/av/media/libmediaplayerservice: SimpleMediaFormatProbe.h
-diff -ur ../aosp/frameworks/av/media/libstagefright/ACodec.cpp ../Desktop/android/frameworks/av/media/libstagefright/ACodec.cpp
---- ../aosp/frameworks/av/media/libstagefright/ACodec.cpp	2018-08-06 15:40:15.271065956 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/ACodec.cpp	2017-11-23 05:21:08.000000000 +0100
+Only in b/frameworks/av/media/libmediaplayerservice: SimpleMediaFormatProbe.cpp
+Only in b/frameworks/av/media/libmediaplayerservice: SimpleMediaFormatProbe.h
+diff -ur a/frameworks/av/media/libstagefright/ACodec.cpp b/frameworks/av/media/libstagefright/ACodec.cpp
+--- a/frameworks/av/media/libstagefright/ACodec.cpp	2018-08-06 15:40:15.271065956 +0200
++++ b/frameworks/av/media/libstagefright/ACodec.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -55,6 +55,11 @@
  #include "include/DataConverter.h"
  #include "omx/OMXUtils.h"
@@ -1399,9 +1399,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/ACodec.cpp ../Desktop/androi
                  mCodec->changeState(mCodec->mFlushingState);
              }
  
-diff -ur ../aosp/frameworks/av/media/libstagefright/Android.mk ../Desktop/android/frameworks/av/media/libstagefright/Android.mk
---- ../aosp/frameworks/av/media/libstagefright/Android.mk	2018-08-06 15:40:15.271065956 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/Android.mk	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/Android.mk b/frameworks/av/media/libstagefright/Android.mk
+--- a/frameworks/av/media/libstagefright/Android.mk	2018-08-06 15:40:15.271065956 +0200
++++ b/frameworks/av/media/libstagefright/Android.mk	2017-11-23 05:21:08.000000000 +0100
 @@ -66,6 +66,7 @@
  
  LOCAL_C_INCLUDES:= \
@@ -1410,9 +1410,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/Android.mk ../Desktop/androi
          $(TOP)/frameworks/av/include/media/stagefright/timedtext \
          $(TOP)/frameworks/native/include/media/hardware \
          $(TOP)/frameworks/native/include/media/openmax \
-diff -ur ../aosp/frameworks/av/media/libstagefright/CameraSource.cpp ../Desktop/android/frameworks/av/media/libstagefright/CameraSource.cpp
---- ../aosp/frameworks/av/media/libstagefright/CameraSource.cpp	2018-08-06 15:40:15.275066008 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/CameraSource.cpp	2017-11-23 05:21:08.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/CameraSource.cpp b/frameworks/av/media/libstagefright/CameraSource.cpp
+--- a/frameworks/av/media/libstagefright/CameraSource.cpp	2018-08-06 15:40:15.275066008 +0200
++++ b/frameworks/av/media/libstagefright/CameraSource.cpp	2017-11-23 05:21:08.000000000 +0100
 @@ -866,7 +866,8 @@
              token = IPCThreadState::self()->clearCallingIdentity();
              isTokenValid = true;
@@ -1458,9 +1458,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/CameraSource.cpp ../Desktop/
          case hardware::ICamera::VIDEO_BUFFER_MODE_BUFFER_QUEUE:
              return kMetadataBufferTypeANWBuffer;
          default:
-diff -ur ../aosp/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml ../Desktop/android/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml
---- ../aosp/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml	2018-08-06 15:40:15.543069450 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml b/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml
+--- a/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml	2018-08-06 15:40:15.543069450 +0200
++++ b/frameworks/av/media/libstagefright/data/media_codecs_google_video.xml	2017-11-23 05:21:09.000000000 +0100
 @@ -79,7 +79,7 @@
          </MediaCodec>
          <MediaCodec name="OMX.google.h264.encoder" type="video/avc">
@@ -1470,9 +1470,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/data/media_codecs_google_vid
              <Limit name="alignment" value="2x2" />
              <Limit name="block-size" value="16x16" />
              <Limit name="blocks-per-second" range="1-244800" />
-diff -ur ../aosp/frameworks/av/media/libstagefright/MediaDefs.cpp ../Desktop/android/frameworks/av/media/libstagefright/MediaDefs.cpp
---- ../aosp/frameworks/av/media/libstagefright/MediaDefs.cpp	2018-08-06 15:40:15.279066058 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/MediaDefs.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/MediaDefs.cpp b/frameworks/av/media/libstagefright/MediaDefs.cpp
+--- a/frameworks/av/media/libstagefright/MediaDefs.cpp	2018-08-06 15:40:15.279066058 +0200
++++ b/frameworks/av/media/libstagefright/MediaDefs.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -29,7 +29,21 @@
  const char *MEDIA_MIMETYPE_VIDEO_MPEG2 = "video/mpeg2";
  const char *MEDIA_MIMETYPE_VIDEO_RAW = "video/raw";
@@ -1496,9 +1496,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/MediaDefs.cpp ../Desktop/and
  const char *MEDIA_MIMETYPE_AUDIO_AMR_NB = "audio/3gpp";
  const char *MEDIA_MIMETYPE_AUDIO_AMR_WB = "audio/amr-wb";
  const char *MEDIA_MIMETYPE_AUDIO_MPEG = "audio/mpeg";
-diff -ur ../aosp/frameworks/av/media/libstagefright/omx/OMX.cpp ../Desktop/android/frameworks/av/media/libstagefright/omx/OMX.cpp
---- ../aosp/frameworks/av/media/libstagefright/omx/OMX.cpp	2018-08-06 15:40:15.555069603 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/omx/OMX.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/omx/OMX.cpp b/frameworks/av/media/libstagefright/omx/OMX.cpp
+--- a/frameworks/av/media/libstagefright/omx/OMX.cpp	2018-08-06 15:40:15.555069603 +0200
++++ b/frameworks/av/media/libstagefright/omx/OMX.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -120,8 +120,25 @@
  
  void OMX::CallbackDispatcher::post(const omx_message &msg, bool realTime) {
@@ -1563,9 +1563,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/omx/OMX.cpp ../Desktop/andro
      findDispatcher(node)->post(msg);
  
      return OMX_ErrorNone;
-diff -ur ../aosp/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp ../Desktop/android/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp
---- ../aosp/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp	2018-08-06 15:40:15.555069603 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp b/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp
+--- a/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp	2018-08-06 15:40:15.555069603 +0200
++++ b/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -132,7 +132,9 @@
  
      void CopyToOMX(const OMX_BUFFERHEADERTYPE *header) {
@@ -1576,9 +1576,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/omx/OMXNodeInstance.cpp ../D
          }
  
          memcpy(header->pBuffer + header->nOffset,
-diff -ur ../aosp/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp ../Desktop/android/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp
---- ../aosp/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp	2018-08-06 15:40:15.291066213 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp b/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp
+--- a/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp	2018-08-06 15:40:15.291066213 +0200
++++ b/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -40,7 +40,10 @@
          ".mpeg", ".ogg", ".mid", ".smf", ".imy", ".wma", ".aac",
          ".wav", ".amr", ".midi", ".xmf", ".rtttl", ".rtx", ".ota",
@@ -1591,9 +1591,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/StagefrightMediaScanner.cpp 
      };
      static const size_t kNumValidExtensions =
          sizeof(kValidExtensions) / sizeof(kValidExtensions[0]);
-diff -ur ../aosp/frameworks/av/media/libstagefright/SurfaceUtils.cpp ../Desktop/android/frameworks/av/media/libstagefright/SurfaceUtils.cpp
---- ../aosp/frameworks/av/media/libstagefright/SurfaceUtils.cpp	2018-08-06 15:40:15.303066368 +0200
-+++ ../Desktop/android/frameworks/av/media/libstagefright/SurfaceUtils.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/media/libstagefright/SurfaceUtils.cpp b/frameworks/av/media/libstagefright/SurfaceUtils.cpp
+--- a/frameworks/av/media/libstagefright/SurfaceUtils.cpp	2018-08-06 15:40:15.303066368 +0200
++++ b/frameworks/av/media/libstagefright/SurfaceUtils.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -22,6 +22,8 @@
  
  #include <gui/Surface.h>
@@ -1630,9 +1630,9 @@ diff -ur ../aosp/frameworks/av/media/libstagefright/SurfaceUtils.cpp ../Desktop/
  
      int transform = 0;
      if ((rotation % 90) == 0) {
-diff -ur ../aosp/frameworks/av/media/mediaserver/mediaserver.rc ../Desktop/android/frameworks/av/media/mediaserver/mediaserver.rc
---- ../aosp/frameworks/av/media/mediaserver/mediaserver.rc	2018-08-06 15:40:15.571069809 +0200
-+++ ../Desktop/android/frameworks/av/media/mediaserver/mediaserver.rc	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/media/mediaserver/mediaserver.rc b/frameworks/av/media/mediaserver/mediaserver.rc
+--- a/frameworks/av/media/mediaserver/mediaserver.rc	2018-08-06 15:40:15.571069809 +0200
++++ b/frameworks/av/media/mediaserver/mediaserver.rc	2017-11-23 05:21:09.000000000 +0100
 @@ -1,6 +1,6 @@
  service media /system/bin/mediaserver
      class main
@@ -1641,9 +1641,9 @@ diff -ur ../aosp/frameworks/av/media/mediaserver/mediaserver.rc ../Desktop/andro
 +    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm sdcard_rw
      ioprio rt 4
      writepid /dev/cpuset/foreground/tasks
-diff -ur ../aosp/frameworks/av/services/audioflinger/AudioFlinger.cpp ../Desktop/android/frameworks/av/services/audioflinger/AudioFlinger.cpp
---- ../aosp/frameworks/av/services/audioflinger/AudioFlinger.cpp	2018-08-06 15:40:15.579069912 +0200
-+++ ../Desktop/android/frameworks/av/services/audioflinger/AudioFlinger.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/services/audioflinger/AudioFlinger.cpp b/frameworks/av/services/audioflinger/AudioFlinger.cpp
+--- a/frameworks/av/services/audioflinger/AudioFlinger.cpp	2018-08-06 15:40:15.579069912 +0200
++++ b/frameworks/av/services/audioflinger/AudioFlinger.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -132,6 +132,7 @@
      case AUDIO_FORMAT_AC3: return "ac-3";
      case AUDIO_FORMAT_E_AC3: return "e-ac-3";
@@ -1674,9 +1674,9 @@ diff -ur ../aosp/frameworks/av/services/audioflinger/AudioFlinger.cpp ../Desktop
          return final_result;
      }
  
-diff -ur ../aosp/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp ../Desktop/android/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp
---- ../aosp/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp	2018-08-06 15:40:15.615070374 +0200
-+++ ../Desktop/android/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp b/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp
+--- a/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp	2018-08-06 15:40:15.615070374 +0200
++++ b/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -545,6 +545,18 @@
      return device;
  }
@@ -1713,9 +1713,9 @@ diff -ur ../aosp/frameworks/av/services/audiopolicy/enginedefault/src/Engine.cpp
      switch (inputSource) {
      case AUDIO_SOURCE_VOICE_UPLINK:
        if (availableDeviceTypes & AUDIO_DEVICE_IN_VOICE_CALL) {
-diff -ur ../aosp/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp ../Desktop/android/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp
---- ../aosp/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp	2018-08-06 15:40:15.619070425 +0200
-+++ ../Desktop/android/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp b/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp
+--- a/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp	2018-08-06 15:40:15.619070425 +0200
++++ b/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -823,7 +823,7 @@
      sp<CameraClient> client = static_cast<CameraClient*>(getClientFromCookie(user).get());
      if (client.get() == nullptr) return;
@@ -1725,9 +1725,9 @@ diff -ur ../aosp/frameworks/av/services/camera/libcameraservice/api1/CameraClien
  
      if (dataPtr == 0) {
          ALOGE("Null data returned in data with timestamp callback");
-diff -ur ../aosp/frameworks/av/services/camera/libcameraservice/CameraService.cpp ../Desktop/android/frameworks/av/services/camera/libcameraservice/CameraService.cpp
---- ../aosp/frameworks/av/services/camera/libcameraservice/CameraService.cpp	2018-08-06 15:40:15.619070425 +0200
-+++ ../Desktop/android/frameworks/av/services/camera/libcameraservice/CameraService.cpp	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/services/camera/libcameraservice/CameraService.cpp b/frameworks/av/services/camera/libcameraservice/CameraService.cpp
+--- a/frameworks/av/services/camera/libcameraservice/CameraService.cpp	2018-08-06 15:40:15.619070425 +0200
++++ b/frameworks/av/services/camera/libcameraservice/CameraService.cpp	2017-11-23 05:21:09.000000000 +0100
 @@ -428,6 +428,67 @@
  
  Status CameraService::getNumberOfCameras(int32_t type, int32_t* numCameras) {
@@ -1796,9 +1796,9 @@ diff -ur ../aosp/frameworks/av/services/camera/libcameraservice/CameraService.cp
      switch (type) {
          case CAMERA_TYPE_BACKWARD_COMPATIBLE:
              *numCameras = mNumberOfNormalCameras;
-diff -ur ../aosp/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy ../Desktop/android/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy
---- ../aosp/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy	2018-08-06 15:40:15.627070528 +0200
-+++ ../Desktop/android/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy	2017-11-23 05:21:09.000000000 +0100
+diff -ur a/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy b/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy
+--- a/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy	2018-08-06 15:40:15.627070528 +0200
++++ b/frameworks/av/services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy	2017-11-23 05:21:09.000000000 +0100
 @@ -49,3 +49,6 @@
  connect: 1
  fcntl64: 1
@@ -1806,9 +1806,9 @@ diff -ur ../aosp/frameworks/av/services/mediacodec/minijail/seccomp_policy/media
 +getdents64: 1
 +pselect6: 1
 +sysinfo: 1
-diff -ur ../aosp/frameworks/base/Android.mk ../Desktop/android/frameworks/base/Android.mk
---- ../aosp/frameworks/base/Android.mk	2018-08-06 15:40:20.947138849 +0200
-+++ ../Desktop/android/frameworks/base/Android.mk	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/Android.mk b/frameworks/base/Android.mk
+--- a/frameworks/base/Android.mk	2018-08-06 15:40:20.947138849 +0200
++++ b/frameworks/base/Android.mk	2017-11-23 05:21:11.000000000 +0100
 @@ -125,6 +125,7 @@
  	core/java/android/bluetooth/IBluetoothGatt.aidl \
  	core/java/android/bluetooth/IBluetoothGattCallback.aidl \
@@ -1833,9 +1833,9 @@ diff -ur ../aosp/frameworks/base/Android.mk ../Desktop/android/frameworks/base/A
  	core/java/android/os/IHardwarePropertiesManager.aidl \
  	core/java/android/os/IMaintenanceActivityListener.aidl \
  	core/java/android/os/IMessenger.aidl \
-diff -ur ../aosp/frameworks/base/api/current.txt ../Desktop/android/frameworks/base/api/current.txt
---- ../aosp/frameworks/base/api/current.txt	2018-08-06 15:40:21.095140749 +0200
-+++ ../Desktop/android/frameworks/base/api/current.txt	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/api/current.txt b/frameworks/base/api/current.txt
+--- a/frameworks/base/api/current.txt	2018-08-06 15:40:21.095140749 +0200
++++ b/frameworks/base/api/current.txt	2017-11-23 05:21:11.000000000 +0100
 @@ -7389,6 +7389,18 @@
      field public static final int TYPE_SCO = 2; // 0x2
    }
@@ -2233,9 +2233,9 @@ diff -ur ../aosp/frameworks/base/api/current.txt ../Desktop/android/frameworks/b
      field public static final int KEYCODE_ZOOM_IN = 168; // 0xa8
      field public static final int KEYCODE_ZOOM_OUT = 169; // 0xa9
      field public static final deprecated int MAX_KEYCODE = 84; // 0x54
-diff -ur ../aosp/frameworks/base/api/system-current.txt ../Desktop/android/frameworks/base/api/system-current.txt
---- ../aosp/frameworks/base/api/system-current.txt	2018-08-06 15:40:21.175141776 +0200
-+++ ../Desktop/android/frameworks/base/api/system-current.txt	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/api/system-current.txt b/frameworks/base/api/system-current.txt
+--- a/frameworks/base/api/system-current.txt	2018-08-06 15:40:21.175141776 +0200
++++ b/frameworks/base/api/system-current.txt	2017-11-23 05:21:11.000000000 +0100
 @@ -7681,6 +7681,18 @@
      field public static final int TYPE_SCO = 2; // 0x2
    }
@@ -2633,9 +2633,9 @@ diff -ur ../aosp/frameworks/base/api/system-current.txt ../Desktop/android/frame
      field public static final int KEYCODE_ZOOM_IN = 168; // 0xa8
      field public static final int KEYCODE_ZOOM_OUT = 169; // 0xa9
      field public static final deprecated int MAX_KEYCODE = 84; // 0x54
-diff -ur ../aosp/frameworks/base/api/test-current.txt ../Desktop/android/frameworks/base/api/test-current.txt
---- ../aosp/frameworks/base/api/test-current.txt	2018-08-06 15:40:21.219142341 +0200
-+++ ../Desktop/android/frameworks/base/api/test-current.txt	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/api/test-current.txt b/frameworks/base/api/test-current.txt
+--- a/frameworks/base/api/test-current.txt	2018-08-06 15:40:21.219142341 +0200
++++ b/frameworks/base/api/test-current.txt	2017-11-23 05:21:11.000000000 +0100
 @@ -7395,6 +7395,18 @@
      field public static final int TYPE_SCO = 2; // 0x2
    }
@@ -3034,9 +3034,9 @@ diff -ur ../aosp/frameworks/base/api/test-current.txt ../Desktop/android/framewo
      field public static final int KEYCODE_ZOOM_IN = 168; // 0xa8
      field public static final int KEYCODE_ZOOM_OUT = 169; // 0xa9
      field public static final deprecated int MAX_KEYCODE = 84; // 0x54
-diff -ur ../aosp/frameworks/base/cmds/bootanimation/Android.mk ../Desktop/android/frameworks/base/cmds/bootanimation/Android.mk
---- ../aosp/frameworks/base/cmds/bootanimation/Android.mk	2018-08-06 15:40:21.267142957 +0200
-+++ ../Desktop/android/frameworks/base/cmds/bootanimation/Android.mk	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/cmds/bootanimation/Android.mk b/frameworks/base/cmds/bootanimation/Android.mk
+--- a/frameworks/base/cmds/bootanimation/Android.mk	2018-08-06 15:40:21.267142957 +0200
++++ b/frameworks/base/cmds/bootanimation/Android.mk	2017-11-23 05:21:11.000000000 +0100
 @@ -23,7 +23,8 @@
      libEGL \
      libGLESv1_CM \
@@ -3047,9 +3047,9 @@ diff -ur ../aosp/frameworks/base/cmds/bootanimation/Android.mk ../Desktop/androi
  
  LOCAL_MODULE:= bootanimation
  
-diff -ur ../aosp/frameworks/base/cmds/bootanimation/AudioPlayer.cpp ../Desktop/android/frameworks/base/cmds/bootanimation/AudioPlayer.cpp
---- ../aosp/frameworks/base/cmds/bootanimation/AudioPlayer.cpp	2018-08-06 15:40:21.267142957 +0200
-+++ ../Desktop/android/frameworks/base/cmds/bootanimation/AudioPlayer.cpp	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/cmds/bootanimation/AudioPlayer.cpp b/frameworks/base/cmds/bootanimation/AudioPlayer.cpp
+--- a/frameworks/base/cmds/bootanimation/AudioPlayer.cpp	2018-08-06 15:40:21.267142957 +0200
++++ b/frameworks/base/cmds/bootanimation/AudioPlayer.cpp	2017-11-23 05:21:11.000000000 +0100
 @@ -20,7 +20,7 @@
  #include "AudioPlayer.h"
  
@@ -3373,9 +3373,9 @@ diff -ur ../aosp/frameworks/base/cmds/bootanimation/AudioPlayer.cpp ../Desktop/a
 +    return 1;
 +}
  } // namespace android
-diff -ur ../aosp/frameworks/base/cmds/bootanimation/AudioPlayer.h ../Desktop/android/frameworks/base/cmds/bootanimation/AudioPlayer.h
---- ../aosp/frameworks/base/cmds/bootanimation/AudioPlayer.h	2018-08-06 15:40:21.267142957 +0200
-+++ ../Desktop/android/frameworks/base/cmds/bootanimation/AudioPlayer.h	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/cmds/bootanimation/AudioPlayer.h b/frameworks/base/cmds/bootanimation/AudioPlayer.h
+--- a/frameworks/base/cmds/bootanimation/AudioPlayer.h	2018-08-06 15:40:21.267142957 +0200
++++ b/frameworks/base/cmds/bootanimation/AudioPlayer.h	2017-11-23 05:21:11.000000000 +0100
 @@ -18,8 +18,25 @@
  #define _BOOTANIMATION_AUDIOPLAYER_H
  
@@ -3431,9 +3431,9 @@ diff -ur ../aosp/frameworks/base/cmds/bootanimation/AudioPlayer.h ../Desktop/and
  } // namespace android
  
  #endif // _BOOTANIMATION_AUDIOPLAYER_H
-diff -ur ../aosp/frameworks/base/cmds/bootanimation/BootAnimation.cpp ../Desktop/android/frameworks/base/cmds/bootanimation/BootAnimation.cpp
---- ../aosp/frameworks/base/cmds/bootanimation/BootAnimation.cpp	2018-08-06 15:40:21.267142957 +0200
-+++ ../Desktop/android/frameworks/base/cmds/bootanimation/BootAnimation.cpp	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/cmds/bootanimation/BootAnimation.cpp b/frameworks/base/cmds/bootanimation/BootAnimation.cpp
+--- a/frameworks/base/cmds/bootanimation/BootAnimation.cpp	2018-08-06 15:40:21.267142957 +0200
++++ b/frameworks/base/cmds/bootanimation/BootAnimation.cpp	2017-11-23 05:21:11.000000000 +0100
 @@ -54,14 +54,22 @@
  #include <GLES/glext.h>
  #include <EGL/eglext.h>
@@ -3574,9 +3574,9 @@ diff -ur ../aosp/frameworks/base/cmds/bootanimation/BootAnimation.cpp ../Desktop
  // ---------------------------------------------------------------------------
  
  }
-diff -ur ../aosp/frameworks/base/cmds/bootanimation/BootAnimation.h ../Desktop/android/frameworks/base/cmds/bootanimation/BootAnimation.h
---- ../aosp/frameworks/base/cmds/bootanimation/BootAnimation.h	2018-08-06 15:40:21.267142957 +0200
-+++ ../Desktop/android/frameworks/base/cmds/bootanimation/BootAnimation.h	2017-11-23 05:21:11.000000000 +0100
+diff -ur a/frameworks/base/cmds/bootanimation/BootAnimation.h b/frameworks/base/cmds/bootanimation/BootAnimation.h
+--- a/frameworks/base/cmds/bootanimation/BootAnimation.h	2018-08-06 15:40:21.267142957 +0200
++++ b/frameworks/base/cmds/bootanimation/BootAnimation.h	2017-11-23 05:21:11.000000000 +0100
 @@ -26,6 +26,8 @@
  #include <EGL/egl.h>
  #include <GLES/gl.h>
@@ -3608,9 +3608,9 @@ diff -ur ../aosp/frameworks/base/cmds/bootanimation/BootAnimation.h ../Desktop/a
  };
  
  // ---------------------------------------------------------------------------
-diff -ur ../aosp/frameworks/base/core/java/android/app/SystemServiceRegistry.java ../Desktop/android/frameworks/base/core/java/android/app/SystemServiceRegistry.java
---- ../aosp/frameworks/base/core/java/android/app/SystemServiceRegistry.java	2018-08-06 15:40:21.515146143 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/app/SystemServiceRegistry.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/app/SystemServiceRegistry.java b/frameworks/base/core/java/android/app/SystemServiceRegistry.java
+--- a/frameworks/base/core/java/android/app/SystemServiceRegistry.java	2018-08-06 15:40:21.515146143 +0200
++++ b/frameworks/base/core/java/android/app/SystemServiceRegistry.java	2017-11-23 05:21:12.000000000 +0100
 @@ -73,6 +73,11 @@
  import android.net.EthernetManager;
  import android.net.IConnectivityManager;
@@ -3672,11 +3672,11 @@ diff -ur ../aosp/frameworks/base/core/java/android/app/SystemServiceRegistry.jav
  
          registerService(Context.WINDOW_SERVICE, WindowManager.class,
                  new CachedServiceFetcher<WindowManager>() {
-Only in ../Desktop/android/frameworks/base/core/java/android/bluetooth: BluetoothRtkbt.java
-Only in ../Desktop/android/frameworks/base/core/java/android/bluetooth: IBluetoothRtkbt.aidl
-diff -ur ../aosp/frameworks/base/core/java/android/content/Context.java ../Desktop/android/frameworks/base/core/java/android/content/Context.java
---- ../aosp/frameworks/base/core/java/android/content/Context.java	2018-08-06 15:40:21.691148403 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/content/Context.java	2017-11-23 05:21:12.000000000 +0100
+Only in b/frameworks/base/core/java/android/bluetooth: BluetoothRtkbt.java
+Only in b/frameworks/base/core/java/android/bluetooth: IBluetoothRtkbt.aidl
+diff -ur a/frameworks/base/core/java/android/content/Context.java b/frameworks/base/core/java/android/content/Context.java
+--- a/frameworks/base/core/java/android/content/Context.java	2018-08-06 15:40:21.691148403 +0200
++++ b/frameworks/base/core/java/android/content/Context.java	2017-11-23 05:21:12.000000000 +0100
 @@ -2698,6 +2698,7 @@
              //@hide: HDMI_CONTROL_SERVICE,
              INPUT_SERVICE,
@@ -3722,9 +3722,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/content/Context.java ../Deskt
       * {@link android.os.UserManager} for managing users on devices that support multiple users.
       *
       * @see #getSystemService
-diff -ur ../aosp/frameworks/base/core/java/android/content/Intent.java ../Desktop/android/frameworks/base/core/java/android/content/Intent.java
---- ../aosp/frameworks/base/core/java/android/content/Intent.java	2018-08-06 15:40:21.695148454 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/content/Intent.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/content/Intent.java b/frameworks/base/core/java/android/content/Intent.java
+--- a/frameworks/base/core/java/android/content/Intent.java	2018-08-06 15:40:21.695148454 +0200
++++ b/frameworks/base/core/java/android/content/Intent.java	2017-11-23 05:21:12.000000000 +0100
 @@ -3250,6 +3250,9 @@
       */
      public static final int EXTRA_THERMAL_STATE_EXCEEDED = 2;
@@ -3750,9 +3750,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/content/Intent.java ../Deskto
      /**
       * @hide Flags that can't be changed with PendingIntent.
       */
-diff -ur ../aosp/frameworks/base/core/java/android/content/pm/PackageManager.java ../Desktop/android/frameworks/base/core/java/android/content/pm/PackageManager.java
---- ../aosp/frameworks/base/core/java/android/content/pm/PackageManager.java	2018-08-06 15:40:21.707148609 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/content/pm/PackageManager.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/content/pm/PackageManager.java b/frameworks/base/core/java/android/content/pm/PackageManager.java
+--- a/frameworks/base/core/java/android/content/pm/PackageManager.java	2018-08-06 15:40:21.707148609 +0200
++++ b/frameworks/base/core/java/android/content/pm/PackageManager.java	2017-11-23 05:21:12.000000000 +0100
 @@ -2155,6 +2155,15 @@
      @SdkConstant(SdkConstantType.FEATURE)
      public static final String FEATURE_ETHERNET = "android.hardware.ethernet";
@@ -3769,9 +3769,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/content/pm/PackageManager.jav
      /**
       * Feature for {@link #getSystemAvailableFeatures} and
       * {@link #hasSystemFeature}: This device supports HDMI-CEC.
-diff -ur ../aosp/frameworks/base/core/java/android/hardware/camera2/CameraManager.java ../Desktop/android/frameworks/base/core/java/android/hardware/camera2/CameraManager.java
---- ../aosp/frameworks/base/core/java/android/hardware/camera2/CameraManager.java	2018-08-06 15:40:21.751149174 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/hardware/camera2/CameraManager.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/hardware/camera2/CameraManager.java b/frameworks/base/core/java/android/hardware/camera2/CameraManager.java
+--- a/frameworks/base/core/java/android/hardware/camera2/CameraManager.java	2018-08-06 15:40:21.751149174 +0200
++++ b/frameworks/base/core/java/android/hardware/camera2/CameraManager.java	2017-11-23 05:21:12.000000000 +0100
 @@ -650,6 +650,14 @@
       * <p>In case of errors connecting to the camera service, will return an empty list.</p>
       */
@@ -3787,10 +3787,10 @@ diff -ur ../aosp/frameworks/base/core/java/android/hardware/camera2/CameraManage
          if (mDeviceIdList == null) {
              int numCameras = 0;
              ICameraService cameraService = CameraManagerGlobal.get().getCameraService();
-Only in ../Desktop/android/frameworks/base/core/java/android/hardware/usb: UsbCameraManager.java
-diff -ur ../aosp/frameworks/base/core/java/android/net/ConnectivityManager.java ../Desktop/android/frameworks/base/core/java/android/net/ConnectivityManager.java
---- ../aosp/frameworks/base/core/java/android/net/ConnectivityManager.java	2018-08-06 15:40:21.823150098 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/net/ConnectivityManager.java	2017-11-23 05:21:12.000000000 +0100
+Only in b/frameworks/base/core/java/android/hardware/usb: UsbCameraManager.java
+diff -ur a/frameworks/base/core/java/android/net/ConnectivityManager.java b/frameworks/base/core/java/android/net/ConnectivityManager.java
+--- a/frameworks/base/core/java/android/net/ConnectivityManager.java	2018-08-06 15:40:21.823150098 +0200
++++ b/frameworks/base/core/java/android/net/ConnectivityManager.java	2017-11-23 05:21:12.000000000 +0100
 @@ -539,12 +539,14 @@
       * It may or may not be providing security services.
       */
@@ -3818,9 +3818,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/net/ConnectivityManager.java 
              default:
                  return Integer.toString(type);
          }
-diff -ur ../aosp/frameworks/base/core/java/android/net/IpConfiguration.java ../Desktop/android/frameworks/base/core/java/android/net/IpConfiguration.java
---- ../aosp/frameworks/base/core/java/android/net/IpConfiguration.java	2018-08-06 15:40:21.831150201 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/net/IpConfiguration.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/net/IpConfiguration.java b/frameworks/base/core/java/android/net/IpConfiguration.java
+--- a/frameworks/base/core/java/android/net/IpConfiguration.java	2018-08-06 15:40:21.831150201 +0200
++++ b/frameworks/base/core/java/android/net/IpConfiguration.java	2017-11-23 05:21:12.000000000 +0100
 @@ -35,6 +35,8 @@
          STATIC,
          /* Use dynamically configured IP settigns */
@@ -3830,10 +3830,10 @@ diff -ur ../aosp/frameworks/base/core/java/android/net/IpConfiguration.java ../D
          /* no IP details are assigned, this is used to indicate
           * that any existing IP settings should be retained */
          UNASSIGNED
-Only in ../Desktop/android/frameworks/base/core/java/android/net: IPppoeManager.aidl
-diff -ur ../aosp/frameworks/base/core/java/android/net/NetworkCapabilities.java ../Desktop/android/frameworks/base/core/java/android/net/NetworkCapabilities.java
---- ../aosp/frameworks/base/core/java/android/net/NetworkCapabilities.java	2018-08-06 15:40:21.835150251 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/net/NetworkCapabilities.java	2017-11-23 05:21:12.000000000 +0100
+Only in b/frameworks/base/core/java/android/net: IPppoeManager.aidl
+diff -ur a/frameworks/base/core/java/android/net/NetworkCapabilities.java b/frameworks/base/core/java/android/net/NetworkCapabilities.java
+--- a/frameworks/base/core/java/android/net/NetworkCapabilities.java	2018-08-06 15:40:21.835150251 +0200
++++ b/frameworks/base/core/java/android/net/NetworkCapabilities.java	2017-11-23 05:21:12.000000000 +0100
 @@ -404,9 +404,10 @@
       * Indicates this network uses a VPN transport.
       */
@@ -3854,12 +3854,12 @@ diff -ur ../aosp/frameworks/base/core/java/android/net/NetworkCapabilities.java 
              }
              if (++i < types.length) transports += "|";
          }
-Only in ../Desktop/android/frameworks/base/core/java/android/net: PppoeManager.java
-Only in ../Desktop/android/frameworks/base/core/java/android/os: DisplayOutputManager.java
-Only in ../Desktop/android/frameworks/base/core/java/android/os: IDisplayOutputManager.aidl
-diff -ur ../aosp/frameworks/base/core/java/android/os/Process.java ../Desktop/android/frameworks/base/core/java/android/os/Process.java
---- ../aosp/frameworks/base/core/java/android/os/Process.java	2018-08-06 15:40:21.887150920 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/os/Process.java	2017-11-23 05:21:12.000000000 +0100
+Only in b/frameworks/base/core/java/android/net: PppoeManager.java
+Only in b/frameworks/base/core/java/android/os: DisplayOutputManager.java
+Only in b/frameworks/base/core/java/android/os: IDisplayOutputManager.aidl
+diff -ur a/frameworks/base/core/java/android/os/Process.java b/frameworks/base/core/java/android/os/Process.java
+--- a/frameworks/base/core/java/android/os/Process.java	2018-08-06 15:40:21.887150920 +0200
++++ b/frameworks/base/core/java/android/os/Process.java	2017-11-23 05:21:12.000000000 +0100
 @@ -1130,7 +1130,11 @@
       * other's processes.
       */
@@ -3886,9 +3886,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/os/Process.java ../Desktop/an
      }
  
      /**
-diff -ur ../aosp/frameworks/base/core/java/android/os/RecoverySystem.java ../Desktop/android/frameworks/base/core/java/android/os/RecoverySystem.java
---- ../aosp/frameworks/base/core/java/android/os/RecoverySystem.java	2018-08-06 15:40:21.895151022 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/os/RecoverySystem.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/os/RecoverySystem.java b/frameworks/base/core/java/android/os/RecoverySystem.java
+--- a/frameworks/base/core/java/android/os/RecoverySystem.java	2018-08-06 15:40:21.895151022 +0200
++++ b/frameworks/base/core/java/android/os/RecoverySystem.java	2017-11-23 05:21:12.000000000 +0100
 @@ -72,6 +72,7 @@
  
      /** Used to communicate with recovery.  See bootable/recovery/recovery.cpp. */
@@ -3961,9 +3961,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/os/RecoverySystem.java ../Des
      // Read last_install; then report time (in seconds) and I/O (in MiB) for
      // this update to tron.
      // Only report on the reboots immediately after an OTA update.
-diff -ur ../aosp/frameworks/base/core/java/android/provider/Settings.java ../Desktop/android/frameworks/base/core/java/android/provider/Settings.java
---- ../aosp/frameworks/base/core/java/android/provider/Settings.java	2018-08-06 15:40:21.959151844 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/provider/Settings.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/provider/Settings.java b/frameworks/base/core/java/android/provider/Settings.java
+--- a/frameworks/base/core/java/android/provider/Settings.java	2018-08-06 15:40:21.959151844 +0200
++++ b/frameworks/base/core/java/android/provider/Settings.java	2017-11-23 05:21:12.000000000 +0100
 @@ -80,6 +80,16 @@
   */
  public final class Settings {
@@ -4102,9 +4102,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/provider/Settings.java ../Des
  
          /**
           * Whether users are allowed to add more users or guest from lockscreen.
-diff -ur ../aosp/frameworks/base/core/java/android/view/IWindowManager.aidl ../Desktop/android/frameworks/base/core/java/android/view/IWindowManager.aidl
---- ../aosp/frameworks/base/core/java/android/view/IWindowManager.aidl	2018-08-06 15:40:22.123153952 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/view/IWindowManager.aidl	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/view/IWindowManager.aidl b/frameworks/base/core/java/android/view/IWindowManager.aidl
+--- a/frameworks/base/core/java/android/view/IWindowManager.aidl	2018-08-06 15:40:22.123153952 +0200
++++ b/frameworks/base/core/java/android/view/IWindowManager.aidl	2017-11-23 05:21:12.000000000 +0100
 @@ -421,4 +421,19 @@
       * Remove the input consumer for wallpaper events.
       */
@@ -4125,9 +4125,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/view/IWindowManager.aidl ../D
 +
 +    void keySetMouseDistance(int distance);
  }
-diff -ur ../aosp/frameworks/base/core/java/android/view/KeyEvent.java ../Desktop/android/frameworks/base/core/java/android/view/KeyEvent.java
---- ../aosp/frameworks/base/core/java/android/view/KeyEvent.java	2018-08-06 15:40:22.123153952 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/view/KeyEvent.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/view/KeyEvent.java b/frameworks/base/core/java/android/view/KeyEvent.java
+--- a/frameworks/base/core/java/android/view/KeyEvent.java	2018-08-06 15:40:22.123153952 +0200
++++ b/frameworks/base/core/java/android/view/KeyEvent.java	2017-11-23 05:21:12.000000000 +0100
 @@ -749,6 +749,19 @@
      public static final int KEYCODE_HELP = 259;
      /** Key code constant: Navigate to previous key.
@@ -4180,9 +4180,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/view/KeyEvent.java ../Desktop
  
      private static final int LAST_KEYCODE = KEYCODE_PASTE;
  
-diff -ur ../aosp/frameworks/base/core/java/android/view/TextureView.java ../Desktop/android/frameworks/base/core/java/android/view/TextureView.java
---- ../aosp/frameworks/base/core/java/android/view/TextureView.java	2018-08-06 15:40:22.135154106 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/view/TextureView.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/view/TextureView.java b/frameworks/base/core/java/android/view/TextureView.java
+--- a/frameworks/base/core/java/android/view/TextureView.java	2018-08-06 15:40:22.135154106 +0200
++++ b/frameworks/base/core/java/android/view/TextureView.java	2017-11-23 05:21:12.000000000 +0100
 @@ -516,7 +516,7 @@
       * of the associated surface texture. If the surface texture is not available,
       * this method returns null.</p>
@@ -4219,9 +4219,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/view/TextureView.java ../Desk
       *         texture is not available or width is &lt;= 0 or height is &lt;= 0
       *
       * @see #isAvailable()
-diff -ur ../aosp/frameworks/base/core/java/android/view/ViewGroup.java ../Desktop/android/frameworks/base/core/java/android/view/ViewGroup.java
---- ../aosp/frameworks/base/core/java/android/view/ViewGroup.java	2018-08-06 15:40:22.155154362 +0200
-+++ ../Desktop/android/frameworks/base/core/java/android/view/ViewGroup.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/android/view/ViewGroup.java b/frameworks/base/core/java/android/view/ViewGroup.java
+--- a/frameworks/base/core/java/android/view/ViewGroup.java	2018-08-06 15:40:22.155154362 +0200
++++ b/frameworks/base/core/java/android/view/ViewGroup.java	2017-11-23 05:21:12.000000000 +0100
 @@ -1120,6 +1120,7 @@
       * @param touchscreenBlocksFocus true to enable blocking focus in the presence of a touchscreen
       */
@@ -4230,9 +4230,9 @@ diff -ur ../aosp/frameworks/base/core/java/android/view/ViewGroup.java ../Deskto
          if (touchscreenBlocksFocus) {
              mGroupFlags |= FLAG_TOUCHSCREEN_BLOCKS_FOCUS;
              if (hasFocus()) {
-diff -ur ../aosp/frameworks/base/core/java/com/android/internal/app/LocaleStore.java ../Desktop/android/frameworks/base/core/java/com/android/internal/app/LocaleStore.java
---- ../aosp/frameworks/base/core/java/com/android/internal/app/LocaleStore.java	2018-08-06 15:40:22.275155902 +0200
-+++ ../Desktop/android/frameworks/base/core/java/com/android/internal/app/LocaleStore.java	2017-11-23 05:21:12.000000000 +0100
+diff -ur a/frameworks/base/core/java/com/android/internal/app/LocaleStore.java b/frameworks/base/core/java/com/android/internal/app/LocaleStore.java
+--- a/frameworks/base/core/java/com/android/internal/app/LocaleStore.java	2018-08-06 15:40:22.275155902 +0200
++++ b/frameworks/base/core/java/com/android/internal/app/LocaleStore.java	2017-11-23 05:21:12.000000000 +0100
 @@ -247,7 +247,7 @@
      }
  
@@ -4242,9 +4242,9 @@ diff -ur ../aosp/frameworks/base/core/java/com/android/internal/app/LocaleStore.
              return;
          }
  
-diff -ur ../aosp/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java ../Desktop/android/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java
---- ../aosp/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java	2018-08-06 15:40:22.307156314 +0200
-+++ ../Desktop/android/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java	2017-11-23 05:21:13.000000000 +0100
+diff -ur a/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java b/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java
+--- a/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java	2018-08-06 15:40:22.307156314 +0200
++++ b/frameworks/base/core/java/com/android/internal/os/ZygoteInit.java	2017-11-23 05:21:13.000000000 +0100
 @@ -212,6 +212,37 @@
          Log.d(TAG, "end preload");
      }
@@ -4328,9 +4328,9 @@ diff -ur ../aosp/frameworks/base/core/java/com/android/internal/os/ZygoteInit.ja
              Log.i(TAG, "Accepting command socket connections");
              runSelectLoop(abiList);
  
-diff -ur ../aosp/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java ../Desktop/android/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java
---- ../aosp/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java	2018-08-06 15:40:22.307156314 +0200
-+++ ../Desktop/android/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java	2017-11-23 05:21:13.000000000 +0100
+diff -ur a/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java b/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java
+--- a/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java	2018-08-06 15:40:22.307156314 +0200
++++ b/frameworks/base/core/java/com/android/internal/policy/PhoneWindow.java	2017-11-23 05:21:13.000000000 +0100
 @@ -846,6 +846,10 @@
              }
          }
@@ -4342,9 +4342,9 @@ diff -ur ../aosp/frameworks/base/core/java/com/android/internal/policy/PhoneWind
          st.isHandled = false;
  
          WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
-diff -ur ../aosp/frameworks/base/core/jni/Android.mk ../Desktop/android/frameworks/base/core/jni/Android.mk
---- ../aosp/frameworks/base/core/jni/Android.mk	2018-08-06 15:40:22.371157136 +0200
-+++ ../Desktop/android/frameworks/base/core/jni/Android.mk	2017-11-23 05:21:13.000000000 +0100
+diff -ur a/frameworks/base/core/jni/Android.mk b/frameworks/base/core/jni/Android.mk
+--- a/frameworks/base/core/jni/Android.mk	2018-08-06 15:40:22.371157136 +0200
++++ b/frameworks/base/core/jni/Android.mk	2017-11-23 05:21:13.000000000 +0100
 @@ -89,7 +89,7 @@
      android_os_Trace.cpp \
      android_os_UEventObserver.cpp \
@@ -4354,11 +4354,11 @@ diff -ur ../aosp/frameworks/base/core/jni/Android.mk ../Desktop/android/framewor
      android_net_TrafficStats.cpp \
      android_nio_utils.cpp \
      android_util_AssetManager.cpp \
-Only in ../Desktop/android/frameworks/base/core/res/res/drawable: key_mouse.png
-Only in ../Desktop/android/frameworks/base/core/res/res/values: config_custom.xml
-diff -ur ../aosp/frameworks/base/core/res/res/values/config.xml ../Desktop/android/frameworks/base/core/res/res/values/config.xml
---- ../aosp/frameworks/base/core/res/res/values/config.xml	2018-08-06 15:40:23.559172390 +0200
-+++ ../Desktop/android/frameworks/base/core/res/res/values/config.xml	2017-11-23 05:21:15.000000000 +0100
+Only in b/frameworks/base/core/res/res/drawable: key_mouse.png
+Only in b/frameworks/base/core/res/res/values: config_custom.xml
+diff -ur a/frameworks/base/core/res/res/values/config.xml b/frameworks/base/core/res/res/values/config.xml
+--- a/frameworks/base/core/res/res/values/config.xml	2018-08-06 15:40:23.559172390 +0200
++++ b/frameworks/base/core/res/res/values/config.xml	2017-11-23 05:21:15.000000000 +0100
 @@ -255,6 +255,17 @@
          <item>15</item>
      </integer-array>
@@ -4385,13 +4385,13 @@ diff -ur ../aosp/frameworks/base/core/res/res/values/config.xml ../Desktop/andro
      </integer-array>
  
      <!-- If the DUN connection for this CDMA device supports more than just DUN -->
-Only in ../Desktop/android/frameworks/base/core/res/res/values: display_configs.xml
-Only in ../Desktop/android/frameworks/base/core/res/res/values: public_custom.xml
-Only in ../Desktop/android/frameworks/base/core/res/res/values: strings_custom.xml
-Only in ../Desktop/android/frameworks/base/core/res/res/values: symbols_custom.xml
-diff -ur ../aosp/frameworks/base/core/res/res/values/symbols.xml ../Desktop/android/frameworks/base/core/res/res/values/symbols.xml
---- ../aosp/frameworks/base/core/res/res/values/symbols.xml	2018-08-06 15:40:23.567172494 +0200
-+++ ../Desktop/android/frameworks/base/core/res/res/values/symbols.xml	2017-11-23 05:21:15.000000000 +0100
+Only in b/frameworks/base/core/res/res/values: display_configs.xml
+Only in b/frameworks/base/core/res/res/values: public_custom.xml
+Only in b/frameworks/base/core/res/res/values: strings_custom.xml
+Only in b/frameworks/base/core/res/res/values: symbols_custom.xml
+diff -ur a/frameworks/base/core/res/res/values/symbols.xml b/frameworks/base/core/res/res/values/symbols.xml
+--- a/frameworks/base/core/res/res/values/symbols.xml	2018-08-06 15:40:23.567172494 +0200
++++ b/frameworks/base/core/res/res/values/symbols.xml	2017-11-23 05:21:15.000000000 +0100
 @@ -400,6 +400,7 @@
    <java-symbol type="integer" name="config_safe_media_volume_index" />
    <java-symbol type="integer" name="config_mobile_mtu" />
@@ -4400,10 +4400,10 @@ diff -ur ../aosp/frameworks/base/core/res/res/values/symbols.xml ../Desktop/andr
    <java-symbol type="integer" name="config_volte_replacement_rat"/>
    <java-symbol type="integer" name="config_valid_wappush_index" />
    <java-symbol type="integer" name="config_overrideHasPermanentMenuKey" />
-Only in ../Desktop/android/frameworks/base/core/res/res/values-zh-rCN: strings_custom.xml
-diff -ur ../aosp/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java ../Desktop/android/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java
---- ../aosp/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java	2018-08-06 15:40:47.351477877 +0200
-+++ ../Desktop/android/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java	2017-11-23 05:21:34.000000000 +0100
+Only in b/frameworks/base/core/res/res/values-zh-rCN: strings_custom.xml
+diff -ur a/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java b/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java
+--- a/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java	2018-08-06 15:40:47.351477877 +0200
++++ b/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.java	2017-11-23 05:21:34.000000000 +0100
 @@ -333,7 +333,7 @@
           * </p>
           * <p>
@@ -4413,9 +4413,9 @@ diff -ur ../aosp/frameworks/base/graphics/java/android/graphics/pdf/PdfRenderer.
           * </p>
           * <p>
           * <strong>Note: </strong> The optional transformation matrix must be affine as per
-diff -ur ../aosp/frameworks/base/libs/input/PointerController.cpp ../Desktop/android/frameworks/base/libs/input/PointerController.cpp
---- ../aosp/frameworks/base/libs/input/PointerController.cpp	2018-08-06 15:40:47.511479932 +0200
-+++ ../Desktop/android/frameworks/base/libs/input/PointerController.cpp	2017-11-23 05:21:34.000000000 +0100
+diff -ur a/frameworks/base/libs/input/PointerController.cpp b/frameworks/base/libs/input/PointerController.cpp
+--- a/frameworks/base/libs/input/PointerController.cpp	2018-08-06 15:40:47.511479932 +0200
++++ b/frameworks/base/libs/input/PointerController.cpp	2017-11-23 05:21:34.000000000 +0100
 @@ -23,6 +23,7 @@
  
  #include "PointerController.h"
@@ -4460,9 +4460,9 @@ diff -ur ../aosp/frameworks/base/libs/input/PointerController.cpp ../Desktop/and
      } else {
          mLocked.pointerSprite->setVisible(false);
      }
-diff -ur ../aosp/frameworks/base/libs/input/PointerController.h ../Desktop/android/frameworks/base/libs/input/PointerController.h
---- ../aosp/frameworks/base/libs/input/PointerController.h	2018-08-06 15:40:47.511479932 +0200
-+++ ../Desktop/android/frameworks/base/libs/input/PointerController.h	2017-11-23 05:21:34.000000000 +0100
+diff -ur a/frameworks/base/libs/input/PointerController.h b/frameworks/base/libs/input/PointerController.h
+--- a/frameworks/base/libs/input/PointerController.h	2018-08-06 15:40:47.511479932 +0200
++++ b/frameworks/base/libs/input/PointerController.h	2017-11-23 05:21:34.000000000 +0100
 @@ -148,6 +148,7 @@
      DisplayEventReceiver mDisplayEventReceiver;
  
@@ -4471,9 +4471,9 @@ diff -ur ../aosp/frameworks/base/libs/input/PointerController.h ../Desktop/andro
  
      struct Locked {
          bool animationPending;
-diff -ur ../aosp/frameworks/base/media/java/android/media/AudioManagerInternal.java ../Desktop/android/frameworks/base/media/java/android/media/AudioManagerInternal.java
---- ../aosp/frameworks/base/media/java/android/media/AudioManagerInternal.java	2018-08-06 15:40:47.539480291 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/AudioManagerInternal.java	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/AudioManagerInternal.java b/frameworks/base/media/java/android/media/AudioManagerInternal.java
+--- a/frameworks/base/media/java/android/media/AudioManagerInternal.java	2018-08-06 15:40:47.539480291 +0200
++++ b/frameworks/base/media/java/android/media/AudioManagerInternal.java	2017-11-23 05:21:35.000000000 +0100
 @@ -14,7 +14,7 @@
   * limitations under the License.
   */
@@ -4496,9 +4496,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/AudioManagerInternal.j
      public abstract void setRingerModeDelegate(RingerModeDelegate delegate);
  
      public abstract int getRingerModeInternal();
-diff -ur ../aosp/frameworks/base/media/java/android/media/AudioManager.java ../Desktop/android/frameworks/base/media/java/android/media/AudioManager.java
---- ../aosp/frameworks/base/media/java/android/media/AudioManager.java	2018-08-06 15:40:47.539480291 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/AudioManager.java	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/AudioManager.java b/frameworks/base/media/java/android/media/AudioManager.java
+--- a/frameworks/base/media/java/android/media/AudioManager.java	2018-08-06 15:40:47.539480291 +0200
++++ b/frameworks/base/media/java/android/media/AudioManager.java	2017-11-23 05:21:35.000000000 +0100
 @@ -42,6 +42,8 @@
  import android.os.SystemClock;
  import android.os.ServiceManager;
@@ -4795,9 +4795,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/AudioManager.java ../D
          IAudioService service = getService();
          try {
              service.forceVolumeControlStream(streamType, mICallBack);
-diff -ur ../aosp/frameworks/base/media/java/android/media/AudioTrack.java ../Desktop/android/frameworks/base/media/java/android/media/AudioTrack.java
---- ../aosp/frameworks/base/media/java/android/media/AudioTrack.java	2018-08-06 15:40:47.543480343 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/AudioTrack.java	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/AudioTrack.java b/frameworks/base/media/java/android/media/AudioTrack.java
+--- a/frameworks/base/media/java/android/media/AudioTrack.java	2018-08-06 15:40:47.543480343 +0200
++++ b/frameworks/base/media/java/android/media/AudioTrack.java	2017-11-23 05:21:35.000000000 +0100
 @@ -815,15 +815,6 @@
          }
          mSampleRate = sampleRateInHz;
@@ -4814,9 +4814,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/AudioTrack.java ../Des
          //--------------
          // channel config
          mChannelConfiguration = channelConfig;
-diff -ur ../aosp/frameworks/base/media/java/android/media/IAudioService.aidl ../Desktop/android/frameworks/base/media/java/android/media/IAudioService.aidl
---- ../aosp/frameworks/base/media/java/android/media/IAudioService.aidl	2018-08-06 15:40:47.543480343 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/IAudioService.aidl	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/IAudioService.aidl b/frameworks/base/media/java/android/media/IAudioService.aidl
+--- a/frameworks/base/media/java/android/media/IAudioService.aidl	2018-08-06 15:40:47.543480343 +0200
++++ b/frameworks/base/media/java/android/media/IAudioService.aidl	2017-11-23 05:21:35.000000000 +0100
 @@ -44,8 +44,12 @@
  
      void adjustStreamVolume(int streamType, int direction, int flags, String callingPackage);
@@ -4849,9 +4849,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/IAudioService.aidl ../
      void setMicrophoneMute(boolean on, String callingPackage, int userId);
  
      void setRingerModeExternal(int ringerMode, String caller);
-diff -ur ../aosp/frameworks/base/media/java/android/media/MediaFile.java ../Desktop/android/frameworks/base/media/java/android/media/MediaFile.java
---- ../aosp/frameworks/base/media/java/android/media/MediaFile.java	2018-08-06 15:40:47.547480394 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/MediaFile.java	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/MediaFile.java b/frameworks/base/media/java/android/media/MediaFile.java
+--- a/frameworks/base/media/java/android/media/MediaFile.java	2018-08-06 15:40:47.547480394 +0200
++++ b/frameworks/base/media/java/android/media/MediaFile.java	2017-11-23 05:21:35.000000000 +0100
 @@ -69,6 +69,7 @@
  
      // More video file types
@@ -4936,9 +4936,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/MediaFile.java ../Desk
      }
  
      public static boolean isVideoFileType(int fileType) {
-diff -ur ../aosp/frameworks/base/media/java/android/media/MediaPlayer.java ../Desktop/android/frameworks/base/media/java/android/media/MediaPlayer.java
---- ../aosp/frameworks/base/media/java/android/media/MediaPlayer.java	2018-08-06 15:40:47.551480446 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/MediaPlayer.java	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/MediaPlayer.java b/frameworks/base/media/java/android/media/MediaPlayer.java
+--- a/frameworks/base/media/java/android/media/MediaPlayer.java	2018-08-06 15:40:47.551480446 +0200
++++ b/frameworks/base/media/java/android/media/MediaPlayer.java	2017-11-23 05:21:35.000000000 +0100
 @@ -659,6 +659,12 @@
      private static final int INVOKE_ID_SET_VIDEO_SCALE_MODE = 6;
      private static final int INVOKE_ID_GET_SELECTED_TRACK = 7;
@@ -5044,9 +5044,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/MediaPlayer.java ../De
      }
  
      /**
-diff -ur ../aosp/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java ../Desktop/android/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java
---- ../aosp/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java	2018-08-06 15:40:47.563480599 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java b/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java
+--- a/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java	2018-08-06 15:40:47.563480599 +0200
++++ b/frameworks/base/media/java/android/media/session/MediaSessionLegacyHelper.java	2017-11-23 05:21:35.000000000 +0100
 @@ -218,10 +218,15 @@
                  mSessionManager.dispatchAdjustVolume(AudioManager.USE_DEFAULT_STREAM_TYPE,
                          direction, flags);
@@ -5064,9 +5064,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/session/MediaSessionLe
              }
          }
      }
-diff -ur ../aosp/frameworks/base/media/java/android/media/TimedText.java ../Desktop/android/frameworks/base/media/java/android/media/TimedText.java
---- ../aosp/frameworks/base/media/java/android/media/TimedText.java	2018-08-06 15:40:47.555480497 +0200
-+++ ../Desktop/android/frameworks/base/media/java/android/media/TimedText.java	2017-11-23 05:21:35.000000000 +0100
+diff -ur a/frameworks/base/media/java/android/media/TimedText.java b/frameworks/base/media/java/android/media/TimedText.java
+--- a/frameworks/base/media/java/android/media/TimedText.java	2018-08-06 15:40:47.555480497 +0200
++++ b/frameworks/base/media/java/android/media/TimedText.java	2017-11-23 05:21:35.000000000 +0100
 @@ -18,6 +18,7 @@
  
  import android.graphics.Rect;
@@ -5325,9 +5325,9 @@ diff -ur ../aosp/frameworks/base/media/java/android/media/TimedText.java ../Desk
                  default: {
                      break;
                  }
-diff -ur ../aosp/frameworks/base/native/android/Android.mk ../Desktop/android/frameworks/base/native/android/Android.mk
---- ../aosp/frameworks/base/native/android/Android.mk	2018-08-06 15:41:04.683700372 +0200
-+++ ../Desktop/android/frameworks/base/native/android/Android.mk	2017-11-23 05:21:45.000000000 +0100
+diff -ur a/frameworks/base/native/android/Android.mk b/frameworks/base/native/android/Android.mk
+--- a/frameworks/base/native/android/Android.mk	2018-08-06 15:41:04.683700372 +0200
++++ b/frameworks/base/native/android/Android.mk	2017-11-23 05:21:45.000000000 +0100
 @@ -18,6 +18,7 @@
      sensor.cpp \
      storage_manager.cpp \
@@ -5336,10 +5336,10 @@ diff -ur ../aosp/frameworks/base/native/android/Android.mk ../Desktop/android/fr
  
  LOCAL_SHARED_LIBRARIES := \
      liblog \
-Only in ../Desktop/android/frameworks/base/native/android: input_addon.cpp
-diff -ur ../aosp/frameworks/base/native/android/input.cpp ../Desktop/android/frameworks/base/native/android/input.cpp
---- ../aosp/frameworks/base/native/android/input.cpp	2018-08-06 15:41:04.683700372 +0200
-+++ ../Desktop/android/frameworks/base/native/android/input.cpp	2017-11-23 05:21:45.000000000 +0100
+Only in b/frameworks/base/native/android: input_addon.cpp
+diff -ur a/frameworks/base/native/android/input.cpp b/frameworks/base/native/android/input.cpp
+--- a/frameworks/base/native/android/input.cpp	2018-08-06 15:41:04.683700372 +0200
++++ b/frameworks/base/native/android/input.cpp	2017-11-23 05:21:45.000000000 +0100
 @@ -29,6 +29,7 @@
  
  #include <poll.h>
@@ -5363,9 +5363,9 @@ diff -ur ../aosp/frameworks/base/native/android/input.cpp ../Desktop/android/fra
  }
  
  int32_t AKeyEvent_getAction(const AInputEvent* key_event) {
-diff -ur ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java ../Desktop/android/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java
---- ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java	2018-08-06 15:41:05.307708382 +0200
-+++ ../Desktop/android/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java	2017-11-23 05:21:45.000000000 +0100
+diff -ur a/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java b/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java
+--- a/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java	2018-08-06 15:41:05.307708382 +0200
++++ b/frameworks/base/packages/SettingsLib/src/com/android/settingslib/drawer/SettingsDrawerActivity.java	2017-11-23 05:21:45.000000000 +0100
 @@ -214,8 +214,10 @@
  
      public void showMenuIcon() {
@@ -5377,9 +5377,9 @@ diff -ur ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingsli
      }
  
      public List<DashboardCategory> getDashboardCategories() {
-diff -ur ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java ../Desktop/android/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java
---- ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java	2018-08-06 15:41:05.287708125 +0200
-+++ ../Desktop/android/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java	2017-11-23 05:21:45.000000000 +0100
+diff -ur a/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java b/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java
+--- a/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java	2018-08-06 15:41:05.287708125 +0200
++++ b/frameworks/base/packages/SettingsLib/src/com/android/settingslib/RestrictedLockUtils.java	2017-11-23 05:21:45.000000000 +0100
 @@ -344,6 +344,9 @@
          }
          boolean isAccountTypeDisabled = false;
@@ -5390,9 +5390,9 @@ diff -ur ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingsli
          for (String type : disabledTypes) {
              if (accountType.equals(type)) {
                  isAccountTypeDisabled = true;
-diff -ur ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java ../Desktop/android/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java
---- ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java	2018-08-06 15:41:05.315708485 +0200
-+++ ../Desktop/android/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java	2017-11-23 05:21:45.000000000 +0100
+diff -ur a/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java b/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java
+--- a/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java	2018-08-06 15:41:05.315708485 +0200
++++ b/frameworks/base/packages/SettingsLib/src/com/android/settingslib/wifi/AccessPoint.java	2017-11-23 05:21:45.000000000 +0100
 @@ -787,7 +787,11 @@
              }
              NetworkCapabilities nc = cm.getNetworkCapabilities(nw);
@@ -5406,10 +5406,10 @@ diff -ur ../aosp/frameworks/base/packages/SettingsLib/src/com/android/settingsli
              }
          }
  
-Only in ../Desktop/android/frameworks/base/packages/SettingsProvider/res/values: defaults_custom.xml
-diff -ur ../aosp/frameworks/base/packages/SettingsProvider/res/values/defaults.xml ../Desktop/android/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
---- ../aosp/frameworks/base/packages/SettingsProvider/res/values/defaults.xml	2018-08-06 15:41:05.347708895 +0200
-+++ ../Desktop/android/frameworks/base/packages/SettingsProvider/res/values/defaults.xml	2017-11-23 05:21:45.000000000 +0100
+Only in b/frameworks/base/packages/SettingsProvider/res/values: defaults_custom.xml
+diff -ur a/frameworks/base/packages/SettingsProvider/res/values/defaults.xml b/frameworks/base/packages/SettingsProvider/res/values/defaults.xml
+--- a/frameworks/base/packages/SettingsProvider/res/values/defaults.xml	2018-08-06 15:41:05.347708895 +0200
++++ b/frameworks/base/packages/SettingsProvider/res/values/defaults.xml	2017-11-23 05:21:45.000000000 +0100
 @@ -214,6 +214,30 @@
      <!-- Default for Settings.Secure.NFC_PAYMENT_COMPONENT -->
      <string name="def_nfc_payment_component"></string>
@@ -5441,9 +5441,9 @@ diff -ur ../aosp/frameworks/base/packages/SettingsProvider/res/values/defaults.x
 +	<string name="def_sqm_start_mode">0</string>
 +	<!-- cmcc by fuqiang, end -->
  </resources>
-diff -ur ../aosp/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java ../Desktop/android/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java
---- ../aosp/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java	2018-08-06 15:41:05.347708895 +0200
-+++ ../Desktop/android/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java	2017-11-23 05:21:45.000000000 +0100
+diff -ur a/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java b/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java
+--- a/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java	2018-08-06 15:41:05.347708895 +0200
++++ b/frameworks/base/packages/SettingsProvider/src/com/android/providers/settings/DatabaseHelper.java	2017-11-23 05:21:45.000000000 +0100
 @@ -375,6 +375,23 @@
                      Settings.Secure.WIFI_WATCHDOG_PING_COUNT,
                      Settings.Secure.WIFI_WATCHDOG_PING_DELAY_MS,
@@ -5571,9 +5571,9 @@ diff -ur ../aosp/frameworks/base/packages/SettingsProvider/src/com/android/provi
              /*
               * IMPORTANT: Do not add any more upgrade steps here as the global,
               * secure, and system settings are no longer stored in a database
-diff -ur ../aosp/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java ../Desktop/android/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java
---- ../aosp/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java	2018-08-06 15:41:05.671713054 +0200
-+++ ../Desktop/android/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java b/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java
+--- a/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java	2018-08-06 15:41:05.671713054 +0200
++++ b/frameworks/base/packages/SystemUI/src/com/android/systemui/recents/tv/RecentsTvActivity.java	2017-11-23 05:21:46.000000000 +0100
 @@ -297,6 +297,7 @@
              finish();
              return;
@@ -5582,9 +5582,9 @@ diff -ur ../aosp/frameworks/base/packages/SystemUI/src/com/android/systemui/rece
          mPipRecentsOverlayManager = PipManager.getInstance().getPipRecentsOverlayManager();
  
          // Register this activity with the event bus
-diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/res/values/strings.xml ../Desktop/android/frameworks/base/packages/WallpaperCropper/res/values/strings.xml
---- ../aosp/frameworks/base/packages/WallpaperCropper/res/values/strings.xml	2018-08-06 15:41:05.775714389 +0200
-+++ ../Desktop/android/frameworks/base/packages/WallpaperCropper/res/values/strings.xml	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/packages/WallpaperCropper/res/values/strings.xml b/frameworks/base/packages/WallpaperCropper/res/values/strings.xml
+--- a/frameworks/base/packages/WallpaperCropper/res/values/strings.xml	2018-08-06 15:41:05.775714389 +0200
++++ b/frameworks/base/packages/WallpaperCropper/res/values/strings.xml	2017-11-23 05:21:46.000000000 +0100
 @@ -16,7 +16,7 @@
  <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
      <string name="crop_wallpaper">Crop wallpaper</string>
@@ -5594,9 +5594,9 @@ diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/res/values/strings.xm
      <!-- Error message when an image is selected as a wallpaper,
           but the wallpaper cropper cannot load it. The user will
           usually see this when using another app and trying to set
-diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml ../Desktop/android/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml
---- ../aosp/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml	2018-08-06 15:41:05.775714389 +0200
-+++ ../Desktop/android/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml b/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml
+--- a/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml	2018-08-06 15:41:05.775714389 +0200
++++ b/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/config.xml	2017-11-23 05:21:46.000000000 +0100
 @@ -14,5 +14,5 @@
       limitations under the License.
  -->
@@ -5604,9 +5604,9 @@ diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/res/values-sw600dp/co
 -    <bool name="allow_rotation">true</bool>
 +    <bool name="allow_rotation">false</bool>
  </resources>
-diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml ../Desktop/android/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml
---- ../aosp/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml	2018-08-06 15:41:05.775714389 +0200
-+++ ../Desktop/android/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml b/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml
+--- a/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml	2018-08-06 15:41:05.775714389 +0200
++++ b/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/strings.xml	2017-11-23 05:21:46.000000000 +0100
 @@ -19,7 +19,7 @@
  
  <resources xmlns:android="http://schemas.android.com/apk/res/android"
@@ -5616,9 +5616,9 @@ diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/res/values-zh-rCN/str
      <string name="wallpaper_load_fail" msgid="4800700444605404650">"无法加载要设为壁纸的图片"</string>
      <string name="crop_wallpaper" msgid="4882870800623585836">"剪裁壁纸"</string>
  </resources>
-diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java ../Desktop/android/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java
---- ../aosp/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java	2018-08-06 15:41:05.779714440 +0200
-+++ ../Desktop/android/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java b/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java
+--- a/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java	2018-08-06 15:41:05.779714440 +0200
++++ b/frameworks/base/packages/WallpaperCropper/src/com/android/wallpapercropper/WallpaperCropActivity.java	2017-11-23 05:21:46.000000000 +0100
 @@ -39,6 +39,7 @@
  import android.util.Log;
  import android.view.Display;
@@ -5661,9 +5661,9 @@ diff -ur ../aosp/frameworks/base/packages/WallpaperCropper/src/com/android/wallp
      public void setCropViewTileSource(
              final BitmapRegionTileSource.BitmapSource bitmapSource, final boolean touchEnabled,
              final boolean moveToLeft, final Runnable postExecute) {
-diff -ur ../aosp/frameworks/base/preloaded-classes ../Desktop/android/frameworks/base/preloaded-classes
---- ../aosp/frameworks/base/preloaded-classes	2018-08-06 15:41:05.783714492 +0200
-+++ ../Desktop/android/frameworks/base/preloaded-classes	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/preloaded-classes b/frameworks/base/preloaded-classes
+--- a/frameworks/base/preloaded-classes	2018-08-06 15:41:05.783714492 +0200
++++ b/frameworks/base/preloaded-classes	2017-11-23 05:21:46.000000000 +0100
 @@ -1488,6 +1488,7 @@
  android.net.ConnectivityThread
  android.net.Credentials
@@ -5672,9 +5672,9 @@ diff -ur ../aosp/frameworks/base/preloaded-classes ../Desktop/android/frameworks
  android.net.IConnectivityManager
  android.net.IConnectivityManager$Stub
  android.net.IConnectivityManager$Stub$Proxy
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java	2018-08-06 15:41:05.851715365 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java b/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java
+--- a/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java	2018-08-06 15:41:05.851715365 +0200
++++ b/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -123,6 +123,7 @@
  import android.content.Intent;
  import android.content.IntentFilter;
@@ -5725,9 +5725,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/am/Activi
                      } finally {
                          Binder.restoreCallingIdentity(oldId);
                      }
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/am/AppErrors.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/am/AppErrors.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/am/AppErrors.java	2018-08-06 15:41:05.871715622 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/am/AppErrors.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/am/AppErrors.java b/frameworks/base/services/core/java/com/android/server/am/AppErrors.java
+--- a/frameworks/base/services/core/java/com/android/server/am/AppErrors.java	2018-08-06 15:41:05.871715622 +0200
++++ b/frameworks/base/services/core/java/com/android/server/am/AppErrors.java	2017-11-23 05:21:46.000000000 +0100
 @@ -457,9 +457,12 @@
                              r.kill("crash", true);
                          }
@@ -5742,9 +5742,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/am/AppErr
                      }
                  }
                  return true;
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/am/ProcessList.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/am/ProcessList.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/am/ProcessList.java	2018-08-06 15:41:05.875715673 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/am/ProcessList.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/am/ProcessList.java b/frameworks/base/services/core/java/com/android/server/am/ProcessList.java
+--- a/frameworks/base/services/core/java/com/android/server/am/ProcessList.java	2018-08-06 15:41:05.875715673 +0200
++++ b/frameworks/base/services/core/java/com/android/server/am/ProcessList.java	2017-11-23 05:21:46.000000000 +0100
 @@ -144,7 +144,7 @@
      // we have no limit on the number of service, visible, foreground, or other such
      // processes and the number of those processes does not count against the cached
@@ -5754,9 +5754,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/am/Proces
  
      // We allow empty processes to stick around for at most 30 minutes.
      static final long MAX_EMPTY_TIME = 30*60*1000;
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java	2018-08-06 15:41:05.807714800 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java b/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java
+--- a/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java	2018-08-06 15:41:05.807714800 +0200
++++ b/frameworks/base/services/core/java/com/android/server/AssetAtlasService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -408,8 +408,12 @@
                      results.size(), delay));
          }
@@ -5772,9 +5772,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/AssetAtla
      }
  
      /**
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/audio/AudioService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/audio/AudioService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/audio/AudioService.java	2018-08-06 15:41:05.879715724 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/audio/AudioService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/audio/AudioService.java b/frameworks/base/services/core/java/com/android/server/audio/AudioService.java
+--- a/frameworks/base/services/core/java/com/android/server/audio/AudioService.java	2018-08-06 15:41:05.879715724 +0200
++++ b/frameworks/base/services/core/java/com/android/server/audio/AudioService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -196,6 +196,7 @@
  
      // AudioHandler messages
@@ -6213,9 +6213,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/audio/Aud
          public int getVolumeControllerUid() {
              return mControllerService.mUid;
          }
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java	2018-08-06 15:41:05.911716135 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java b/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java
+--- a/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java	2018-08-06 15:41:05.911716135 +0200
++++ b/frameworks/base/services/core/java/com/android/server/connectivity/NetworkAgentInfo.java	2017-11-23 05:21:46.000000000 +0100
 @@ -236,7 +236,7 @@
          // ConnectivityService.updateCapabilities() to compute the old score prior to updating
          // networkCapabilities (with a potentially different validated state).
@@ -6225,9 +6225,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/connectiv
          }
          if (score < 0) score = 0;
          return score;
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/ConnectivityService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/ConnectivityService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/ConnectivityService.java	2018-08-06 15:41:05.823715005 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/ConnectivityService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/ConnectivityService.java b/frameworks/base/services/core/java/com/android/server/ConnectivityService.java
+--- a/frameworks/base/services/core/java/com/android/server/ConnectivityService.java	2018-08-06 15:41:05.823715005 +0200
++++ b/frameworks/base/services/core/java/com/android/server/ConnectivityService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -165,6 +165,8 @@
  import java.util.SortedSet;
  import java.util.TreeSet;
@@ -6283,10 +6283,10 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/Connectiv
              info.setDetailedState(state, info.getReason(), info.getExtraInfo());
              Intent intent = new Intent(ConnectivityManager.CONNECTIVITY_ACTION);
              intent.putExtra(ConnectivityManager.EXTRA_NETWORK_INFO, info);
-Only in ../Desktop/android/frameworks/base/services/core/java/com/android/server: DisplayOutputManagerService.java
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java	2018-08-06 15:41:05.927716340 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java	2017-11-23 05:21:46.000000000 +0100
+Only in b/frameworks/base/services/core/java/com/android/server: DisplayOutputManagerService.java
+diff -ur a/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java b/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java
+--- a/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java	2018-08-06 15:41:05.927716340 +0200
++++ b/frameworks/base/services/core/java/com/android/server/input/InputManagerService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -77,6 +77,7 @@
  import android.provider.Settings.SettingNotFoundException;
  import android.text.TextUtils;
@@ -6341,9 +6341,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/input/Inp
  
      private void registerShowTouchesSettingObserver() {
          mContext.getContentResolver().registerContentObserver(
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java	2018-08-06 15:41:05.939716494 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java b/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java
+--- a/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java	2018-08-06 15:41:05.939716494 +0200
++++ b/frameworks/base/services/core/java/com/android/server/media/MediaSessionRecord.java	2017-11-23 05:21:46.000000000 +0100
 @@ -38,6 +38,8 @@
  import android.media.session.PlaybackState;
  import android.media.AudioAttributes;
@@ -6401,9 +6401,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/media/Med
              int stream = AudioAttributes.toLegacyStreamType(mAudioAttrs);
              postAdjustLocalVolume(stream, direction, flags, packageName, uid, useSuggested,
                      previousFlagPlaySound);
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java	2018-08-06 15:41:05.939716494 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java b/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java
+--- a/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java	2018-08-06 15:41:05.939716494 +0200
++++ b/frameworks/base/services/core/java/com/android/server/media/MediaSessionService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -52,6 +52,8 @@
  import android.os.ResultReceiver;
  import android.os.ServiceManager;
@@ -6461,9 +6461,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/media/Med
                  } catch (RemoteException e) {
                      Log.e(TAG, "Error adjusting default volume.", e);
                  }
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/MountService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/MountService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/MountService.java	2018-08-06 15:41:05.835715159 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/MountService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/MountService.java b/frameworks/base/services/core/java/com/android/server/MountService.java
+--- a/frameworks/base/services/core/java/com/android/server/MountService.java	2018-08-06 15:41:05.835715159 +0200
++++ b/frameworks/base/services/core/java/com/android/server/MountService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -1263,16 +1263,15 @@
          if (vol.type == VolumeInfo.TYPE_EMULATED) {
              final StorageManager storage = mContext.getSystemService(StorageManager.class);
@@ -6492,9 +6492,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/MountServ
          } catch (NativeDaemonConnectorException e) {
              throw e.rethrowAsParcelableException();
          } catch (TimeoutException e) {
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java	2018-08-06 15:41:05.835715159 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java b/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java
+--- a/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java	2018-08-06 15:41:05.835715159 +0200
++++ b/frameworks/base/services/core/java/com/android/server/NativeDaemonConnector.java	2017-11-23 05:21:46.000000000 +0100
 @@ -136,7 +136,7 @@
                  listenToSocket();
              } catch (Exception e) {
@@ -6504,9 +6504,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/NativeDae
              }
          }
      }
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java	2018-08-06 15:41:05.955716700 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java b/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java
+--- a/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java	2018-08-06 15:41:05.955716700 +0200
++++ b/frameworks/base/services/core/java/com/android/server/pm/PackageInstallerSession.java	2017-11-23 05:21:46.000000000 +0100
 @@ -731,6 +731,10 @@
              // validate split names marked for removal
              final int flags = mSignatures == null ? PackageManager.GET_SIGNATURES : 0;
@@ -6518,9 +6518,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/pm/Packag
              for (String splitName : removeSplitList) {
                  if (!ArrayUtils.contains(pkg.splitNames, splitName)) {
                      throw new PackageManagerException(INSTALL_FAILED_INVALID_APK,
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java	2018-08-06 15:41:05.999717265 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java b/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java
+--- a/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java	2018-08-06 15:41:05.999717265 +0200
++++ b/frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -253,6 +253,8 @@
  import com.android.server.pm.Settings.VersionInfo;
  import com.android.server.storage.DeviceStorageMonitorInternal;
@@ -6684,11 +6684,11 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/pm/Packag
              success = true;
              return res;
          } finally {
-Only in ../Desktop/android/frameworks/base/services/core/java/com/android/server/pm: util
-Only in ../Desktop/android/frameworks/base/services/core/java/com/android/server/policy: TvWindowManager.java
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java	2018-08-06 15:41:06.015717470 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java	2017-11-23 05:21:46.000000000 +0100
+Only in b/frameworks/base/services/core/java/com/android/server/pm: util
+Only in b/frameworks/base/services/core/java/com/android/server/policy: TvWindowManager.java
+diff -ur a/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java b/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java
+--- a/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java	2018-08-06 15:41:06.015717470 +0200
++++ b/frameworks/base/services/core/java/com/android/server/power/PowerManagerService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -3435,7 +3435,7 @@
              mContext.enforceCallingOrSelfPermission(android.Manifest.permission.REBOOT, null);
              if (PowerManager.REBOOT_RECOVERY.equals(reason)
@@ -6698,9 +6698,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/power/Pow
              }
  
              final long ident = Binder.clearCallingIdentity();
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java	2018-08-06 15:41:06.015717470 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java b/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java
+--- a/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java	2018-08-06 15:41:06.015717470 +0200
++++ b/frameworks/base/services/core/java/com/android/server/power/ShutdownThread.java	2017-11-23 05:21:46.000000000 +0100
 @@ -60,6 +60,8 @@
  import java.io.FileReader;
  import java.io.IOException;
@@ -6874,9 +6874,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/power/Shu
  
          // Shutdown power
          Log.i(TAG, "Performing low-level shutdown...");
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java	2018-08-06 15:41:06.023717573 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java b/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java
+--- a/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java	2018-08-06 15:41:06.023717573 +0200
++++ b/frameworks/base/services/core/java/com/android/server/wallpaper/WallpaperManagerService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -67,6 +67,7 @@
  import android.os.SELinux;
  import android.os.ServiceManager;
@@ -6905,9 +6905,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/wallpaper
          // and crop, if not previously specified
          if (wallpaper.cropHint.width() <= 0
                  || wallpaper.cropHint.height() <= 0) {
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java	2018-08-06 15:41:05.839715210 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java b/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java
+--- a/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java	2018-08-06 15:41:05.839715210 +0200
++++ b/frameworks/base/services/core/java/com/android/server/WiredAccessoryManager.java	2017-11-23 05:21:46.000000000 +0100
 @@ -357,7 +357,7 @@
              List<UEventInfo> retVal = new ArrayList<UEventInfo>();
              UEventInfo uei;
@@ -6926,9 +6926,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/WiredAcce
              return retVal;
          }
  
-diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java ../Desktop/android/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java
---- ../aosp/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java	2018-08-06 15:41:06.043717829 +0200
-+++ ../Desktop/android/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java b/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java
+--- a/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java	2018-08-06 15:41:06.043717829 +0200
++++ b/frameworks/base/services/core/java/com/android/server/wm/WindowManagerService.java	2017-11-23 05:21:46.000000000 +0100
 @@ -140,6 +140,7 @@
  import com.android.server.Watchdog;
  import com.android.server.input.InputManagerService;
@@ -6989,9 +6989,9 @@ diff -ur ../aosp/frameworks/base/services/core/java/com/android/server/wm/Window
  
      @Override
      public boolean clearWindowContentFrameStats(IBinder token) {
-diff -ur ../aosp/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp ../Desktop/android/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp
---- ../aosp/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp	2018-08-06 15:41:06.055717983 +0200
-+++ ../Desktop/android/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp b/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp
+--- a/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp	2018-08-06 15:41:06.055717983 +0200
++++ b/frameworks/base/services/core/jni/com_android_server_input_InputManagerService.cpp	2017-11-23 05:21:46.000000000 +0100
 @@ -1371,6 +1371,36 @@
  
      im->setShowTouches(enabled);
@@ -7047,9 +7047,9 @@ diff -ur ../aosp/frameworks/base/services/core/jni/com_android_server_input_Inpu
  };
  
  #define FIND_CLASS(var, className) \
-diff -ur ../aosp/frameworks/base/services/java/com/android/server/SystemServer.java ../Desktop/android/frameworks/base/services/java/com/android/server/SystemServer.java
---- ../aosp/frameworks/base/services/java/com/android/server/SystemServer.java	2018-08-06 15:41:06.083718343 +0200
-+++ ../Desktop/android/frameworks/base/services/java/com/android/server/SystemServer.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/services/java/com/android/server/SystemServer.java b/frameworks/base/services/java/com/android/server/SystemServer.java
+--- a/frameworks/base/services/java/com/android/server/SystemServer.java	2018-08-06 15:41:06.083718343 +0200
++++ b/frameworks/base/services/java/com/android/server/SystemServer.java	2017-11-23 05:21:46.000000000 +0100
 @@ -47,6 +47,9 @@
  import android.util.EventLog;
  import android.util.Slog;
@@ -7227,10 +7227,10 @@ diff -ur ../aosp/frameworks/base/services/java/com/android/server/SystemServer.j
                  if (!disableSerial) {
                      traceBeginAndSlog("StartSerialService");
                      try {
-Only in ../Desktop/android/frameworks/base/services/usb/java/com/android/server/usb: UsbCameraDeviceManagerObserver.java
-diff -ur ../aosp/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java ../Desktop/android/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java
---- ../aosp/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java	2018-08-06 15:41:06.131718959 +0200
-+++ ../Desktop/android/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java	2017-11-23 05:21:46.000000000 +0100
+Only in b/frameworks/base/services/usb/java/com/android/server/usb: UsbCameraDeviceManagerObserver.java
+diff -ur a/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java b/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java
+--- a/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java	2018-08-06 15:41:06.131718959 +0200
++++ b/frameworks/base/services/usb/java/com/android/server/usb/UsbDeviceManager.java	2017-11-23 05:21:46.000000000 +0100
 @@ -37,6 +37,7 @@
  import android.os.Looper;
  import android.os.Message;
@@ -7303,9 +7303,9 @@ diff -ur ../aosp/frameworks/base/services/usb/java/com/android/server/usb/UsbDev
                      if (!mConnected) {
                          // When a disconnect occurs, relock access to sensitive user data
                          mUsbDataUnlocked = false;
-diff -ur ../aosp/frameworks/base/telephony/java/android/telephony/TelephonyManager.java ../Desktop/android/frameworks/base/telephony/java/android/telephony/TelephonyManager.java
---- ../aosp/frameworks/base/telephony/java/android/telephony/TelephonyManager.java	2018-08-06 15:41:06.191719729 +0200
-+++ ../Desktop/android/frameworks/base/telephony/java/android/telephony/TelephonyManager.java	2017-11-23 05:21:46.000000000 +0100
+diff -ur a/frameworks/base/telephony/java/android/telephony/TelephonyManager.java b/frameworks/base/telephony/java/android/telephony/TelephonyManager.java
+--- a/frameworks/base/telephony/java/android/telephony/TelephonyManager.java	2018-08-06 15:41:06.191719729 +0200
++++ b/frameworks/base/telephony/java/android/telephony/TelephonyManager.java	2017-11-23 05:21:46.000000000 +0100
 @@ -1107,6 +1107,10 @@
          if (!isVoiceCapable()) {
              return PHONE_TYPE_NONE;
@@ -7317,9 +7317,9 @@ diff -ur ../aosp/frameworks/base/telephony/java/android/telephony/TelephonyManag
          return getCurrentPhoneType();
      }
  
-diff -ur ../aosp/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java ../Desktop/android/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java
---- ../aosp/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java	2018-08-06 15:41:06.511723837 +0200
-+++ ../Desktop/android/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java	2017-11-23 05:21:47.000000000 +0100
+diff -ur a/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java b/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java
+--- a/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java	2018-08-06 15:41:06.511723837 +0200
++++ b/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindowManagerImpl.java	2017-11-23 05:21:47.000000000 +0100
 @@ -536,6 +536,26 @@
          // TODO Auto-generated method stub
          return null;
@@ -7347,9 +7347,9 @@ diff -ur ../aosp/frameworks/base/tools/layoutlib/bridge/src/android/view/IWindow
  
      @Override
      public int getDockedStackSide() throws RemoteException {
-diff -ur ../aosp/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java ../Desktop/android/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java
---- ../aosp/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java	2018-08-06 15:41:06.519723939 +0200
-+++ ../Desktop/android/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java	2017-11-23 05:21:47.000000000 +0100
+diff -ur a/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java b/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java
+--- a/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java	2018-08-06 15:41:06.519723939 +0200
++++ b/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutlib/bridge/android/view/WindowManagerImpl.java	2017-11-23 05:21:47.000000000 +0100
 @@ -68,4 +68,24 @@
      public void requestAppKeyboardShortcuts(
              KeyboardShortcutsReceiver receiver, int deviceId) {
@@ -7375,14 +7375,14 @@ diff -ur ../aosp/frameworks/base/tools/layoutlib/bridge/src/com/android/layoutli
 +
 +    }
  }
-Only in ../Desktop/android/frameworks/native/data/etc: android.hardware.type.television.xml
-Only in ../Desktop/android/frameworks/native/data/etc: android.software.leanback.xml
-Only in ../Desktop/android/frameworks/native/data/etc: android.software.pppoe.xml
-Only in ../Desktop/android/frameworks/native/data/etc: tv_core_hardware.xml
-Only in ../Desktop/android/frameworks/native/include/android: input_addon.h
-diff -ur ../aosp/frameworks/native/include/android/keycodes.h ../Desktop/android/frameworks/native/include/android/keycodes.h
---- ../aosp/frameworks/native/include/android/keycodes.h	2018-08-06 15:41:16.755855320 +0200
-+++ ../Desktop/android/frameworks/native/include/android/keycodes.h	2017-11-23 05:21:51.000000000 +0100
+Only in b/frameworks/native/data/etc: android.hardware.type.television.xml
+Only in b/frameworks/native/data/etc: android.software.leanback.xml
+Only in b/frameworks/native/data/etc: android.software.pppoe.xml
+Only in b/frameworks/native/data/etc: tv_core_hardware.xml
+Only in b/frameworks/native/include/android: input_addon.h
+diff -ur a/frameworks/native/include/android/keycodes.h b/frameworks/native/include/android/keycodes.h
+--- a/frameworks/native/include/android/keycodes.h	2018-08-06 15:41:16.755855320 +0200
++++ b/frameworks/native/include/android/keycodes.h	2017-11-23 05:21:51.000000000 +0100
 @@ -757,7 +757,44 @@
      /** Copy key. */
      AKEYCODE_COPY = 278,
@@ -7429,9 +7429,9 @@ diff -ur ../aosp/frameworks/native/include/android/keycodes.h ../Desktop/android
  
      // NOTE: If you add a new keycode here you must also add it to several other files.
      //       Refer to frameworks/base/core/java/android/view/KeyEvent.java for the full list.
-diff -ur ../aosp/frameworks/native/include/gui/BufferQueueConsumer.h ../Desktop/android/frameworks/native/include/gui/BufferQueueConsumer.h
---- ../aosp/frameworks/native/include/gui/BufferQueueConsumer.h	2018-08-06 15:41:16.775855577 +0200
-+++ ../Desktop/android/frameworks/native/include/gui/BufferQueueConsumer.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/include/gui/BufferQueueConsumer.h b/frameworks/native/include/gui/BufferQueueConsumer.h
+--- a/frameworks/native/include/gui/BufferQueueConsumer.h	2018-08-06 15:41:16.775855577 +0200
++++ b/frameworks/native/include/gui/BufferQueueConsumer.h	2017-11-23 05:21:51.000000000 +0100
 @@ -133,6 +133,9 @@
      // NATIVE_WINDOW_TRANSFORM_ROT_90.  The default is 0 (no transform).
      virtual status_t setTransformHint(uint32_t hint);
@@ -7442,9 +7442,9 @@ diff -ur ../aosp/frameworks/native/include/gui/BufferQueueConsumer.h ../Desktop/
      // Retrieve the sideband buffer stream, if any.
      virtual sp<NativeHandle> getSidebandStream() const;
  
-diff -ur ../aosp/frameworks/native/include/gui/BufferQueueCore.h ../Desktop/android/frameworks/native/include/gui/BufferQueueCore.h
---- ../aosp/frameworks/native/include/gui/BufferQueueCore.h	2018-08-06 15:41:16.775855577 +0200
-+++ ../Desktop/android/frameworks/native/include/gui/BufferQueueCore.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/include/gui/BufferQueueCore.h b/frameworks/native/include/gui/BufferQueueCore.h
+--- a/frameworks/native/include/gui/BufferQueueCore.h	2018-08-06 15:41:16.775855577 +0200
++++ b/frameworks/native/include/gui/BufferQueueCore.h	2017-11-23 05:21:51.000000000 +0100
 @@ -324,6 +324,7 @@
  
      const uint64_t mUniqueId;
@@ -7453,9 +7453,9 @@ diff -ur ../aosp/frameworks/native/include/gui/BufferQueueCore.h ../Desktop/andr
  }; // class BufferQueueCore
  
  } // namespace android
-diff -ur ../aosp/frameworks/native/include/gui/GLConsumer.h ../Desktop/android/frameworks/native/include/gui/GLConsumer.h
---- ../aosp/frameworks/native/include/gui/GLConsumer.h	2018-08-06 15:41:16.775855577 +0200
-+++ ../Desktop/android/frameworks/native/include/gui/GLConsumer.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/include/gui/GLConsumer.h b/frameworks/native/include/gui/GLConsumer.h
+--- a/frameworks/native/include/gui/GLConsumer.h	2018-08-06 15:41:16.775855577 +0200
++++ b/frameworks/native/include/gui/GLConsumer.h	2017-11-23 05:21:51.000000000 +0100
 @@ -187,6 +187,8 @@
      // ready to be read from.
      sp<Fence> getCurrentFence() const;
@@ -7474,9 +7474,9 @@ diff -ur ../aosp/frameworks/native/include/gui/GLConsumer.h ../Desktop/android/f
      // mCurrentTransformMatrix is the transform matrix for the current texture.
      // It gets computed by computeTransformMatrix each time updateTexImage is
      // called.
-diff -ur ../aosp/frameworks/native/include/gui/IGraphicBufferConsumer.h ../Desktop/android/frameworks/native/include/gui/IGraphicBufferConsumer.h
---- ../aosp/frameworks/native/include/gui/IGraphicBufferConsumer.h	2018-08-06 15:41:16.775855577 +0200
-+++ ../Desktop/android/frameworks/native/include/gui/IGraphicBufferConsumer.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/include/gui/IGraphicBufferConsumer.h b/frameworks/native/include/gui/IGraphicBufferConsumer.h
+--- a/frameworks/native/include/gui/IGraphicBufferConsumer.h	2018-08-06 15:41:16.775855577 +0200
++++ b/frameworks/native/include/gui/IGraphicBufferConsumer.h	2017-11-23 05:21:51.000000000 +0100
 @@ -268,6 +268,8 @@
      // dump state into a string
      virtual void dump(String8& result, const char* prefix) const = 0;
@@ -7486,9 +7486,9 @@ diff -ur ../aosp/frameworks/native/include/gui/IGraphicBufferConsumer.h ../Deskt
  public:
      DECLARE_META_INTERFACE(GraphicBufferConsumer);
  };
-diff -ur ../aosp/frameworks/native/include/input/InputEventLabels.h ../Desktop/android/frameworks/native/include/input/InputEventLabels.h
---- ../aosp/frameworks/native/include/input/InputEventLabels.h	2018-08-06 15:41:16.779855628 +0200
-+++ ../Desktop/android/frameworks/native/include/input/InputEventLabels.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/include/input/InputEventLabels.h b/frameworks/native/include/input/InputEventLabels.h
+--- a/frameworks/native/include/input/InputEventLabels.h	2018-08-06 15:41:16.779855628 +0200
++++ b/frameworks/native/include/input/InputEventLabels.h	2017-11-23 05:21:51.000000000 +0100
 @@ -319,7 +319,45 @@
      DEFINE_KEYCODE(CUT),
      DEFINE_KEYCODE(COPY),
@@ -7535,9 +7535,9 @@ diff -ur ../aosp/frameworks/native/include/input/InputEventLabels.h ../Desktop/a
      { NULL, 0 }
  };
  
-diff -ur ../aosp/frameworks/native/include/media/openmax/OMX_Video.h ../Desktop/android/frameworks/native/include/media/openmax/OMX_Video.h
---- ../aosp/frameworks/native/include/media/openmax/OMX_Video.h	2018-08-06 15:41:16.791855782 +0200
-+++ ../Desktop/android/frameworks/native/include/media/openmax/OMX_Video.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/include/media/openmax/OMX_Video.h b/frameworks/native/include/media/openmax/OMX_Video.h
+--- a/frameworks/native/include/media/openmax/OMX_Video.h	2018-08-06 15:41:16.791855782 +0200
++++ b/frameworks/native/include/media/openmax/OMX_Video.h	2017-11-23 05:21:51.000000000 +0100
 @@ -66,6 +66,18 @@
  #include <OMX_IVCommon.h>
  
@@ -7579,9 +7579,9 @@ diff -ur ../aosp/frameworks/native/include/media/openmax/OMX_Video.h ../Desktop/
      OMX_VIDEO_CodingMax = 0x7FFFFFFF
  } OMX_VIDEO_CODINGTYPE;
  
-diff -ur ../aosp/frameworks/native/libs/binder/ProcessState.cpp ../Desktop/android/frameworks/native/libs/binder/ProcessState.cpp
---- ../aosp/frameworks/native/libs/binder/ProcessState.cpp	2018-08-06 15:41:16.803855936 +0200
-+++ ../Desktop/android/frameworks/native/libs/binder/ProcessState.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/libs/binder/ProcessState.cpp b/frameworks/native/libs/binder/ProcessState.cpp
+--- a/frameworks/native/libs/binder/ProcessState.cpp	2018-08-06 15:41:16.803855936 +0200
++++ b/frameworks/native/libs/binder/ProcessState.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -42,7 +42,7 @@
  #include <sys/stat.h>
  #include <sys/types.h>
@@ -7591,9 +7591,9 @@ diff -ur ../aosp/frameworks/native/libs/binder/ProcessState.cpp ../Desktop/andro
  #define DEFAULT_MAX_BINDER_THREADS 15
  
  // -------------------------------------------------------------------------
-diff -ur ../aosp/frameworks/native/libs/gui/BufferQueueConsumer.cpp ../Desktop/android/frameworks/native/libs/gui/BufferQueueConsumer.cpp
---- ../aosp/frameworks/native/libs/gui/BufferQueueConsumer.cpp	2018-08-06 15:41:16.827856245 +0200
-+++ ../Desktop/android/frameworks/native/libs/gui/BufferQueueConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/libs/gui/BufferQueueConsumer.cpp b/frameworks/native/libs/gui/BufferQueueConsumer.cpp
+--- a/frameworks/native/libs/gui/BufferQueueConsumer.cpp	2018-08-06 15:41:16.827856245 +0200
++++ b/frameworks/native/libs/gui/BufferQueueConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -732,4 +732,11 @@
      }
  }
@@ -7606,9 +7606,9 @@ diff -ur ../aosp/frameworks/native/libs/gui/BufferQueueConsumer.cpp ../Desktop/a
 +}
 +
  } // namespace android
-diff -ur ../aosp/frameworks/native/libs/gui/BufferQueueCore.cpp ../Desktop/android/frameworks/native/libs/gui/BufferQueueCore.cpp
---- ../aosp/frameworks/native/libs/gui/BufferQueueCore.cpp	2018-08-06 15:41:16.827856245 +0200
-+++ ../Desktop/android/frameworks/native/libs/gui/BufferQueueCore.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/libs/gui/BufferQueueCore.cpp b/frameworks/native/libs/gui/BufferQueueCore.cpp
+--- a/frameworks/native/libs/gui/BufferQueueCore.cpp	2018-08-06 15:41:16.827856245 +0200
++++ b/frameworks/native/libs/gui/BufferQueueCore.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -89,7 +89,8 @@
      mSharedBufferSlot(INVALID_BUFFER_SLOT),
      mSharedBufferCache(Rect::INVALID_RECT, 0, NATIVE_WINDOW_SCALING_MODE_FREEZE,
@@ -7619,9 +7619,9 @@ diff -ur ../aosp/frameworks/native/libs/gui/BufferQueueCore.cpp ../Desktop/andro
  {
      if (allocator == NULL) {
          sp<ISurfaceComposer> composer(ComposerService::getComposerService());
-diff -ur ../aosp/frameworks/native/libs/gui/BufferQueueProducer.cpp ../Desktop/android/frameworks/native/libs/gui/BufferQueueProducer.cpp
---- ../aosp/frameworks/native/libs/gui/BufferQueueProducer.cpp	2018-08-06 15:41:16.831856296 +0200
-+++ ../Desktop/android/frameworks/native/libs/gui/BufferQueueProducer.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/libs/gui/BufferQueueProducer.cpp b/frameworks/native/libs/gui/BufferQueueProducer.cpp
+--- a/frameworks/native/libs/gui/BufferQueueProducer.cpp	2018-08-06 15:41:16.831856296 +0200
++++ b/frameworks/native/libs/gui/BufferQueueProducer.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -888,6 +888,94 @@
                  mCore->mQueue.push_back(item);
                  frameAvailableListener = mCore->mConsumerListener;
@@ -7717,9 +7717,9 @@ diff -ur ../aosp/frameworks/native/libs/gui/BufferQueueProducer.cpp ../Desktop/a
          }
  
          mCore->mBufferHasBeenQueued = true;
-diff -ur ../aosp/frameworks/native/libs/gui/GLConsumer.cpp ../Desktop/android/frameworks/native/libs/gui/GLConsumer.cpp
---- ../aosp/frameworks/native/libs/gui/GLConsumer.cpp	2018-08-06 15:41:16.835856347 +0200
-+++ ../Desktop/android/frameworks/native/libs/gui/GLConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/libs/gui/GLConsumer.cpp b/frameworks/native/libs/gui/GLConsumer.cpp
+--- a/frameworks/native/libs/gui/GLConsumer.cpp	2018-08-06 15:41:16.835856347 +0200
++++ b/frameworks/native/libs/gui/GLConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -156,6 +156,7 @@
      mCurrentTransform(0),
      mCurrentScalingMode(NATIVE_WINDOW_SCALING_MODE_FREEZE),
@@ -7764,9 +7764,9 @@ diff -ur ../aosp/frameworks/native/libs/gui/GLConsumer.cpp ../Desktop/android/fr
  status_t GLConsumer::doGLFenceWait() const {
      Mutex::Autolock lock(mMutex);
      return doGLFenceWaitLocked();
-diff -ur ../aosp/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp ../Desktop/android/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp
---- ../aosp/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp	2018-08-06 15:41:16.835856347 +0200
-+++ ../Desktop/android/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp b/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp
+--- a/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp	2018-08-06 15:41:16.835856347 +0200
++++ b/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -52,6 +52,7 @@
      SET_TRANSFORM_HINT,
      GET_SIDEBAND_STREAM,
@@ -7807,9 +7807,9 @@ diff -ur ../aosp/frameworks/native/libs/gui/IGraphicBufferConsumer.cpp ../Deskto
      }
      return BBinder::onTransact(code, data, reply, flags);
  }
-diff -ur ../aosp/frameworks/native/services/inputflinger/InputReader.cpp ../Desktop/android/frameworks/native/services/inputflinger/InputReader.cpp
---- ../aosp/frameworks/native/services/inputflinger/InputReader.cpp	2018-08-06 15:41:16.915857374 +0200
-+++ ../Desktop/android/frameworks/native/services/inputflinger/InputReader.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/inputflinger/InputReader.cpp b/frameworks/native/services/inputflinger/InputReader.cpp
+--- a/frameworks/native/services/inputflinger/InputReader.cpp	2018-08-06 15:41:16.915857374 +0200
++++ b/frameworks/native/services/inputflinger/InputReader.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -257,6 +257,24 @@
  
      { // acquire lock
@@ -8248,9 +8248,9 @@ diff -ur ../aosp/frameworks/native/services/inputflinger/InputReader.cpp ../Desk
      }
  
      if (mParameters.handlesKeyRepeat) {
-diff -ur ../aosp/frameworks/native/services/inputflinger/InputReader.h ../Desktop/android/frameworks/native/services/inputflinger/InputReader.h
---- ../aosp/frameworks/native/services/inputflinger/InputReader.h	2018-08-06 15:41:16.919857425 +0200
-+++ ../Desktop/android/frameworks/native/services/inputflinger/InputReader.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/inputflinger/InputReader.h b/frameworks/native/services/inputflinger/InputReader.h
+--- a/frameworks/native/services/inputflinger/InputReader.h	2018-08-06 15:41:16.919857425 +0200
++++ b/frameworks/native/services/inputflinger/InputReader.h	2017-11-23 05:21:51.000000000 +0100
 @@ -375,6 +375,12 @@
      virtual void vibrate(int32_t deviceId, const nsecs_t* pattern, size_t patternSize,
              ssize_t repeat, int32_t token) = 0;
@@ -8327,9 +8327,9 @@ diff -ur ../aosp/frameworks/native/services/inputflinger/InputReader.h ../Deskto
      int32_t mCurrentHidUsage; // most recent HID usage seen this packet, or 0 if none
  
      struct LedState {
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/Android.mk ../Desktop/android/frameworks/native/services/surfaceflinger/Android.mk
---- ../aosp/frameworks/native/services/surfaceflinger/Android.mk	2018-08-06 15:41:16.923857476 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/Android.mk	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/Android.mk b/frameworks/native/services/surfaceflinger/Android.mk
+--- a/frameworks/native/services/surfaceflinger/Android.mk	2018-08-06 15:41:16.923857476 +0200
++++ b/frameworks/native/services/surfaceflinger/Android.mk	2017-11-23 05:21:51.000000000 +0100
 @@ -46,7 +46,7 @@
  LOCAL_CFLAGS += -DGL_GLEXT_PROTOTYPES -DEGL_EGLEXT_PROTOTYPES
  #LOCAL_CFLAGS += -DENABLE_FENCE_TRACKING
@@ -8339,9 +8339,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/Android.mk ../Desktop
  ifeq ($(USE_HWC2),true)
      LOCAL_CFLAGS += -DUSE_HWC2
      LOCAL_SRC_FILES += \
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp
---- ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp	2018-08-06 15:41:16.927857527 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp
+--- a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp	2018-08-06 15:41:16.927857527 +0200
++++ b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -91,6 +91,7 @@
      mDump(nullptr),
      mGetMaxVirtualDisplayCount(nullptr),
@@ -8405,9 +8405,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.
      *outType = static_cast<DisplayType>(intType);
      return Error::None;
  }
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h
---- ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h	2018-08-06 15:41:16.927857527 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h
+--- a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h	2018-08-06 15:41:16.927857527 +0200
++++ b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.h	2017-11-23 05:21:51.000000000 +0100
 @@ -93,6 +93,8 @@
  
      bool hasCapability(HWC2::Capability capability) const;
@@ -8425,9 +8425,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2.
  
      // Display function pointers
      HWC2_PFN_ACCEPT_DISPLAY_CHANGES mAcceptDisplayChanges;
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp
---- ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp	2018-08-06 15:41:16.927857527 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp
+--- a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp	2018-08-06 15:41:16.927857527 +0200
++++ b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -86,6 +86,7 @@
          for (size_t l = 0; l < contents->numHwLayers; ++l) {
              auto& layer = contents->hwLayers[l];
@@ -8640,9 +8640,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2O
          // Disconnect an existing display
          displayId = mHwc1DisplayMap[hwc1DisplayId];
          mHwc1DisplayMap.erase(HWC_DISPLAY_EXTERNAL);
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h
---- ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h	2018-08-06 15:41:16.927857527 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h
+--- a/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h	2018-08-06 15:41:16.927857527 +0200
++++ b/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2On1Adapter.h	2017-11-23 05:21:51.000000000 +0100
 @@ -116,6 +116,12 @@
          return static_cast<int32_t>(error);
      }
@@ -8694,9 +8694,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWC2O
              LatchedState<hwc_rect_t> mDisplayFrame;
              LatchedState<float> mPlaneAlpha;
              LatchedState<const native_handle_t*> mSidebandStream;
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp
---- ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp	2018-08-06 15:41:16.927857527 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp b/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+--- a/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp	2018-08-06 15:41:16.927857527 +0200
++++ b/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -693,6 +693,7 @@
      auto hwcId = displayData.hwcDisplay->getId();
      mHwcDisplaySlots.erase(hwcId);
@@ -8723,9 +8723,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWCom
  void HWComposer::dump(String8& result) const {
      // TODO: In order to provide a dump equivalent to HWC1, we need to shadow
      // all the state going into the layers. This is probably better done in
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h
---- ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h	2018-08-06 15:41:16.927857527 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h b/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h
+--- a/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h	2018-08-06 15:41:16.927857527 +0200
++++ b/frameworks/native/services/surfaceflinger/DisplayHardware/HWComposer.h	2017-11-23 05:21:51.000000000 +0100
 @@ -158,6 +158,8 @@
      std::shared_ptr<const HWC2::Display::Config>
              getActiveConfig(int32_t displayId) const;
@@ -8735,9 +8735,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/DisplayHardware/HWCom
      // for debugging ----------------------------------------------------------
      void dump(String8& out) const;
  
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/Layer.cpp ../Desktop/android/frameworks/native/services/surfaceflinger/Layer.cpp
---- ../aosp/frameworks/native/services/surfaceflinger/Layer.cpp	2018-08-06 15:41:16.931857579 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/Layer.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/Layer.cpp b/frameworks/native/services/surfaceflinger/Layer.cpp
+--- a/frameworks/native/services/surfaceflinger/Layer.cpp	2018-08-06 15:41:16.931857579 +0200
++++ b/frameworks/native/services/surfaceflinger/Layer.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -749,6 +749,9 @@
                  mActiveBuffer->handle, to_string(error).c_str(),
                  static_cast<int32_t>(error));
@@ -8787,9 +8787,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/Layer.cpp ../Desktop/
  bool Layer::onPreComposition() {
      mRefreshPending = false;
      return mQueuedFrames > 0 || mSidebandStreamChanged || mAutoRefresh;
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/Layer.h ../Desktop/android/frameworks/native/services/surfaceflinger/Layer.h
---- ../aosp/frameworks/native/services/surfaceflinger/Layer.h	2018-08-06 15:41:16.931857579 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/Layer.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/Layer.h b/frameworks/native/services/surfaceflinger/Layer.h
+--- a/frameworks/native/services/surfaceflinger/Layer.h	2018-08-06 15:41:16.931857579 +0200
++++ b/frameworks/native/services/surfaceflinger/Layer.h	2017-11-23 05:21:51.000000000 +0100
 @@ -210,6 +210,11 @@
      virtual bool isProtected() const;
  
@@ -8811,9 +8811,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/Layer.h ../Desktop/an
  
      /*
       * called before composition.
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp ../Desktop/android/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp
---- ../aosp/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp	2018-08-06 15:41:16.931857579 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp b/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp
+--- a/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp	2018-08-06 15:41:16.931857579 +0200
++++ b/frameworks/native/services/surfaceflinger/RenderEngine/RenderEngine.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -380,6 +380,7 @@
          attribs[EGL_RED_SIZE]                   = 8;
          attribs[EGL_GREEN_SIZE]                 = 8;
@@ -8822,9 +8822,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/RenderEngine/RenderEn
          wantedAttribute                         = EGL_NONE;
          wantedAttributeValue                    = EGL_NONE;
      } else {
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp ../Desktop/android/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp
---- ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp	2018-08-06 15:41:16.931857579 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp b/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp
+--- a/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp	2018-08-06 15:41:16.931857579 +0200
++++ b/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -187,6 +187,13 @@
      return nextRefresh + extraPadding;
  }
@@ -8839,9 +8839,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlingerConsume
  #ifdef USE_HWC2
  void SurfaceFlingerConsumer::setReleaseFence(const sp<Fence>& fence)
  {
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h ../Desktop/android/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h
---- ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h	2018-08-06 15:41:16.931857579 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h b/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h
+--- a/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h	2018-08-06 15:41:16.931857579 +0200
++++ b/frameworks/native/services/surfaceflinger/SurfaceFlingerConsumer.h	2017-11-23 05:21:51.000000000 +0100
 @@ -75,6 +75,7 @@
      sp<NativeHandle> getSidebandStream() const;
  
@@ -8850,9 +8850,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlingerConsume
  
      virtual void setReleaseFence(const sp<Fence>& fence) override;
      sp<Fence> getPrevReleaseFence() const;
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp ../Desktop/android/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp
---- ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp	2018-08-06 15:41:16.931857579 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp b/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp
+--- a/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp	2018-08-06 15:41:16.931857579 +0200
++++ b/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp	2017-11-23 05:21:51.000000000 +0100
 @@ -884,6 +884,21 @@
          Mutex::Autolock _l(mStateLock);
          if (connected) {
@@ -8936,9 +8936,9 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp ..
      const auto& activeConfig = mHwc->getActiveConfig(HWC_DISPLAY_PRIMARY);
      const nsecs_t period = activeConfig->getVsyncPeriod();
      mAnimFrameTracker.setDisplayRefreshPeriod(period);
-diff -ur ../aosp/frameworks/native/services/surfaceflinger/surfaceflinger.rc ../Desktop/android/frameworks/native/services/surfaceflinger/surfaceflinger.rc
---- ../aosp/frameworks/native/services/surfaceflinger/surfaceflinger.rc	2018-08-06 15:41:16.935857631 +0200
-+++ ../Desktop/android/frameworks/native/services/surfaceflinger/surfaceflinger.rc	2017-11-23 05:21:51.000000000 +0100
+diff -ur a/frameworks/native/services/surfaceflinger/surfaceflinger.rc b/frameworks/native/services/surfaceflinger/surfaceflinger.rc
+--- a/frameworks/native/services/surfaceflinger/surfaceflinger.rc	2018-08-06 15:41:16.935857631 +0200
++++ b/frameworks/native/services/surfaceflinger/surfaceflinger.rc	2017-11-23 05:21:51.000000000 +0100
 @@ -1,6 +1,7 @@
  service surfaceflinger /system/bin/surfaceflinger
      class core
@@ -8947,12 +8947,12 @@ diff -ur ../aosp/frameworks/native/services/surfaceflinger/surfaceflinger.rc ../
      group graphics drmrpc readproc
      onrestart restart zygote
      writepid /sys/fs/cgroup/stune/foreground/tasks
-Only in ../Desktop/android/frameworks/opt/emoji: .emptycommitmark
-Only in ../Desktop/android/frameworks/opt/inputconnectioncommon: .emptycommitmark
-Only in ../Desktop/android/frameworks/opt/net: pppoe
-diff -ur ../aosp/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java ../Desktop/android/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java
---- ../aosp/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java	2018-08-06 15:41:26.863985046 +0200
-+++ ../Desktop/android/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java	2017-11-23 05:21:52.000000000 +0100
+Only in b/frameworks/opt/emoji: .emptycommitmark
+Only in b/frameworks/opt/inputconnectioncommon: .emptycommitmark
+Only in b/frameworks/opt/net: pppoe
+diff -ur a/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java b/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java
+--- a/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java	2018-08-06 15:41:26.863985046 +0200
++++ b/frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiStateMachine.java	2017-11-23 05:21:52.000000000 +0100
 @@ -4216,6 +4216,7 @@
          @Override
          public void enter() {
@@ -8961,19 +8961,19 @@ diff -ur ../aosp/frameworks/opt/net/wifi/service/java/com/android/server/wifi/Wi
              mWifiNative.unloadDriver();
              if (mWifiP2pChannel == null) {
                  mWifiP2pChannel = new AsyncChannel();
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable: aw_title_time_background.xml
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_bluetooth.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_eth.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_udisk.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level1.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level2.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level3.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level4.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi.png
-Only in ../Desktop/android/frameworks/support/v17/leanback/res/layout: lb_status_bar.xml
-diff -ur ../aosp/frameworks/support/v17/leanback/res/layout/lb_title_view.xml ../Desktop/android/frameworks/support/v17/leanback/res/layout/lb_title_view.xml
---- ../aosp/frameworks/support/v17/leanback/res/layout/lb_title_view.xml	2018-08-06 15:41:34.456082471 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/res/layout/lb_title_view.xml	2017-11-23 05:21:58.000000000 +0100
+Only in b/frameworks/support/v17/leanback/res/drawable: aw_title_time_background.xml
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_bluetooth.png
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_eth.png
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_udisk.png
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level1.png
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level2.png
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level3.png
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi_level4.png
+Only in b/frameworks/support/v17/leanback/res/drawable-xhdpi: lb_wifi.png
+Only in b/frameworks/support/v17/leanback/res/layout: lb_status_bar.xml
+diff -ur a/frameworks/support/v17/leanback/res/layout/lb_title_view.xml b/frameworks/support/v17/leanback/res/layout/lb_title_view.xml
+--- a/frameworks/support/v17/leanback/res/layout/lb_title_view.xml	2018-08-06 15:41:34.456082471 +0200
++++ b/frameworks/support/v17/leanback/res/layout/lb_title_view.xml	2017-11-23 05:21:58.000000000 +0100
 @@ -22,24 +22,36 @@
          android:maxWidth="@dimen/lb_browse_title_icon_max_width"
          android:adjustViewBounds="true"
@@ -9017,9 +9017,9 @@ diff -ur ../aosp/frameworks/support/v17/leanback/res/layout/lb_title_view.xml ..
 +        android:visibility="gone" />
  
  </merge>
-diff -ur ../aosp/frameworks/support/v17/leanback/res/values/attrs.xml ../Desktop/android/frameworks/support/v17/leanback/res/values/attrs.xml
---- ../aosp/frameworks/support/v17/leanback/res/values/attrs.xml	2018-08-06 15:41:34.520083293 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/res/values/attrs.xml	2017-11-23 05:21:58.000000000 +0100
+diff -ur a/frameworks/support/v17/leanback/res/values/attrs.xml b/frameworks/support/v17/leanback/res/values/attrs.xml
+--- a/frameworks/support/v17/leanback/res/values/attrs.xml	2018-08-06 15:41:34.520083293 +0200
++++ b/frameworks/support/v17/leanback/res/values/attrs.xml	2017-11-23 05:21:58.000000000 +0100
 @@ -319,6 +319,11 @@
          <!-- Default color for SectionHeader, by default same as defaultSearchColor -->
          <attr name="defaultSectionHeaderColor" format="reference|color" />
@@ -9032,9 +9032,9 @@ diff -ur ../aosp/frameworks/support/v17/leanback/res/values/attrs.xml ../Desktop
          <!-- Style for searchOrb -->
          <attr name="searchOrbViewStyle" format="reference"/>
          <attr name="defaultSearchIcon" format="reference" />
-diff -ur ../aosp/frameworks/support/v17/leanback/res/values/dimens.xml ../Desktop/android/frameworks/support/v17/leanback/res/values/dimens.xml
---- ../aosp/frameworks/support/v17/leanback/res/values/dimens.xml	2018-08-06 15:41:34.520083293 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/res/values/dimens.xml	2017-11-23 05:21:58.000000000 +0100
+diff -ur a/frameworks/support/v17/leanback/res/values/dimens.xml b/frameworks/support/v17/leanback/res/values/dimens.xml
+--- a/frameworks/support/v17/leanback/res/values/dimens.xml	2018-08-06 15:41:34.520083293 +0200
++++ b/frameworks/support/v17/leanback/res/values/dimens.xml	2017-11-23 05:21:58.000000000 +0100
 @@ -17,10 +17,10 @@
  <resources>
      <dimen name="lb_list_row_height">224dp</dimen>
@@ -9082,9 +9082,9 @@ diff -ur ../aosp/frameworks/support/v17/leanback/res/values/dimens.xml ../Deskto
  
      <!-- Search bar -->
      <dimen name="lb_search_bar_height">60dp</dimen>
-diff -ur ../aosp/frameworks/support/v17/leanback/res/values/styles.xml ../Desktop/android/frameworks/support/v17/leanback/res/values/styles.xml
---- ../aosp/frameworks/support/v17/leanback/res/values/styles.xml	2018-08-06 15:41:34.524083344 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/res/values/styles.xml	2017-11-23 05:21:58.000000000 +0100
+diff -ur a/frameworks/support/v17/leanback/res/values/styles.xml b/frameworks/support/v17/leanback/res/values/styles.xml
+--- a/frameworks/support/v17/leanback/res/values/styles.xml	2018-08-06 15:41:34.524083344 +0200
++++ b/frameworks/support/v17/leanback/res/values/styles.xml	2017-11-23 05:21:58.000000000 +0100
 @@ -25,7 +25,7 @@
  
      <style name="TextAppearance.Leanback.Title" parent="TextAppearance.Leanback">
@@ -9094,10 +9094,10 @@ diff -ur ../aosp/frameworks/support/v17/leanback/res/values/styles.xml ../Deskto
          <item name="android:textColor">@color/lb_browse_title_color</item>
      </style>
  
-Only in ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/util: DeviceStateMonitor.java
-diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java
---- ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java	2018-08-06 15:41:34.556083755 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java	2017-11-23 05:21:58.000000000 +0100
+Only in b/frameworks/support/v17/leanback/src/android/support/v17/leanback/util: DeviceStateMonitor.java
+diff -ur a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java
+--- a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java	2018-08-06 15:41:34.556083755 +0200
++++ b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/FocusHighlightHelper.java	2017-11-23 05:21:58.000000000 +0100
 @@ -15,11 +15,14 @@
  
  import android.support.v17.leanback.R;
@@ -9197,9 +9197,9 @@ diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanbac
          adapter.setFocusHighlight(new BrowseItemFocusHighlight(zoomIndex, useDimmer));
      }
  
-diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java
---- ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java	2018-08-06 15:41:34.560083806 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java	2017-11-23 05:21:58.000000000 +0100
+diff -ur a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java
+--- a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java	2018-08-06 15:41:34.560083806 +0200
++++ b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/HeaderItem.java	2017-11-23 05:21:58.000000000 +0100
 @@ -14,6 +14,7 @@
  package android.support.v17.leanback.widget;
  
@@ -9257,9 +9257,9 @@ diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanbac
      /**
       * Returns optional content description for the HeaderItem.  When it is null, {@link #getName()}
       * should be used for the content description.
-diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java
---- ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java	2018-08-06 15:41:34.560083806 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java	2017-11-23 05:21:58.000000000 +0100
+diff -ur a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java
+--- a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java	2018-08-06 15:41:34.560083806 +0200
++++ b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/ListRowPresenter.java	2017-11-23 05:21:58.000000000 +0100
 @@ -293,7 +293,7 @@
       * disabled dimming on focus.
       */
@@ -9337,9 +9337,9 @@ diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanbac
          super.onRowViewSelected(holder, selected);
          ViewHolder vh = (ViewHolder) holder;
          setVerticalPadding(vh);
-diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java
---- ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java	2018-08-06 15:41:34.564083858 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java	2017-11-23 05:21:58.000000000 +0100
+diff -ur a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java
+--- a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java	2018-08-06 15:41:34.564083858 +0200
++++ b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/RowHeaderPresenter.java	2017-11-23 05:21:58.000000000 +0100
 @@ -14,12 +14,13 @@
  package android.support.v17.leanback.widget;
  
@@ -9370,10 +9370,10 @@ diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanbac
              viewHolder.view.setContentDescription(headerItem.getContentDescription());
          }
      }
-Only in ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget: StatusBarView.java
-diff -ur ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java
---- ../aosp/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java	2018-08-06 15:41:34.568083909 +0200
-+++ ../Desktop/android/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java	2017-11-23 05:21:58.000000000 +0100
+Only in b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget: StatusBarView.java
+diff -ur a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java
+--- a/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java	2018-08-06 15:41:34.568083909 +0200
++++ b/frameworks/support/v17/leanback/src/android/support/v17/leanback/widget/TitleView.java	2017-11-23 05:21:58.000000000 +0100
 @@ -17,6 +17,7 @@
  import android.graphics.drawable.Drawable;
  import android.support.v17.leanback.R;
