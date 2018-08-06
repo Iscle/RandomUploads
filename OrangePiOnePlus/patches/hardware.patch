@@ -1,0 +1,798 @@
+Only in ../Desktop/android/hardware: aw
+diff -ur ../aosp/hardware/broadcom/libbt/Android.mk ../Desktop/android/hardware/broadcom/libbt/Android.mk
+--- ../aosp/hardware/broadcom/libbt/Android.mk	2018-08-06 15:41:44.912216643 +0200
++++ ../Desktop/android/hardware/broadcom/libbt/Android.mk	2017-11-23 05:22:09.000000000 +0100
+@@ -1,7 +1,5 @@
+ LOCAL_PATH := $(call my-dir)
+ 
+-ifneq ($(BOARD_HAVE_BLUETOOTH_BCM),)
+-
+ include $(CLEAR_VARS)
+ 
+ ifneq ($(BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR),)
+@@ -31,7 +29,8 @@
+         $(BDROID_DIR)/hci/include \
+         $(BDROID_DIR)/include \
+         $(BDROID_DIR)/stack/include \
+-        $(BDROID_DIR)/gki/ulinux
++        $(BDROID_DIR)/gki/ulinux \
++        hardware/aw/bluetooth/libaw/include
+ 
+ LOCAL_C_INCLUDES += $(bdroid_C_INCLUDES)
+ LOCAL_CFLAGS += $(bdroid_CFLAGS)
+@@ -40,7 +39,9 @@
+         libcutils \
+         liblog
+ 
+-LOCAL_MODULE := libbt-vendor
++LOCAL_STATIC_LIBRARIES := libbt-aw libwifi_hardware_info
++
++LOCAL_MODULE := libbt-vendor-bcm
+ LOCAL_MODULE_TAGS := optional
+ LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+ LOCAL_MODULE_OWNER := broadcom
+@@ -65,5 +66,3 @@
+ ifeq ($(TARGET_PRODUCT), gce_x86_phone)
+     include $(LOCAL_PATH)/conf/google/gce_x86/Android.mk
+ endif
+-
+-endif # BOARD_HAVE_BLUETOOTH_BCM
+diff -ur ../aosp/hardware/broadcom/libbt/include/bt_vendor_brcm.h ../Desktop/android/hardware/broadcom/libbt/include/bt_vendor_brcm.h
+--- ../aosp/hardware/broadcom/libbt/include/bt_vendor_brcm.h	2018-08-06 15:41:44.916216694 +0200
++++ ../Desktop/android/hardware/broadcom/libbt/include/bt_vendor_brcm.h	2017-11-23 05:22:09.000000000 +0100
+@@ -61,7 +61,7 @@
+ 
+ /* Location of firmware patch files */
+ #ifndef FW_PATCHFILE_LOCATION
+-#define FW_PATCHFILE_LOCATION "/vendor/firmware/"  /* maguro */
++#define FW_PATCHFILE_LOCATION "/system/vendor/modules/"  /* maguro */
+ #endif
+ 
+ #ifndef UART_TARGET_BAUD_RATE
+@@ -139,7 +139,7 @@
+ 
+ /* HOST_WAKE Polarity - 0=Active Low, 1= Active High */
+ #ifndef LPM_HOST_WAKE_POLARITY
+-#define LPM_HOST_WAKE_POLARITY          1    /* maguro */
++#define LPM_HOST_WAKE_POLARITY          0    /* maguro */
+ #endif
+ 
+ /* LPM_ALLOW_HOST_SLEEP_DURING_SCO
+@@ -415,7 +415,7 @@
+     is received.
+ */
+ #ifndef HW_END_WITH_HCI_RESET
+-#define HW_END_WITH_HCI_RESET    TRUE
++#define HW_END_WITH_HCI_RESET    FALSE
+ #endif
+ 
+ /******************************************************************************
+@@ -426,5 +426,9 @@
+ 
+ extern int hw_set_audio_state(bt_vendor_op_audio_state_t *p_state);
+ 
++extern int hw_set_patch_file_path(char *p_conf_name, char *p_conf_value, int param);
++
++extern int hw_set_patch_file_name(char *p_conf_name, char *p_conf_value, int param);
++
+ #endif /* BT_VENDOR_BRCM_H */
+ 
+diff -ur ../aosp/hardware/broadcom/libbt/src/bt_vendor_brcm.c ../Desktop/android/hardware/broadcom/libbt/src/bt_vendor_brcm.c
+--- ../aosp/hardware/broadcom/libbt/src/bt_vendor_brcm.c	2018-08-06 15:41:44.916216694 +0200
++++ ../Desktop/android/hardware/broadcom/libbt/src/bt_vendor_brcm.c	2017-11-23 05:22:11.000000000 +0100
+@@ -31,6 +31,7 @@
+ #include "bt_vendor_brcm.h"
+ #include "upio.h"
+ #include "userial_vendor.h"
++#include "module_info.h"
+ 
+ #ifndef BTVND_DBG
+ #define BTVND_DBG FALSE
+@@ -58,6 +59,7 @@
+ void hw_epilog_process(void);
+ #endif
+ 
++#define FW_PATCHFILE_PATH_MAXLEN    248
+ /******************************************************************************
+ **  Variables
+ ******************************************************************************/
+@@ -112,6 +114,13 @@
+     ALOGW("*****************************************************************");
+ #endif
+ 
++    hw_set_patch_file_path(NULL, FW_PATCHFILE_LOCATION, 0);
++    aw_get_wifi_module_info();
++    char patch_name[FW_PATCHFILE_PATH_MAXLEN];
++    memset(patch_name, 0, FW_PATCHFILE_PATH_MAXLEN);
++    sprintf(patch_name, "%s.hcd", module_info.mod_name);
++    hw_set_patch_file_name(NULL, patch_name, 0);
++
+     userial_vendor_init();
+     upio_init();
+ 
+@@ -138,11 +147,26 @@
+     {
+         case BT_VND_OP_POWER_CTRL:
+             {
++                /*
+                 int *state = (int *) param;
+                 if (*state == BT_VND_PWR_OFF)
+                     upio_set_bluetooth_power(UPIO_BT_POWER_OFF);
+                 else if (*state == BT_VND_PWR_ON)
+                     upio_set_bluetooth_power(UPIO_BT_POWER_ON);
++                */
++
++                int *state = (int *) param;
++                if (*state == BT_VND_PWR_OFF)
++                {
++
++                }
++                else if (*state == BT_VND_PWR_ON)
++                {
++                    upio_set_bluetooth_power(UPIO_BT_POWER_OFF);
++                    usleep(200000);
++                    upio_set_bluetooth_power(UPIO_BT_POWER_ON);
++                    usleep(200000);
++                }
+             }
+             break;
+ 
+diff -ur ../aosp/hardware/broadcom/libbt/src/hardware.c ../Desktop/android/hardware/broadcom/libbt/src/hardware.c
+--- ../aosp/hardware/broadcom/libbt/src/hardware.c	2018-08-06 15:41:44.920216745 +0200
++++ ../Desktop/android/hardware/broadcom/libbt/src/hardware.c	2017-11-23 05:22:11.000000000 +0100
+@@ -172,7 +172,7 @@
+ ******************************************************************************/
+ 
+ static char fw_patchfile_path[256] = FW_PATCHFILE_LOCATION;
+-static char fw_patchfile_name[128] = { 0 };
++static char fw_patchfile_name[128] = { "ap6212.hcd" };
+ #if (VENDOR_LIB_RUNTIME_TUNING_ENABLED == TRUE)
+ static int fw_patch_settlement_delay = -1;
+ #endif
+@@ -363,6 +363,8 @@
+         baud = USERIAL_BAUD_3M;
+     else if (line_speed == 2000000)
+         baud = USERIAL_BAUD_2M;
++    else if (line_speed == 1500000)
++        baud = USERIAL_BAUD_1_5M;
+     else if (line_speed == 1000000)
+         baud = USERIAL_BAUD_1M;
+     else if (line_speed == 921600)
+diff -ur ../aosp/hardware/broadcom/libbt/src/userial_vendor.c ../Desktop/android/hardware/broadcom/libbt/src/userial_vendor.c
+--- ../aosp/hardware/broadcom/libbt/src/userial_vendor.c	2018-08-06 15:41:44.920216745 +0200
++++ ../Desktop/android/hardware/broadcom/libbt/src/userial_vendor.c	2017-11-23 05:22:11.000000000 +0100
+@@ -94,6 +94,8 @@
+         *baud = B3000000;
+     else if (cfg_baud == USERIAL_BAUD_2M)
+         *baud = B2000000;
++    else if (cfg_baud == USERIAL_BAUD_1_5M)
++        *baud = B1500000;
+     else if (cfg_baud == USERIAL_BAUD_1M)
+         *baud = B1000000;
+     else if (cfg_baud == USERIAL_BAUD_921600)
+@@ -247,6 +249,17 @@
+         return -1;
+     }
+ 
++    // for AP6212
++    {
++        usleep(300000);
++        close(vnd_userial.fd);
++        if ((vnd_userial.fd = open(vnd_userial.port_name, O_RDWR)) == -1)
++        {
++            ALOGE("userial vendor open: unable to open %s", vnd_userial.port_name);
++            return -1;
++        }
++    }
++
+     tcflush(vnd_userial.fd, TCIOFLUSH);
+ 
+     tcgetattr(vnd_userial.fd, &vnd_userial.termios);
+diff -ur ../aosp/hardware/broadcom/libbt/vnd_buildcfg.mk ../Desktop/android/hardware/broadcom/libbt/vnd_buildcfg.mk
+--- ../aosp/hardware/broadcom/libbt/vnd_buildcfg.mk	2018-08-06 15:41:44.920216745 +0200
++++ ../Desktop/android/hardware/broadcom/libbt/vnd_buildcfg.mk	2017-11-23 05:22:11.000000000 +0100
+@@ -4,7 +4,7 @@
+ ifneq (,$(BOARD_CUSTOM_BT_CONFIG))
+ SRC := $(BOARD_CUSTOM_BT_CONFIG)
+ else
+-SRC := $(call my-dir)/include/$(addprefix vnd_, $(addsuffix .txt,$(basename $(TARGET_DEVICE))))
++SRC := device/softwinner/$(TARGET_DEVICE)/bluetooth/libbt/include/$(addprefix vnd_, $(addsuffix .txt,$(basename $(TARGET_DEVICE))))
+ endif
+ ifeq (,$(wildcard $(SRC)))
+ # configuration file does not exist. Use default one
+Only in ../Desktop/android/hardware/intel/common/bd_prov: .emptycommitmark
+Only in ../Desktop/android/hardware/intel/sensors: .emptycommitmark
+diff -ur ../aosp/hardware/libhardware/include/hardware/audio.h ../Desktop/android/hardware/libhardware/include/hardware/audio.h
+--- ../aosp/hardware/libhardware/include/hardware/audio.h	2018-08-06 15:41:56.892370347 +0200
++++ ../Desktop/android/hardware/libhardware/include/hardware/audio.h	2017-11-23 05:22:16.000000000 +0100
+@@ -127,7 +127,7 @@
+ #define AUDIO_PARAMETER_STREAM_FRAME_COUNT "frame_count"     /* size_t */
+ #define AUDIO_PARAMETER_STREAM_INPUT_SOURCE "input_source"   /* audio_source_t */
+ #define AUDIO_PARAMETER_STREAM_SAMPLING_RATE "sampling_rate" /* uint32_t */
+-
++#define AUDIO_PARAMETER_USB_VOLUME "usbvolume"
+ #define AUDIO_PARAMETER_DEVICE_CONNECT "connect"            /* audio_devices_t */
+ #define AUDIO_PARAMETER_DEVICE_DISCONNECT "disconnect"      /* audio_devices_t */
+ 
+@@ -163,6 +163,14 @@
+ #define AUDIO_OFFLOAD_CODEC_DOWN_SAMPLING  "music_offload_down_sampling"
+ #define AUDIO_OFFLOAD_CODEC_DELAY_SAMPLES  "delay_samples"
+ #define AUDIO_OFFLOAD_CODEC_PADDING_SAMPLES  "padding_samples"
++#define AUDIO_PARAMETER_RAW_DATA_OUT "raw_data_output"
++
++#define AUDIO_PARAMETER_DEVICES_IN "audio_devices_in"                       // read only
++#define AUDIO_PARAMETER_DEVICES_OUT "audio_devices_out"                     // read only
++#define AUDIO_PARAMETER_DEVICES_IN_ACTIVE "audio_devices_in_active"         // read/write
++#define AUDIO_PARAMETER_DEVICES_OUT_ACTIVE "audio_devices_out_active"       // read/write
++#define AUDIO_PARAMETER_KARAOK_AUDIO_CH    "switchChannel"
++#define AUDIO_PARAMETER_KARAOK_AUDIO_MIC   "micstart"
+ 
+ /**************************************/
+ 
+@@ -462,7 +470,7 @@
+     size_t chan_samp_sz;
+     audio_format_t format = s->get_format(s);
+ 
+-    if (audio_has_proportional_frames(format)) {
++    if (audio_is_linear_pcm(format)) {
+         chan_samp_sz = audio_bytes_per_sample(format);
+         return popcount(s->get_channels(s)) * chan_samp_sz;
+     }
+@@ -478,7 +486,7 @@
+     size_t chan_samp_sz;
+     audio_format_t format = s->common.get_format(&s->common);
+ 
+-    if (audio_has_proportional_frames(format)) {
++    if (audio_is_linear_pcm(format)) {
+         chan_samp_sz = audio_bytes_per_sample(format);
+         return audio_channel_count_from_out_mask(s->common.get_channels(&s->common)) * chan_samp_sz;
+     }
+@@ -494,7 +502,7 @@
+     size_t chan_samp_sz;
+     audio_format_t format = s->common.get_format(&s->common);
+ 
+-    if (audio_has_proportional_frames(format)) {
++    if (audio_is_linear_pcm(format)) {
+         chan_samp_sz = audio_bytes_per_sample(format);
+         return audio_channel_count_from_in_mask(s->common.get_channels(&s->common)) * chan_samp_sz;
+     }
+Only in ../Desktop/android/hardware/libhardware/include/hardware: aw_display.h
+diff -ur ../aosp/hardware/libhardware/include/hardware/bluetooth.h ../Desktop/android/hardware/libhardware/include/hardware/bluetooth.h
+--- ../aosp/hardware/libhardware/include/hardware/bluetooth.h	2018-08-06 15:41:56.904370500 +0200
++++ ../Desktop/android/hardware/libhardware/include/hardware/bluetooth.h	2017-11-23 05:22:16.000000000 +0100
+@@ -31,6 +31,9 @@
+  */
+ 
+ #define BT_HARDWARE_MODULE_ID "bluetooth"
++#define BT_HARDWARE_BCM_MODULE_ID "bcm"
++#define BT_HARDWARE_RTK_MODULE_ID "rtk"
++#define BT_HARDWARE_USB_MODULE_ID "usb"
+ #define BT_STACK_MODULE_ID "bluetooth"
+ #define BT_STACK_TEST_MODULE_ID "bluetooth_test"
+ 
+@@ -47,6 +50,9 @@
+ #define BT_PROFILE_PAN_ID "pan"
+ #define BT_PROFILE_MAP_CLIENT_ID "map_client"
+ #define BT_PROFILE_SDP_CLIENT_ID "sdp"
++#ifdef BLUETOOTH_RTK_API
++#define BT_PROFILE_RTKBT_ID "rtkbt"
++#endif
+ #define BT_PROFILE_GATT_ID "gatt"
+ #define BT_PROFILE_AV_RC_ID "avrcp"
+ #define BT_PROFILE_AV_RC_CTRL_ID "avrcp_ctrl"
+Only in ../Desktop/android/hardware/libhardware/include/hardware: bt_rtkbt.h
+diff -ur ../aosp/hardware/libhardware/include/hardware/camera.h ../Desktop/android/hardware/libhardware/include/hardware/camera.h
+--- ../aosp/hardware/libhardware/include/hardware/camera.h	2018-08-06 15:41:56.908370552 +0200
++++ ../Desktop/android/hardware/libhardware/include/hardware/camera.h	2017-11-23 05:22:16.000000000 +0100
+@@ -280,6 +280,8 @@
+      * Dump state of the camera hardware
+      */
+     int (*dump)(struct camera_device *, int fd);
++    //by zhengjiangwei  for Camera in Android N
++    int (*set_fd)(struct camera_device *, int fd);
+ } camera_device_ops_t;
+ 
+ typedef struct camera_device {
+diff -ur ../aosp/hardware/libhardware/include/hardware/gralloc.h ../Desktop/android/hardware/libhardware/include/hardware/gralloc.h
+--- ../aosp/hardware/libhardware/include/hardware/gralloc.h	2018-08-06 15:41:56.912370604 +0200
++++ ../Desktop/android/hardware/libhardware/include/hardware/gralloc.h	2017-11-23 05:22:16.000000000 +0100
+@@ -137,6 +137,9 @@
+      * gralloc modules. */
+     GRALLOC_USAGE_ALLOC_MASK            = ~(GRALLOC_USAGE_FOREIGN_BUFFERS),
+ 
++    GRALLOC_USAGE_AFBC_MODE             = 0x04000000,
++    GRALLOC_USAGE_METADATA_BUF          = 0x08000000,
++
+     /* implementation-specific private usage flags */
+     GRALLOC_USAGE_PRIVATE_0             = 0x10000000,
+     GRALLOC_USAGE_PRIVATE_1             = 0x20000000,
+Only in ../Desktop/android/hardware/libhardware/include/hardware: hal_public
+Only in ../Desktop/android/hardware/libhardware/include/hardware: hal_public.h
+diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer2.h ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer2.h
+--- ../aosp/hardware/libhardware/include/hardware/hwcomposer2.h	2018-08-06 15:41:56.912370604 +0200
++++ ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer2.h	2017-11-23 05:22:16.000000000 +0100
+@@ -233,6 +233,7 @@
+     HWC2_FUNCTION_SET_POWER_MODE,
+     HWC2_FUNCTION_SET_VSYNC_ENABLED,
+     HWC2_FUNCTION_VALIDATE_DISPLAY,
++    HWC2_FUNCTION_QUERY,
+ } hwc2_function_descriptor_t;
+ 
+ /* Layer requests returned from getDisplayRequests */
+@@ -446,6 +447,7 @@
+         case HWC2_FUNCTION_SET_POWER_MODE: return "SetPowerMode";
+         case HWC2_FUNCTION_SET_VSYNC_ENABLED: return "SetVsyncEnabled";
+         case HWC2_FUNCTION_VALIDATE_DISPLAY: return "ValidateDisplay";
++        case HWC2_FUNCTION_QUERY: return "Query";
+         default: return "Unknown";
+     }
+ }
+@@ -632,6 +634,7 @@
+     SetPowerMode = HWC2_FUNCTION_SET_POWER_MODE,
+     SetVsyncEnabled = HWC2_FUNCTION_SET_VSYNC_ENABLED,
+     ValidateDisplay = HWC2_FUNCTION_VALIDATE_DISPLAY,
++    Query = HWC2_FUNCTION_QUERY,
+ };
+ TO_STRING(hwc2_function_descriptor_t, FunctionDescriptor,
+         getFunctionDescriptorName)
+@@ -1950,6 +1953,14 @@
+         hwc2_device_t* device, hwc2_display_t display, hwc2_layer_t layer,
+         uint32_t z);
+ 
++/* query(..., what, value)
++ * Used to retrieve information about the h/w composer
++ *
++ * Returns 0 on success or -errno on error.
++ */
++typedef int32_t /*hwc2_error_t*/ (*HWC2_PFN_QUERY)(
++        hwc2_device_t* device, int32_t what, int32_t* value);
++
+ __END_DECLS
+ 
+ #endif
+diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer_defs.h ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer_defs.h
+--- ../aosp/hardware/libhardware/include/hardware/hwcomposer_defs.h	2018-08-06 15:41:56.912370604 +0200
++++ ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer_defs.h	2017-11-23 05:22:16.000000000 +0100
+@@ -215,6 +215,12 @@
+      * Returns a mask of supported display types.
+      */
+     HWC_DISPLAY_TYPES_SUPPORTED         = 2,
++
++    /*
++     * query(mHwc, HWC_IS_GPU_SKIP_BUFFER, buffer_handle_t)
++     * Returns true if gpu canot deal the buffer.
++     */
++    HWC_IS_SKIP_GPU_BUFFER              = 3,
+ };
+ 
+ /* display attributes returned by getDisplayAttributes() */
+diff -ur ../aosp/hardware/libhardware/include/hardware/hwcomposer.h ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer.h
+--- ../aosp/hardware/libhardware/include/hardware/hwcomposer.h	2018-08-06 15:41:56.912370604 +0200
++++ ../Desktop/android/hardware/libhardware/include/hardware/hwcomposer.h	2017-11-23 05:22:16.000000000 +0100
+@@ -26,6 +26,8 @@
+ 
+ #include <hardware/hwcomposer_defs.h>
+ 
++#include "aw_display.h"
++
+ __BEGIN_DECLS
+ 
+ /*****************************************************************************/
+@@ -154,6 +156,8 @@
+             /* blending to apply during composition */
+             int32_t blending;
+ 
++            int32_t /* android_dataspace_t */ dataspace;
++
+             /* area of the source to consider, the origin is the top-left corner of
+              * the buffer. As of HWC_DEVICE_API_VERSION_1_3, sourceRect uses floats.
+              * If the h/w can't support a non-integer source crop rectangle, it should
+@@ -294,13 +298,13 @@
+      * For 64-bit mode, this struct is 120 bytes (and 8-byte aligned), and needs
+      * to be padded as such to maintain binary compatibility.
+      */
+-    uint8_t reserved[120 - 112];
++    uint8_t reserved[120 - 116];
+ #else
+     /*
+      * For 32-bit mode, this struct is 96 bytes, and needs to be padded as such
+      * to maintain binary compatibility.
+      */
+-    uint8_t reserved[96 - 84];
++    uint8_t reserved[96 - 88];
+ #endif
+ 
+ } hwc_layer_1_t;
+Only in ../Desktop/android/hardware/libhardware/include/hardware: sunxi_metadata_def.h
+diff -ur ../aosp/hardware/libhardware/modules/Android.mk ../Desktop/android/hardware/libhardware/modules/Android.mk
+--- ../aosp/hardware/libhardware/modules/Android.mk	2018-08-06 15:41:56.920370706 +0200
++++ ../Desktop/android/hardware/libhardware/modules/Android.mk	2017-11-23 05:22:16.000000000 +0100
+@@ -1,4 +1,4 @@
+ hardware_modules := gralloc hwcomposer audio nfc nfc-nci local_time \
+ 	power usbaudio audio_remote_submix camera usbcamera consumerir sensors vibrator \
+-	tv_input fingerprint input vehicle thermal vr
++	tv_input fingerprint input vehicle thermal vr audio_pt71600_remote
+ include $(call all-named-subdir-makefiles,$(hardware_modules))
+Only in ../Desktop/android/hardware/libhardware/modules: audio_pt71600_remote
+diff -ur ../aosp/hardware/libhardware_legacy/Android.mk ../Desktop/android/hardware/libhardware_legacy/Android.mk
+--- ../aosp/hardware/libhardware_legacy/Android.mk	2018-08-06 15:41:57.956383997 +0200
++++ ../Desktop/android/hardware/libhardware_legacy/Android.mk	2017-11-23 05:22:16.000000000 +0100
+@@ -5,6 +5,7 @@
+ 
+ SAVE_MAKEFILES := $(call all-named-subdir-makefiles,$(legacy_modules))
+ LEGACY_AUDIO_MAKEFILES := $(call all-named-subdir-makefiles,audio)
++LEGACY_WIFI_HARDWARE_INFO_MAKEFILES := $(call all-named-subdir-makefiles, wifi_hardware_info)
+ 
+ LOCAL_PATH:= $(call my-dir)
+ include $(CLEAR_VARS)
+@@ -21,6 +22,7 @@
+ 
+ include $(SAVE_MAKEFILES)
+ 
++LOCAL_STATIC_LIBRARIES += libwifi_hardware_info
+ LOCAL_MODULE:= libhardware_legacy
+ 
+ include $(BUILD_SHARED_LIBRARY)
+@@ -52,3 +54,4 @@
+ # legacy_audio builds it's own set of libraries that aren't linked into
+ # hardware_legacy
+ include $(LEGACY_AUDIO_MAKEFILES)
++include $(LEGACY_WIFI_HARDWARE_INFO_MAKEFILES)
+Only in ../Desktop/android/hardware/libhardware_legacy/include/hardware_legacy: driver_nl80211.h
+Only in ../Desktop/android/hardware/libhardware_legacy/include/hardware_legacy: wifi_hardware_info.h
+diff -ur ../aosp/hardware/libhardware_legacy/uevent/uevent.c ../Desktop/android/hardware/libhardware_legacy/uevent/uevent.c
+--- ../aosp/hardware/libhardware_legacy/uevent/uevent.c	2018-08-06 15:41:57.980384305 +0200
++++ ../Desktop/android/hardware/libhardware_legacy/uevent/uevent.c	2017-11-23 05:22:16.000000000 +0100
+@@ -21,13 +21,14 @@
+ #include <unistd.h>
+ #include <poll.h>
+ #include <pthread.h>
++#include <errno.h>
++#include <cutils/log.h>
+ 
+ #include <sys/socket.h>
+ #include <sys/un.h>
+ #include <sys/queue.h>
+ #include <linux/netlink.h>
+ 
+-
+ LIST_HEAD(uevent_handler_head, uevent_handler) uevent_handler_list;
+ pthread_mutex_t uevent_handler_list_lock = PTHREAD_MUTEX_INITIALIZER;
+ 
+@@ -45,23 +46,41 @@
+     struct sockaddr_nl addr;
+     int sz = 64*1024;
+     int s;
++	int i = 0;
++	int ret = 0;
++	int pid = 0;
++	int online = 1;
+ 
++	pid = getpid();
+     memset(&addr, 0, sizeof(addr));
+     addr.nl_family = AF_NETLINK;
+-    addr.nl_pid = getpid();
++    addr.nl_pid = pid;
+     addr.nl_groups = 0xffffffff;
+ 
+     s = socket(PF_NETLINK, SOCK_DGRAM, NETLINK_KOBJECT_UEVENT);
+-    if(s < 0)
++    if(s < 0) {
++		ALOGE("%s creat socket fail, err %s, pid %d", __FUNCTION__, strerror(errno), getpid());
+         return 0;
++	}
+ 
+-    setsockopt(s, SOL_SOCKET, SO_RCVBUFFORCE, &sz, sizeof(sz));
++	setsockopt(s, SOL_SOCKET, SO_RCVBUFFORCE, &sz, sizeof(sz));
++	setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &online, sizeof(online));
+ 
+-    if(bind(s, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
+-        close(s);
+-        return 0;
+-    }
++	for (i=1; i<1024; i++) {
++		if(ret = bind(s, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
++			ALOGE("\n%s bind socket fail err %s , pid-%d uid-%d gid-%d \n",
++						__FUNCTION__, strerror(errno), getpid(), getuid(), getgid());
++			addr.nl_pid = pid + i;
++		} else
++			break;
++	}
++
++	if (ret < 0) {
++		close(s);
++		return 0;
++	}
+ 
++	ALOGD("%s bind socket sceess, fd %d", __FUNCTION__, s);
+     fd = s;
+     return (fd > 0);
+ }
+diff -ur ../aosp/hardware/libhardware_legacy/wifi/wifi.c ../Desktop/android/hardware/libhardware_legacy/wifi/wifi.c
+--- ../aosp/hardware/libhardware_legacy/wifi/wifi.c	2018-08-06 15:41:57.980384305 +0200
++++ ../Desktop/android/hardware/libhardware_legacy/wifi/wifi.c	2017-11-23 05:22:16.000000000 +0100
+@@ -25,6 +25,7 @@
+ #include <poll.h>
+ 
+ #include "hardware_legacy/wifi.h"
++#include "hardware_legacy/wifi_hardware_info.h"
+ #ifdef LIBWPA_CLIENT_EXISTS
+ #include "libwpa_client/wpa_ctrl.h"
+ #endif
+@@ -42,6 +43,7 @@
+ extern int do_dhcp();
+ extern int ifc_init();
+ extern void ifc_close();
++extern int ifc_disable(const char *ifname);
+ extern char *dhcp_lasterror();
+ extern void get_dhcp_info();
+ extern int init_module(void *, unsigned long, const char *);
+@@ -97,7 +99,12 @@
+ #endif
+ 
+ #define WIFI_DRIVER_LOADER_DELAY	1000000
+-
++#ifndef WIFI_DRIVER_MODULE_NAME
++#define WIFI_DRIVER_MODULE_NAME "bcmdhd"
++#endif
++#ifndef WIFI_DRIVER_MODULE_PATH
++#define WIFI_DRIVER_MODULE_PATH "/system/vendor/modules/"
++#endif
+ static const char IFACE_DIR[]           = "/data/system/wpa_supplicant";
+ #ifdef WIFI_DRIVER_MODULE_PATH
+ static const char DRIVER_MODULE_NAME[]  = WIFI_DRIVER_MODULE_NAME;
+@@ -216,6 +223,7 @@
+ 
+ int is_wifi_driver_loaded() {
+     char driver_status[PROPERTY_VALUE_MAX];
++    const char *wifi_driver_name = get_wifi_driver_name();
+ #ifdef WIFI_DRIVER_MODULE_PATH
+     FILE *proc;
+     char line[sizeof(DRIVER_MODULE_TAG)+10];
+@@ -238,7 +246,7 @@
+         return 0;
+     }
+     while ((fgets(line, sizeof(line), proc)) != NULL) {
+-        if (strncmp(line, DRIVER_MODULE_TAG, strlen(DRIVER_MODULE_TAG)) == 0) {
++        if (strncmp(line, wifi_driver_name, strlen(wifi_driver_name)) == 0) {
+             fclose(proc);
+             return 1;
+         }
+@@ -251,50 +259,100 @@
+ #endif
+ }
+ 
++int check_wifi_module_loaded(const char *wifi_module_name)
++{
++#define MODULE_LOADED_FILE_NAME	"/proc/modules"
++
++	FILE * fp = NULL;
++	char buf[512] = {0};
++	int ret = 0;
++
++	fp = fopen(MODULE_LOADED_FILE_NAME, "r");
++	if (NULL == fp)
++	{
++		return ret;
++	}
++
++	while(NULL != fgets(buf, sizeof(buf), fp))
++	{
++		if(NULL != strstr(buf, wifi_module_name))
++		{
++			ret = 1;
++			break;
++		}
++	}
++
++	fclose(fp);
++
++	return ret;
++
++#undef MODULE_LOADED_FILE_NAME
++}
++
++#define TIME_COUNT 40 // 200ms*40 = 8 seconds for completion
+ int wifi_load_driver()
+ {
+ #ifdef WIFI_DRIVER_MODULE_PATH
+     char driver_status[PROPERTY_VALUE_MAX];
+-    int count = 100; /* wait at most 20 seconds for completion */
+-
+-    if (is_wifi_driver_loaded()) {
+-        return 0;
+-    }
+-
+-    if (insmod(DRIVER_MODULE_PATH, DRIVER_MODULE_ARG) < 0)
++    int  count = 0;
++    char tmp_buf[512] = {0};
++    char *p_strstr_wlan  = NULL;
++    int  ret        = 0;
++    FILE *fp        = NULL;
++    char module_path[128] = {0};
++    char module_arg[128] = {0};
++
++    const char *wifi_driver_name = get_wifi_driver_name();
++    ALOGD("Start to insmod %s.ko\n", wifi_driver_name);
++    get_driver_module_arg(module_arg);
++    snprintf(module_path, sizeof(module_path), "%s%s.ko", WIFI_DRIVER_MODULE_PATH, wifi_driver_name);
++    ALOGD("module_arg=%s",module_arg);
++    ALOGD("module_path=%s",module_path);
++
++	if(1 == check_wifi_module_loaded(wifi_driver_name))
++	{
++		ALOGE("wifi module:%s have been load, do not load again!", wifi_driver_name);
++		return 0;
++	}
++
++    if (insmod(module_path, module_arg) < 0) {
++        ALOGE("insmod %s ko failed!", wifi_driver_name);
++        rmmod(wifi_driver_name); //it may be load driver already,try remove it.
+         return -1;
+-
+-    if (strcmp(FIRMWARE_LOADER,"") == 0) {
+-        /* usleep(WIFI_DRIVER_LOADER_DELAY); */
+-        property_set(DRIVER_PROP_NAME, "ok");
+-    }
+-    else {
+-        property_set("ctl.start", FIRMWARE_LOADER);
+-    }
+-    sched_yield();
+-    while (count-- > 0) {
+-        if (property_get(DRIVER_PROP_NAME, driver_status, NULL)) {
+-            if (strcmp(driver_status, "ok") == 0)
+-                return 0;
+-            else if (strcmp(driver_status, "failed") == 0) {
+-                wifi_unload_driver();
+-                return -1;
+-            }
+-        }
+-        usleep(200000);
+-    }
+-    property_set(DRIVER_PROP_NAME, "timeout");
+-    wifi_unload_driver();
+-    return -1;
+-#else
+-#ifdef WIFI_DRIVER_STATE_CTRL_PARAM
+-    if (is_wifi_driver_loaded()) {
+-        return 0;
+     }
+ 
+-    if (wifi_change_driver_state(WIFI_DRIVER_STATE_ON) < 0)
+-        return -1;
+-#endif
++    do{
++       fp=fopen("/proc/net/wireless", "r");
++       if (!fp) {
++           ALOGE("failed to fopen file: /proc/net/wireless\n");
++           property_set(DRIVER_PROP_NAME, "failed");
++           rmmod(wifi_driver_name); //try remove it.
++           return -1;
++       }
++       ret = fread(tmp_buf, sizeof(tmp_buf), 1, fp);
++       if (ret==0){
++           ALOGD("faied to read proc/net/wireless");
++       }
++       fclose(fp);
++
++       ALOGD("loading wifi driver...");
++       p_strstr_wlan = strstr(tmp_buf, "wlan0");
++       if (p_strstr_wlan != NULL) {
++           property_set(DRIVER_PROP_NAME, "ok");
++           break;
++       }
++       usleep(200000);// 200ms
++
++   } while (count++ <= TIME_COUNT);
++
++   if(count > TIME_COUNT) {
++       ALOGE("timeout, register netdevice wlan0 failed.");
++       property_set(DRIVER_PROP_NAME, "timeout");
++       rmmod(wifi_driver_name);
++       return -1;
++   }
++   return 0;
++#else
+     property_set(DRIVER_PROP_NAME, "ok");
+     return 0;
+ #endif
+@@ -302,29 +360,35 @@
+ 
+ int wifi_unload_driver()
+ {
++    const char *wifi_vendor_name = get_wifi_vendor_name();
++
+     usleep(200000); /* allow to finish interface down */
+ #ifdef WIFI_DRIVER_MODULE_PATH
+-    if (rmmod(DRIVER_MODULE_NAME) == 0) {
+-        int count = 20; /* wait at most 10 seconds for completion */
+-        while (count-- > 0) {
+-            if (!is_wifi_driver_loaded())
+-                break;
+-            usleep(500000);
+-        }
+-        usleep(500000); /* allow card removal */
+-        if (count) {
+-            return 0;
+-        }
+-        return -1;
+-    } else
+-        return -1;
++	if(0 == check_wifi_module_loaded(get_wifi_driver_name()))
++	{
++	    if (rmmod(get_wifi_driver_name()) == 0) {
++	        int count = 20; /* wait at most 10 seconds for completion */
++	        while (count-- > 0) {
++	            if (!is_wifi_driver_loaded())
++	                break;
++	            usleep(500000);
++	        }
++	        usleep(500000); /* allow card removal */
++	        if (count) {
++	            return 0;
++	        }
++	        return -1;
++	    } else
++	        return -1;
++	}
++	else
++	{
++		ifc_disable("wlan0");
++
++		return 0;
++	}
++
+ #else
+-#ifdef WIFI_DRIVER_STATE_CTRL_PARAM
+-    if (is_wifi_driver_loaded()) {
+-        if (wifi_change_driver_state(WIFI_DRIVER_STATE_OFF) < 0)
+-            return -1;
+-    }
+-#endif
+     property_set(DRIVER_PROP_NAME, "unloaded");
+     return 0;
+ #endif
+@@ -802,11 +866,11 @@
+ {
+     switch (fw_type) {
+     case WIFI_GET_FW_PATH_STA:
+-        return WIFI_DRIVER_FW_PATH_STA;
++        return get_fw_path_sta();
+     case WIFI_GET_FW_PATH_AP:
+-        return WIFI_DRIVER_FW_PATH_AP;
++        return get_fw_path_ap();
+     case WIFI_GET_FW_PATH_P2P:
+-        return WIFI_DRIVER_FW_PATH_P2P;
++        return get_fw_path_p2p();
+     }
+     return NULL;
+ }
+@@ -816,10 +880,25 @@
+     int len;
+     int fd;
+     int ret = 0;
++    char wifi_driver_fw_patch_param[256] = {0};
++
++    ALOGD("Eneter: %s, fwpath = %s.\n", __FUNCTION__, fwpath);
++    if(strncmp(get_wifi_vendor_name(), "realtek", strlen("realtek")) == 0) {
++        return 0;
++    } else if(strncmp(get_wifi_vendor_name(), "xradio", strlen("xradio")) == 0) {
++        return 0;
++    } else if(strncmp(get_wifi_vendor_name(), "atheros", strlen("atheros")) == 0) {
++        return 0;
++    } else if(strncmp(get_wifi_vendor_name(), "broadcom", strlen("broadcom")) == 0) {
++        snprintf(wifi_driver_fw_patch_param, sizeof(wifi_driver_fw_patch_param),
++                "/sys/module/%s/parameters/firmware_path", get_wifi_driver_name());
++    } else {
++        strcpy(wifi_driver_fw_patch_param, WIFI_DRIVER_FW_PATH_PARAM);
++    }
+ 
+     if (!fwpath)
+         return ret;
+-    fd = TEMP_FAILURE_RETRY(open(WIFI_DRIVER_FW_PATH_PARAM, O_WRONLY));
++    fd = TEMP_FAILURE_RETRY(open(wifi_driver_fw_patch_param, O_WRONLY));
+     if (fd < 0) {
+         ALOGE("Failed to open wlan fw path param (%s)", strerror(errno));
+         return -1;
+Only in ../Desktop/android/hardware/libhardware_legacy: wifi_hardware_info
+Only in ../Desktop/android/hardware: realtek

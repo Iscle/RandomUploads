@@ -1,0 +1,1505 @@
+Only in ../Desktop/android/build: build.sh
+diff -ur ../aosp/build/core/base_rules.mk ../Desktop/android/build/core/base_rules.mk
+--- ../aosp/build/core/base_rules.mk	2018-08-06 15:34:26.642579529 +0200
++++ ../Desktop/android/build/core/base_rules.mk	2017-11-23 05:17:53.000000000 +0100
+@@ -85,17 +85,17 @@
+ 
+ # User tags are not allowed anymore.  Fail early because it will not be installed
+ # like it used to be.
+-ifneq ($(filter $(my_module_tags),user),)
+-  $(warning *** Module name: $(LOCAL_MODULE))
+-  $(warning *** Makefile location: $(LOCAL_MODULE_MAKEFILE))
+-  $(warning * )
+-  $(warning * Module is attempting to use the 'user' tag.  This)
+-  $(warning * used to cause the module to be installed automatically.)
+-  $(warning * Now, the module must be listed in the PRODUCT_PACKAGES)
+-  $(warning * section of a product makefile to have it installed.)
+-  $(warning * )
+-  $(error user tag detected on module.)
+-endif
++#ifneq ($(filter $(my_module_tags),user),)
++#  $(warning *** Module name: $(LOCAL_MODULE))
++#  $(warning *** Makefile location: $(LOCAL_MODULE_MAKEFILE))
++#  $(warning * )
++#  $(warning * Module is attempting to use the 'user' tag.  This)
++#  $(warning * used to cause the module to be installed automatically.)
++#  $(warning * Now, the module must be listed in the PRODUCT_PACKAGES)
++#  $(warning * section of a product makefile to have it installed.)
++#  $(warning * )
++#  $(error user tag detected on module.)
++#endif
+ 
+ # Only the tags mentioned in this test are expected to be set by module
+ # makefiles. Anything else is either a typo or a source of unexpected
+diff -ur ../aosp/build/core/binary.mk ../Desktop/android/build/core/binary.mk
+--- ../aosp/build/core/binary.mk	2018-08-06 15:34:26.642579529 +0200
++++ ../Desktop/android/build/core/binary.mk	2017-11-23 05:17:53.000000000 +0100
+@@ -8,7 +8,7 @@
+ #######################################
+ include $(BUILD_SYSTEM)/base_rules.mk
+ #######################################
+-
++include $(BUILD_SYSTEM)/device_config.mk
+ ##################################################
+ # Compute the dependency of the shared libraries
+ ##################################################
+diff -ur ../aosp/build/core/cleanbuild.mk ../Desktop/android/build/core/cleanbuild.mk
+--- ../aosp/build/core/cleanbuild.mk	2018-08-06 15:34:26.654579683 +0200
++++ ../Desktop/android/build/core/cleanbuild.mk	2017-11-23 05:17:53.000000000 +0100
+@@ -229,6 +229,7 @@
+ 	$(HOST_OUT)/obj/NOTICE_FILES \
+ 	$(HOST_OUT)/sdk \
+ 	$(PRODUCT_OUT)/*.img \
++	$(PRODUCT_OUT)/*.fex \
+ 	$(PRODUCT_OUT)/*.ini \
+ 	$(PRODUCT_OUT)/*.txt \
+ 	$(PRODUCT_OUT)/*.xlb \
+@@ -242,6 +243,7 @@
+ 	$(PRODUCT_OUT)/recovery \
+ 	$(PRODUCT_OUT)/root \
+ 	$(PRODUCT_OUT)/system \
++	$(PRODUCT_OUT)/verity \
+ 	$(PRODUCT_OUT)/vendor \
+ 	$(PRODUCT_OUT)/oem \
+ 	$(PRODUCT_OUT)/dex_bootjars \
+Only in ../Desktop/android/build/core: device_config.mk
+diff -ur ../aosp/build/core/main.mk ../Desktop/android/build/core/main.mk
+--- ../aosp/build/core/main.mk	2018-08-06 15:34:26.678579993 +0200
++++ ../Desktop/android/build/core/main.mk	2017-11-23 05:17:53.000000000 +0100
+@@ -956,7 +956,8 @@
+ 	$(INSTALLED_CACHEIMAGE_TARGET) \
+ 	$(INSTALLED_VENDORIMAGE_TARGET) \
+ 	$(INSTALLED_FILES_FILE) \
+-	$(INSTALLED_FILES_FILE_VENDOR)
++	$(INSTALLED_FILES_FILE_VENDOR) \
++	verity_block
+ 
+ # dist_files only for putting your library into the dist directory with a full build.
+ .PHONY: dist_files
+diff -ur ../aosp/build/core/Makefile ../Desktop/android/build/core/Makefile
+--- ../aosp/build/core/Makefile	2018-08-06 15:34:26.630579375 +0200
++++ ../Desktop/android/build/core/Makefile	2017-11-23 05:17:53.000000000 +0100
+@@ -1194,6 +1194,14 @@
+ .PHONY: stnod
+ stnod: systemtarball-nodeps
+ 
++######### verity_block ######
++
++VERITY_BLOCK :=$(PRODUCT_OUT)/verity_block.img
++verity_block: $(INSTALLED_SYSTEMIMAGE)
++	build/tools/verity/gen_file_verify_block.sh -s ${PRODUCT_OUT}/system \
++		-o ${PRODUCT_OUT}/verity_block.img
++.PHONY: verity_block
++
+ # -----------------------------------------------------------------
+ ## platform.zip: system, plus other files to be used in PDK fusion build,
+ ## in a zip file
+@@ -1585,8 +1593,25 @@
+   fi
+ endef
+ 
+-built_ota_tools :=
++toc0_file := \
++	$(PRODUCT_OUT)/toc0.fex
++
++uboot_files := \
++	$(PRODUCT_OUT)/bootloader.fex \
++	$(PRODUCT_OUT)/env.fex \
++	$(PRODUCT_OUT)/boot0_nand.fex \
++	$(PRODUCT_OUT)/boot0_sdcard.fex \
++	$(PRODUCT_OUT)/toc1.fex \
++	$(PRODUCT_OUT)/uboot_nand.fex \
++	$(PRODUCT_OUT)/uboot_sdcard.fex \
++	$(toc0_file)
++
++$(toc0_file) : \
++	$(INSTALLED_BOOTIMAGE_TARGET) \
++	$(INSTALLED_RECOVERYIMAGE_TARGET)
++	$(hide) source build/envsetup.sh && get_uboot
+ 
++built_ota_tools :=
+ # We can't build static executables when SANITIZE_TARGET=address
+ ifeq ($(strip $(SANITIZE_TARGET)),)
+ built_ota_tools += \
+@@ -1594,6 +1619,7 @@
+ endif
+ 
+ $(BUILT_TARGET_FILES_PACKAGE): PRIVATE_OTA_TOOLS := $(built_ota_tools)
++$(BUILT_TARGET_FILES_PACKAGE): PRIVATE_OTA_UBOOT := $(uboot_files)
+ 
+ $(BUILT_TARGET_FILES_PACKAGE): PRIVATE_RECOVERY_API_VERSION := $(RECOVERY_API_VERSION)
+ $(BUILT_TARGET_FILES_PACKAGE): PRIVATE_RECOVERY_FSTAB_VERSION := $(RECOVERY_FSTAB_VERSION)
+@@ -1629,6 +1655,7 @@
+ 		$(INSTALLED_VENDORIMAGE_TARGET) \
+ 		$(INSTALLED_ANDROID_INFO_TXT_TARGET) \
+ 		$(SELINUX_FC) \
++		$(toc0_file) \
+ 		$(APKCERTS_FILE) \
+ 		$(HOST_OUT_EXECUTABLES)/fs_config \
+ 		| $(ACP)
+@@ -1703,6 +1730,8 @@
+ 	@# Extra contents of the OTA package
+ 	$(hide) mkdir -p $(zip_root)/OTA
+ 	$(hide) $(ACP) $(INSTALLED_ANDROID_INFO_TXT_TARGET) $(zip_root)/OTA/
++	$(hide) $(ACP) -r $(PRIVATE_OTA_UBOOT) $(zip_root)/
++
+ ifneq ($(AB_OTA_UPDATER),true)
+ ifneq ($(built_ota_tools),)
+ 	$(hide) mkdir -p $(zip_root)/OTA/bin
+@@ -1798,6 +1827,12 @@
+ 	@# If breakpad symbols have been generated, add them to the zip.
+ 	$(hide) $(ACP) -r $(TARGET_OUT_BREAKPAD) $(zip_root)/BREAKPAD
+ endif
++
++	#Prepare SYSTEM verity block for target
++	$(hide) rm -rf ${PRODUCT_OUT}/verity/
++	$(hide) build/tools/verity/gen_file_verify_block.sh -s $(zip_root)/SYSTEM \
++		-o ${zip_root}/verity_block.img
++
+ 	@# Zip everything up, preserving symlinks and placing META/ files first to
+ 	@# help early validation of the .zip file while uploading it.
+ 	$(hide) (cd $(zip_root) && \
+@@ -1843,7 +1878,6 @@
+ 	@echo "Package OTA: $@"
+ 	$(hide) PATH=$(foreach p,$(INTERNAL_USERIMAGES_BINARY_PATHS),$(p):)$$PATH MKBOOTIMG=$(MKBOOTIMG) \
+ 	   ./build/tools/releasetools/ota_from_target_files -v \
+-	   --block \
+ 	   -p $(HOST_OUT) \
+ 	   -k $(KEY_CERT_PAIR) \
+ 	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
+@@ -1854,6 +1888,88 @@
+ 
+ endif    # build_ota_package
+ 
++
++# -----------------------------------------------------------------
++# OTA test boot update package
++
++name := $(TARGET_PRODUCT)
++ifeq ($(TARGET_BUILD_TYPE),debug)
++  name := $(name)_debug
++endif
++name := $(name)-ota-$(FILE_NAME_TAG)
++
++INTERNAL_OTA_BOOTTEST_PACKAGE_TARGET := $(PRODUCT_OUT)/$(name)_boottest.zip
++
++$(INTERNAL_OTA_BOOTTEST_PACKAGE_TARGET): KEY_CERT_PAIR := $(DEFAULT_KEY_CERT_PAIR)
++
++$(INTERNAL_OTA_BOOTTEST_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
++	@echo "Package OTA_testboot: $@"
++	$(hide) PATH=$(foreach p,$(INTERNAL_USERIMAGES_BINARY_PATHS),$(p):)$$PATH MKBOOTIMG=$(MKBOOTIMG) \
++	   ./build/tools/releasetools/ota_from_target_files -v \
++	   --test_boot_ota \
++	   -p $(HOST_OUT) \
++	   -k $(KEY_CERT_PAIR) \
++	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
++	   $(BUILT_TARGET_FILES_PACKAGE) $@
++
++.PHONY: otapackage_boottest
++otapackage_boottest: $(INTERNAL_OTA_BOOTTEST_PACKAGE_TARGET)
++
++
++# -----------------------------------------------------------------
++# OTA test kernel update package
++
++name := $(TARGET_PRODUCT)
++ifeq ($(TARGET_BUILD_TYPE),debug)
++  name := $(name)_debug
++endif
++name := $(name)-ota-$(FILE_NAME_TAG)
++
++INTERNAL_OTA_KERNELTEST_PACKAGE_TARGET := $(PRODUCT_OUT)/$(name)_kerneltest.zip
++
++$(INTERNAL_OTA_KERNELTEST_PACKAGE_TARGET): KEY_CERT_PAIR := $(DEFAULT_KEY_CERT_PAIR)
++
++$(INTERNAL_OTA_KERNELTEST_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE)
++	@echo "Package OTA_kernelboot: $@"
++	$(hide) PATH=$(foreach p,$(INTERNAL_USERIMAGES_BINARY_PATHS),$(p):)$$PATH MKBOOTIMG=$(MKBOOTIMG) \
++	   ./build/tools/releasetools/ota_from_target_files -v \
++	   --test_kernel_ota \
++	   -p $(HOST_OUT) \
++	   -k $(KEY_CERT_PAIR) \
++	   $(if $(OEM_OTA_CONFIG), -o $(OEM_OTA_CONFIG)) \
++	   $(BUILT_TARGET_FILES_PACKAGE) $@
++
++.PHONY: otapackage_kerneltest
++otapackage_kerneltest: $(INTERNAL_OTA_KERNELTEST_PACKAGE_TARGET)
++
++
++
++# -----------------------------------------------------------------
++# OTA update package from old_target_files.zip
++
++name := $(TARGET_PRODUCT)
++ifeq ($(TARGET_BUILD_TYPE),debug)
++  name := $(name)_debug
++endif
++name := $(name)-ota-$(FILE_NAME_TAG)-inc
++
++INTERNAL_OTA_PACKAGE_TARGET_INC := $(PRODUCT_OUT)/$(name).zip
++
++$(INTERNAL_OTA_PACKAGE_TARGET_INC): KEY_CERT_PAIR := $(DEFAULT_KEY_CERT_PAIR)
++
++$(INTERNAL_OTA_PACKAGE_TARGET_INC): $(BUILT_TARGET_FILES_PACKAGE) $(OTATOOLS)
++	@echo "Package OTA: $@"
++	$(hide) ./build/tools/releasetools/ota_from_target_files -v \
++	   -p $(HOST_OUT) \
++           -k $(KEY_CERT_PAIR) \
++			-i ./old_target_files.zip \
++           $(BUILT_TARGET_FILES_PACKAGE) $@
++
++.PHONY: otapackage_inc
++otapackage_inc: $(INTERNAL_OTA_PACKAGE_TARGET_INC)
++
++
++
+ # -----------------------------------------------------------------
+ # The update package
+ 
+diff -ur ../aosp/build/core/pathmap.mk ../Desktop/android/build/core/pathmap.mk
+--- ../aosp/build/core/pathmap.mk	2018-08-06 15:34:26.682580045 +0200
++++ ../Desktop/android/build/core/pathmap.mk	2017-11-23 05:17:53.000000000 +0100
+@@ -75,6 +75,7 @@
+ #
+ FRAMEWORKS_BASE_SUBDIRS := \
+ 	$(addsuffix /java, \
++            services/net \
+ 	    core \
+ 	    graphics \
+ 	    location \
+@@ -90,6 +91,16 @@
+ 	    wifi \
+ 	    keystore \
+ 	    rs \
++	    ../../device/softwinner/common/addons/framework/gpio \
++	    ../../device/softwinner/common/addons/framework/systemmix \
++	    ../../device/softwinner/common/addons/framework/admanager \
++	    ../../device/softwinner/common/addons/framework/nfsmanager \
++	    ../../device/softwinner/common/addons/framework/os \
++	    ../../device/softwinner/common/addons/framework/securefile \
++	    ../../device/softwinner/common/addons/framework/utils \
++            ../../device/softwinner/common/addons/framework/audio \
++            ../../device/softwinner/common/addons/framework/display \
++            ../../vendor/operator/cmcc/frameworks/network \
+ 	 )
+ 
+ #
+diff -ur ../aosp/build/core/tasks/check_boot_jars/package_whitelist.txt ../Desktop/android/build/core/tasks/check_boot_jars/package_whitelist.txt
+--- ../aosp/build/core/tasks/check_boot_jars/package_whitelist.txt	2018-08-06 15:34:26.710580405 +0200
++++ ../Desktop/android/build/core/tasks/check_boot_jars/package_whitelist.txt	2017-11-23 05:17:53.000000000 +0100
+@@ -227,3 +227,7 @@
+ org\.apache\.xalan\.processor
+ org\.apache\.xalan\.transformer
+ org\.apache\.xalan\.xslt
++####################################
++# com.softwinner
++com\.softwinner
++com\.softwinner\..*
+diff -ur ../aosp/build/envsetup.sh ../Desktop/android/build/envsetup.sh
+--- ../aosp/build/envsetup.sh	2018-08-06 15:34:26.710580405 +0200
++++ ../Desktop/android/build/envsetup.sh	2017-11-23 05:17:53.000000000 +0100
+@@ -260,6 +260,8 @@
+     unset ANDROID_HOST_OUT
+     export ANDROID_HOST_OUT=$(get_abs_build_var HOST_OUT)
+ 
++    tdevice=$(get_build_var TARGET_DEVICE)
++    export DEVICE=$T/device/*/$tdevice
+     # needed for building linux on MacOS
+     # TODO: fix the path
+     #export HOST_EXTRACFLAGS="-I "$T/system/kernel_headers/host_include
+@@ -1132,7 +1134,7 @@
+     Darwin)
+         function sgrep()
+         {
+-            find -E . -name .repo -prune -o -name .git -prune -o  -type f -iregex '.*\.(c|h|cc|cpp|S|java|xml|sh|mk|aidl|vts)' \
++            find -E . -name .repo -prune -o -name .git -prune -o  -type f -iregex '.*\.(c|h|cc|cpp|S|java|xml|sh|mk|aidl|vts|rc)' \
+                 -exec grep --color -n "$@" {} +
+         }
+ 
+@@ -1140,7 +1142,7 @@
+     *)
+         function sgrep()
+         {
+-            find . -name .repo -prune -o -name .git -prune -o  -type f -iregex '.*\.\(c\|h\|cc\|cpp\|S\|java\|xml\|sh\|mk\|aidl\|vts\)' \
++            find . -name .repo -prune -o -name .git -prune -o  -type f -iregex '.*\.\(c\|h\|cc\|cpp\|S\|java\|xml\|sh\|mk\|aidl\|vts\|rc\)' \
+                 -exec grep --color -n "$@" {} +
+         }
+         ;;
+diff -ur ../aosp/build/target/product/core_minimal.mk ../Desktop/android/build/target/product/core_minimal.mk
+--- ../aosp/build/target/product/core_minimal.mk	2018-08-06 15:34:26.726580612 +0200
++++ ../Desktop/android/build/target/product/core_minimal.mk	2017-11-23 05:17:53.000000000 +0100
+@@ -80,7 +80,8 @@
+     uncrypt \
+     voip-common \
+     webview \
+-    wifi-service
++    wifi-service \
++    pppoe-service
+ 
+ PRODUCT_COPY_FILES += \
+     frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml
+@@ -105,7 +106,8 @@
+ PRODUCT_SYSTEM_SERVER_JARS := \
+     services \
+     ethernet-service \
+-    wifi-service
++    wifi-service \
++    pppoe-service
+ 
+ # Adoptable external storage supports both ext4 and f2fs
+ PRODUCT_PACKAGES += \
+Only in ../Desktop/android/build/target/product: speed_version
+diff -ur ../aosp/build/tools/releasetools/common.py ../Desktop/android/build/tools/releasetools/common.py
+--- ../aosp/build/tools/releasetools/common.py	2018-08-06 15:34:26.902582883 +0200
++++ ../Desktop/android/build/tools/releasetools/common.py	2017-11-23 05:17:53.000000000 +0100
+@@ -1711,3 +1711,13 @@
+   print "putting script in", sh_location
+ 
+   output_sink(sh_location, sh)
++
++def GetFex(name, path):
++  if os.path.exists(path):
++    fex=open(path)
++    data=fex.read()
++    fex.close()
++    return File(name, data)
++  else:
++    print " %s is not exist " % (path)
++    return File(name, "")
+diff -ur ../aosp/build/tools/releasetools/edify_generator.py ../Desktop/android/build/tools/releasetools/edify_generator.py
+--- ../aosp/build/tools/releasetools/edify_generator.py	2018-08-06 15:34:26.902582883 +0200
++++ ../Desktop/android/build/tools/releasetools/edify_generator.py	2017-11-23 05:17:53.000000000 +0100
+@@ -406,3 +406,26 @@
+       data = open(input_path, "rb").read()
+     common.ZipWriteStr(output_zip, "META-INF/com/google/android/update-binary",
+                        data, perms=0o755)
++
++  def MarkOtaState(self, state):
++    self.script.append('markOtaState(%s);' % (state))
++
++  def Sleep(self, time):
++    self.script.append('sleep(%d);' % time)
++
++  def Abort(self):
++    self.script.append('abort();')
++
++  def WriteRawFex(self,mount_point,fn):
++    self.script.append('package_extract_file("%s","%s");' % (fn,mount_point))
++
++  def BurnBoot(self,boot):
++    self.script.append('burnboot(%d);'%(boot))
++
++  def VerifyBootImage(self):
++    """Verify the boot image before burning"""
++    self.script.append('verify_boot_image()||abort("boot.image verify failed\\n\\nOTA package sign failed\\n");')
++
++  def VerifyToc(self,num):
++    """Verify the toc before burning"""
++    self.script.append('verify_toc(%d)||abort("toc(%d) verify failed\\n\\nOTA package sign failed\\n");'%(num,num))
+diff -ur ../aosp/build/tools/releasetools/img_from_target_files ../Desktop/android/build/tools/releasetools/img_from_target_files
+--- ../aosp/build/tools/releasetools/img_from_target_files	2018-08-06 15:34:26.906582933 +0200
++++ ../Desktop/android/build/tools/releasetools/img_from_target_files	2017-11-23 05:17:53.000000000 +0100
+@@ -88,6 +88,9 @@
+             continue
+           common.ZipWrite(
+               output_zip, os.path.join(images_path, image), image)
++
++        verity_block = common.GetFex("verity_block.img", OPTIONS.input_tmp + str("/verity_block.img"))
++        common.ZipWriteStr(output_zip, "verity_block.img", verity_block.data)
+         done = True
+ 
+     if not done:
+@@ -108,6 +111,9 @@
+         if recovery_image:
+           recovery_image.AddToZip(output_zip)
+ 
++      verity_block = common.GetFex("verity_block.img", OPTIONS.input_tmp + str("/verity_block.img"))
++      common.ZipWriteStr(output_zip, "verity_block.img", verity_block.data)
++
+       def banner(s):
+         print "\n\n++++ " + s + " ++++\n\n"
+ 
+diff -ur ../aosp/build/tools/releasetools/img_from_target_files.py ../Desktop/android/build/tools/releasetools/img_from_target_files.py
+--- ../aosp/build/tools/releasetools/img_from_target_files.py	2018-08-06 15:34:26.906582933 +0200
++++ ../Desktop/android/build/tools/releasetools/img_from_target_files.py	2017-11-23 05:17:53.000000000 +0100
+@@ -88,6 +88,9 @@
+             continue
+           common.ZipWrite(
+               output_zip, os.path.join(images_path, image), image)
++
++        verity_block = common.GetFex("verity_block.img", OPTIONS.input_tmp + str("/verity_block.img"))
++        common.ZipWriteStr(output_zip, "verity_block.img", verity_block.data)
+         done = True
+ 
+     if not done:
+@@ -108,6 +111,9 @@
+         if recovery_image:
+           recovery_image.AddToZip(output_zip)
+ 
++      verity_block = common.GetFex("verity_block.img", OPTIONS.input_tmp + str("/verity_block.img"))
++      common.ZipWriteStr(output_zip, "verity_block.img", verity_block.data)
++
+       def banner(s):
+         print "\n\n++++ " + s + " ++++\n\n"
+ 
+diff -ur ../aosp/build/tools/releasetools/ota_from_target_files ../Desktop/android/build/tools/releasetools/ota_from_target_files
+--- ../aosp/build/tools/releasetools/ota_from_target_files	2018-08-06 15:34:26.906582933 +0200
++++ ../Desktop/android/build/tools/releasetools/ota_from_target_files	2017-11-23 05:17:53.000000000 +0100
+@@ -113,6 +113,12 @@
+       Generate a log file that shows the differences in the source and target
+       builds for an incremental package. This option is only meaningful when
+       -i is specified.
++
++  --test_boot_ota
++      make test ota package to test boot0,uboot0,env.fex,bootloader.fex update.
++
++  --test_kernel_ota
++     make test ota package to test boot.img update.
+ """
+ 
+ import sys
+@@ -160,6 +166,8 @@
+ OPTIONS.stash_threshold = 0.8
+ OPTIONS.gen_verify = False
+ OPTIONS.log_diff = None
++OPTIONS.test_boot = False
++OPTIONS.test_kernel = False
+ 
+ def MostPopularKey(d, default):
+   """Given a dict, return the key corresponding to the largest
+@@ -564,7 +572,7 @@
+   if not OPTIONS.omit_prereq:
+     ts = GetBuildProp("ro.build.date.utc", OPTIONS.info_dict)
+     ts_text = GetBuildProp("ro.build.date", OPTIONS.info_dict)
+-    script.AssertOlderBuild(ts, ts_text)
++    #script.AssertOlderBuild(ts, ts_text)
+ 
+   AppendAssertions(script, OPTIONS.info_dict, oem_dict)
+   device_specific.FullOTA_Assertions()
+@@ -632,6 +640,13 @@
+   system_items = ItemSet("system", "META/filesystem_config.txt")
+   script.ShowProgress(system_progress, 0)
+ 
++  script.Print("Verifying boot image...")
++  script.VerifyBootImage()
++  script.Print("Verifying toc1 image...")
++  script.VerifyToc(1)
++  script.Print("Verifying toc0 image...")
++  script.VerifyToc(0)
++
+   if block_based:
+     # Full OTA is done as an "incremental" against an empty source
+     # image.  This has the effect of writing new data from the package
+@@ -691,6 +706,39 @@
+   script.ShowProgress(0.05, 5)
+   script.WriteRawImage("/boot", "boot.img")
+ 
++  script.ShowProgress(0.1, 0)
++  print("pack uboot to OTA package...")
++  script.Print("Update boot source...")
++  bootloader_fex = common.GetFex("bootloader.fex",OPTIONS.target_tmp+str("/bootloader.fex"))
++  common.ZipWriteStr(output_zip, "bootloader.fex", bootloader_fex.data)
++  script.WriteRawFex("/dev/block/by-name/bootloader", "bootloader.fex")
++
++  env_fex = common.GetFex("env.fex",OPTIONS.target_tmp+str("/env.fex"))
++  common.ZipWriteStr(output_zip,"env.fex",env_fex.data)
++  script.WriteRawFex("/dev/block/by-name/env","env.fex")
++
++  verity_block = common.GetFex("verity_block.img",OPTIONS.target_tmp+str("/verity_block.img"))
++  common.ZipWriteStr(output_zip,"verity_block.img",verity_block.data)
++  script.WriteRawFex("/dev/block/by-name/verity_block", "verity_block.img")
++
++  toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  common.ZipWriteStr(output_zip,"toc1.fex",toc1.data)
++
++  toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  common.ZipWriteStr(output_zip,"toc0.fex",toc0.data)
++  uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  common.ZipWriteStr(output_zip,"uboot_nand.fex",uboot_nand.data)
++  uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"uboot_sdcard.fex",uboot_sdcard.data)
++  boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  common.ZipWriteStr(output_zip,"boot0_nand.fex",boot0_nand.data)
++  boot0_nand = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"boot0_sdcard.fex",boot0_nand.data)
++
++  script.BurnBoot(1);
++  script.BurnBoot(0);
++
++
+   script.ShowProgress(0.2, 10)
+   device_specific.FullOTA_InstallEnd()
+ 
+@@ -721,6 +769,191 @@
+   metadata["ota-required-cache"] = str(script.required_cache)
+   WriteMetadata(metadata, output_zip)
+ 
++def WriteOTABootTestPackage(input_zip, output_zip):
++  # TODO: how to determine this?  We don't know what version it will
++  # be installed on top of. For now, we expect the API just won't
++  # change very often. Similarly for fstab, it might have changed
++  # in the target build.
++  script = edify_generator.EdifyGenerator(3, OPTIONS.info_dict)
++
++  oem_props = OPTIONS.info_dict.get("oem_fingerprint_properties")
++  recovery_mount_options = OPTIONS.info_dict.get("recovery_mount_options")
++  oem_dict = None
++  if oem_props is not None and len(oem_props) > 0:
++    if OPTIONS.oem_source is None:
++      raise common.ExternalError("OEM source required for this build")
++    if not OPTIONS.oem_no_mount:
++      script.Mount("/oem", recovery_mount_options)
++    oem_dict = common.LoadDictionaryFromLines(
++        open(OPTIONS.oem_source).readlines())
++
++  metadata = {
++      "post-build": CalculateFingerprint(oem_props, oem_dict,
++                                         OPTIONS.info_dict),
++      "pre-device": GetOemProperty("ro.product.device", oem_props, oem_dict,
++                                   OPTIONS.info_dict),
++      "post-timestamp": GetBuildProp("ro.build.date.utc", OPTIONS.info_dict),
++  }
++
++  device_specific = common.DeviceSpecificParams(
++      input_zip=input_zip,
++      input_version=OPTIONS.info_dict["recovery_api_version"],
++      output_zip=output_zip,
++      script=script,
++      input_tmp=OPTIONS.input_tmp,
++      metadata=metadata,
++      info_dict=OPTIONS.info_dict)
++
++  has_recovery_patch = HasRecoveryPatch(input_zip)
++  block_based = OPTIONS.block_based and has_recovery_patch
++
++  metadata["ota-type"] = "BLOCK" if block_based else "FILE"
++
++  if not OPTIONS.omit_prereq:
++    ts = GetBuildProp("ro.build.date.utc", OPTIONS.info_dict)
++    ts_text = GetBuildProp("ro.build.date", OPTIONS.info_dict)
++    #script.AssertOlderBuild(ts, ts_text)
++
++  AppendAssertions(script, OPTIONS.info_dict, oem_dict)
++  device_specific.FullOTA_Assertions()
++
++  device_specific.FullOTA_InstallBegin()
++
++  system_progress = 0.75
++
++  script.Print("Verifying toc1 image...")
++  script.VerifyToc(1)
++  script.Print("Verifying toc0 image...")
++  script.VerifyToc(0)
++
++  script.ShowProgress(0.1, 0)
++  print("pack uboot to OTA package...")
++  script.Print("Update boot source...")
++
++  toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  common.ZipWriteStr(output_zip,"toc1.fex",toc1.data)
++
++  toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  common.ZipWriteStr(output_zip,"toc0.fex",toc0.data)
++  uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  common.ZipWriteStr(output_zip,"uboot_nand.fex",uboot_nand.data)
++  uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"uboot_sdcard.fex",uboot_sdcard.data)
++  boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  common.ZipWriteStr(output_zip,"boot0_nand.fex",boot0_nand.data)
++  boot0_nand = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"boot0_sdcard.fex",boot0_nand.data)
++
++  script.BurnBoot(1);
++  script.BurnBoot(0);
++
++
++  script.ShowProgress(0.2, 10)
++  device_specific.FullOTA_InstallEnd()
++
++  if OPTIONS.extra_script is not None:
++    script.AppendExtra(OPTIONS.extra_script)
++
++
++  script.SetProgress(1)
++  script.AddToZip(input_zip, output_zip, input_path=OPTIONS.updater_binary)
++  metadata["ota-required-cache"] = str(script.required_cache)
++  WriteMetadata(metadata, output_zip)
++
++
++
++def WriteOTAKernelTestPackage(input_zip, output_zip):
++  # TODO: how to determine this?  We don't know what version it will
++  # be installed on top of. For now, we expect the API just won't
++  # change very often. Similarly for fstab, it might have changed
++  # in the target build.
++  script = edify_generator.EdifyGenerator(3, OPTIONS.info_dict)
++
++  oem_props = OPTIONS.info_dict.get("oem_fingerprint_properties")
++  recovery_mount_options = OPTIONS.info_dict.get("recovery_mount_options")
++  oem_dict = None
++  if oem_props is not None and len(oem_props) > 0:
++    if OPTIONS.oem_source is None:
++      raise common.ExternalError("OEM source required for this build")
++    if not OPTIONS.oem_no_mount:
++      script.Mount("/oem", recovery_mount_options)
++    oem_dict = common.LoadDictionaryFromLines(
++        open(OPTIONS.oem_source).readlines())
++
++  metadata = {
++      "post-build": CalculateFingerprint(oem_props, oem_dict,
++                                         OPTIONS.info_dict),
++      "pre-device": GetOemProperty("ro.product.device", oem_props, oem_dict,
++                                   OPTIONS.info_dict),
++      "post-timestamp": GetBuildProp("ro.build.date.utc", OPTIONS.info_dict),
++  }
++
++  device_specific = common.DeviceSpecificParams(
++      input_zip=input_zip,
++      input_version=OPTIONS.info_dict["recovery_api_version"],
++      output_zip=output_zip,
++      script=script,
++      input_tmp=OPTIONS.input_tmp,
++      metadata=metadata,
++      info_dict=OPTIONS.info_dict)
++
++  has_recovery_patch = HasRecoveryPatch(input_zip)
++  block_based = OPTIONS.block_based and has_recovery_patch
++
++  metadata["ota-type"] = "BLOCK" if block_based else "FILE"
++
++  if not OPTIONS.omit_prereq:
++    ts = GetBuildProp("ro.build.date.utc", OPTIONS.info_dict)
++    ts_text = GetBuildProp("ro.build.date", OPTIONS.info_dict)
++    #script.AssertOlderBuild(ts, ts_text)
++
++  AppendAssertions(script, OPTIONS.info_dict, oem_dict)
++  device_specific.FullOTA_Assertions()
++
++
++  # Dump fingerprints
++  script.Print("Target: %s" % CalculateFingerprint(
++      oem_props, oem_dict, OPTIONS.info_dict))
++
++  device_specific.FullOTA_InstallBegin()
++
++  system_progress = 0.75
++
++
++  script.Print("Verifying boot image...")
++  script.VerifyBootImage()
++
++  boot_img = common.GetBootableImage(
++      "boot.img", "boot.img", OPTIONS.input_tmp, "BOOT")
++
++  common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
++  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
++
++  script.ShowProgress(0.05, 5)
++  script.WriteRawImage("/boot", "boot.img")
++
++  script.ShowProgress(0.1, 0)
++  print("pack uboot to OTA package...")
++  script.Print("Update boot source...")
++
++  toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  common.ZipWriteStr(output_zip,"toc1.fex",toc1.data)
++
++  toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  common.ZipWriteStr(output_zip,"toc0.fex",toc0.data)
++
++  script.ShowProgress(0.2, 10)
++  device_specific.FullOTA_InstallEnd()
++
++  if OPTIONS.extra_script is not None:
++    script.AppendExtra(OPTIONS.extra_script)
++
++
++  script.SetProgress(1)
++  script.AddToZip(input_zip, output_zip, input_path=OPTIONS.updater_binary)
++  metadata["ota-required-cache"] = str(script.required_cache)
++  WriteMetadata(metadata, output_zip)
++
+ 
+ def WritePolicyConfig(file_name, output_zip):
+   common.ZipWrite(output_zip, file_name, os.path.basename(file_name))
+@@ -893,6 +1126,37 @@
+   else:
+     vendor_diff = None
+ 
++  source_bootloader = common.GetFex("bootloader.fex",OPTIONS.source_tmp+str("/bootloader.fex"))
++  target_bootloader = common.GetFex("bootloader.fex",OPTIONS.target_tmp+str("/bootloader.fex"))
++  updating_bootloader = (source_bootloader.data != target_bootloader.data)
++
++  source_env = common.GetFex("env.fex",OPTIONS.source_tmp+str("/env.fex"))
++  target_env = common.GetFex("env.fex",OPTIONS.target_tmp+str("/env.fex"))
++  updating_env = (source_env.data != target_env.data)
++
++  source_toc0 = common.GetFex("toc0.fex",OPTIONS.source_tmp+str("/toc0.fex"))
++  target_toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  updating_toc0 = (source_toc0.data != target_toc0.data)
++
++  source_toc1 = common.GetFex("toc1.fex",OPTIONS.source_tmp+str("/toc1.fex"))
++  target_toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  updating_toc1 = (source_toc1.data != target_toc1.data)
++
++  source_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.source_tmp+str("/boot0_nand.fex"))
++  target_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  source_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.source_tmp+str("/boot0_sdcard.fex"))
++  target_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  updating_boot0 = (source_boot0_nand.data != target_boot0_nand.data) or (source_boot0_sdcard.data != target_boot0_sdcard.data)
++  source_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.source_tmp+str("/uboot_nand.fex"))
++  target_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  source_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.source_tmp+str("/uboot_sdcard.fex"))
++  target_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  updating_uboot = (source_uboot_nand.data != target_uboot_nand.data) or (source_uboot_sdcard.data != target_uboot_sdcard.data)
++
++  source_verity = common.GetFex("verity_block.img",OPTIONS.source_tmp+str("/verity_block.img"))
++  target_verity = common.GetFex("verity_block.img",OPTIONS.target_tmp+str("/verity_block.img"))
++  updating_verity = (source_verity.data != target_verity.data)
++
+   AppendAssertions(script, OPTIONS.target_info_dict, oem_dict)
+   device_specific.IncrementalOTA_Assertions()
+ 
+@@ -1050,6 +1314,44 @@
+     else:
+       print "boot image unchanged; skipping."
+ 
++  if updating_bootloader:
++    print "bootloader fex changed; including."
++    common.ZipWriteStr(output_zip, "bootloader.fex", target_bootloader.data)
++    script.WriteRawFex("/dev/block/by-name/bootloader", "bootloader.fex")
++  else:
++    print "bootloader fex unchanged; skipping."
++
++  if updating_env:
++    print "env fex changed; including."
++    common.ZipWriteStr(output_zip,"env.fex",target_env.data)
++    script.WriteRawFex("/dev/block/by-name/env","env.fex")
++  else:
++    print "env fex unchanged; skipping."
++
++  if updating_uboot or updating_toc1:
++    print "uboot or toc1 fex changed; including."
++    common.ZipWriteStr(output_zip,"uboot_nand.fex",target_uboot_nand.data)
++    common.ZipWriteStr(output_zip,"uboot_sdcard.fex",target_uboot_sdcard.data)
++    common.ZipWriteStr(output_zip,"toc1.fex",target_toc1.data)
++    script.BurnBoot(1);
++  else:
++    print "uboot and toc1 fex unchanged; skipping."
++
++  if updating_boot0 or updating_toc0:
++    print "boot0 or toc0 fex changed; including."
++    common.ZipWriteStr(output_zip,"boot0_nand.fex",target_boot0_nand.data)
++    common.ZipWriteStr(output_zip,"boot0_sdcard.fex",target_boot0_sdcard.data)
++    common.ZipWriteStr(output_zip,"toc0.fex",target_toc0.data)
++    script.BurnBoot(0);
++  else:
++    print "boot0 or toc0 fex unchanged; skipping."
++
++  if updating_verity:
++    common.ZipWriteStr(output_zip,"verity_block.img",target_verity.data)
++    script.WriteRawFex("/dev/block/by-name/verity_block", "verity_block.img")
++  else:
++        print "verity_block skipping."
++
+   # Do device-specific installation (eg, write radio image).
+   device_specific.IncrementalOTA_InstallEnd()
+ 
+@@ -1514,6 +1816,8 @@
+   metadata["post-build-incremental"] = GetBuildProp(
+       "ro.build.version.incremental", OPTIONS.target_info_dict)
+ 
++  script.MarkOtaState("begin");
++
+   source_boot = common.GetBootableImage(
+       "/tmp/boot.img", "boot.img", OPTIONS.source_tmp, "BOOT",
+       OPTIONS.source_info_dict)
+@@ -1529,6 +1833,37 @@
+       "/tmp/recovery.img", "recovery.img", OPTIONS.target_tmp, "RECOVERY")
+   updating_recovery = (source_recovery.data != target_recovery.data)
+ 
++  source_bootloader = common.GetFex("bootloader.fex",OPTIONS.source_tmp+str("/bootloader.fex"))
++  target_bootloader = common.GetFex("bootloader.fex",OPTIONS.target_tmp+str("/bootloader.fex"))
++  updating_bootloader = (source_bootloader.data != target_bootloader.data)
++
++  source_env = common.GetFex("env.fex",OPTIONS.source_tmp+str("/env.fex"))
++  target_env = common.GetFex("env.fex",OPTIONS.target_tmp+str("/env.fex"))
++  updating_env = (source_env.data != target_env.data)
++
++  source_toc0 = common.GetFex("toc0.fex",OPTIONS.source_tmp+str("/toc0.fex"))
++  target_toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  updating_toc0 = (source_toc0.data != target_toc0.data)
++
++  source_toc1 = common.GetFex("toc1.fex",OPTIONS.source_tmp+str("/toc1.fex"))
++  target_toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  updating_toc1 = (source_toc1.data != target_toc1.data)
++
++  source_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.source_tmp+str("/boot0_nand.fex"))
++  target_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  source_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.source_tmp+str("/boot0_sdcard.fex"))
++  target_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  updating_boot0 = (source_boot0_nand.data != target_boot0_nand.data) or (source_boot0_sdcard.data != target_boot0_sdcard.data)
++  source_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.source_tmp+str("/uboot_nand.fex"))
++  target_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  source_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.source_tmp+str("/uboot_sdcard.fex"))
++  target_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  updating_uboot = (source_uboot_nand.data != target_uboot_nand.data) or (source_uboot_sdcard.data != target_uboot_sdcard.data)
++
++  source_verity = common.GetFex("verity_block.img",OPTIONS.source_tmp+str("/verity_block.img"))
++  target_verity = common.GetFex("verity_block.img",OPTIONS.target_tmp+str("/verity_block.img"))
++  updating_verity = (source_verity.data != target_verity.data)
++
+   # Here's how we divide up the progress bar:
+   #  0.1 for verifying the start state (PatchCheck calls)
+   #  0.8 for applying patches (ApplyPatch calls)
+@@ -1621,6 +1956,7 @@
+     script.CacheFreeSpaceCheck(max(size))
+ 
+   device_specific.IncrementalOTA_VerifyEnd()
++  script.MarkOtaState("passCheck");
+ 
+   if OPTIONS.two_step:
+     script.WriteRawImage("/boot", "recovery.img")
+@@ -1676,6 +2012,60 @@
+     else:
+       print "boot image unchanged; skipping."
+ 
++  if updating_bootloader:
++    print "bootloader fex changed; including."
++    common.ZipWriteStr(output_zip, "bootloader.fex", target_bootloader.data)
++    script.WriteRawFex("/dev/block/by-name/bootloader", "bootloader.fex")
++  else:
++    print "bootloader fex unchanged; skipping."
++
++  if updating_env:
++    print "env fex changed; including."
++    common.ZipWriteStr(output_zip,"env.fex",target_env.data)
++    script.WriteRawFex("/dev/block/by-name/env","env.fex")
++  else:
++    print "env fex unchanged; skipping."
++
++  if updating_uboot:
++    print "uboot fex changed; including."
++    common.ZipWriteStr(output_zip,"uboot_nand.fex",target_uboot_nand.data)
++    common.ZipWriteStr(output_zip,"uboot_sdcard.fex",target_uboot_sdcard.data)
++    script.BurnBoot(1);
++  else:
++    print "uboot fex unchanged; skipping."
++
++  if updating_boot0:
++    print "boot0 fex changed; including."
++    common.ZipWriteStr(output_zip,"boot0_nand.fex",target_boot0_nand.data)
++    common.ZipWriteStr(output_zip,"boot0_sdcard.fex",target_boot0_sdcard.data)
++    script.BurnBoot(0);
++  else:
++    print "boot0 fex unchanged; skipping."
++
++  if updating_toc0:
++    print "toc0 fex changed; including."
++    common.ZipWriteStr(output_zip,"toc0.fex",target_toc0.data)
++    script.BurnBoot(0);
++  else:
++    print "toc0 fex unchanged; skipping."
++
++  if updating_toc1:
++    print "toc1 fex changed; including."
++    common.ZipWriteStr(output_zip,"toc1.fex",target_toc1.data)
++    script.BurnBoot(1);
++  else:
++    print "toc1 fex unchanged; skipping."
++
++  if updating_verity:
++    common.ZipWriteStr(output_zip,"verity_block.img",target_verity.data)
++    script.WriteRawFex("/dev/block/by-name/verity_block", "verity_block.img")
++  else:
++        print "verity_block skipping."
++
++
++
++
++
+   system_items = ItemSet("system", "META/filesystem_config.txt")
+   if vendor_diff:
+     vendor_items = ItemSet("vendor", "META/vendor_filesystem_config.txt")
+@@ -1900,6 +2290,10 @@
+       OPTIONS.gen_verify = True
+     elif o == "--log_diff":
+       OPTIONS.log_diff = a
++    elif o == "--test_boot_ota":
++      OPTIONS.test_boot = True
++    elif o == "--test_kernel_ota":
++      OPTIONS.test_kernel = True
+     else:
+       return False
+     return True
+@@ -1929,6 +2323,8 @@
+                                  "stash_threshold=",
+                                  "gen_verify",
+                                  "log_diff=",
++                                 "test_boot_ota",
++                                 "test_kernel_ota",
+                              ], extra_option_handler=option_handler)
+ 
+   if len(args) != 2:
+@@ -2043,7 +2439,12 @@
+ 
+   # Generate a full OTA.
+   elif OPTIONS.incremental_source is None:
+-    WriteFullOTAPackage(input_zip, output_zip)
++    if OPTIONS.test_boot :
++        WriteOTABootTestPackage(input_zip, output_zip)
++    elif OPTIONS.test_kernel :
++        WriteOTAKernelTestPackage(input_zip, output_zip)
++    else:
++        WriteFullOTAPackage(input_zip, output_zip)
+ 
+   # Generate an incremental OTA. It will fall back to generate a full OTA on
+   # failure unless no_fallback_to_full is specified.
+@@ -2072,7 +2473,14 @@
+         raise
+       print "--- failed to build incremental; falling back to full ---"
+       OPTIONS.incremental_source = None
+-      WriteFullOTAPackage(input_zip, output_zip)
++      if OPTIONS.test_boot :
++          WriteOTABootTestPackage(input_zip, output_zip)
++      elif OPTIONS.test_kernel :
++          WriteOTAKernelTestPackage(input_zip, output_zip)
++      else:
++          WriteFullOTAPackage(input_zip, output_zip)
++
++
+ 
+   common.ZipClose(output_zip)
+ 
+diff -ur ../aosp/build/tools/releasetools/ota_from_target_files.py ../Desktop/android/build/tools/releasetools/ota_from_target_files.py
+--- ../aosp/build/tools/releasetools/ota_from_target_files.py	2018-08-06 15:34:26.906582933 +0200
++++ ../Desktop/android/build/tools/releasetools/ota_from_target_files.py	2017-11-23 05:17:53.000000000 +0100
+@@ -113,6 +113,12 @@
+       Generate a log file that shows the differences in the source and target
+       builds for an incremental package. This option is only meaningful when
+       -i is specified.
++
++  --test_boot_ota
++      make test ota package to test boot0,uboot0,env.fex,bootloader.fex update.
++
++  --test_kernel_ota
++     make test ota package to test boot.img update.
+ """
+ 
+ import sys
+@@ -160,6 +166,8 @@
+ OPTIONS.stash_threshold = 0.8
+ OPTIONS.gen_verify = False
+ OPTIONS.log_diff = None
++OPTIONS.test_boot = False
++OPTIONS.test_kernel = False
+ 
+ def MostPopularKey(d, default):
+   """Given a dict, return the key corresponding to the largest
+@@ -564,7 +572,7 @@
+   if not OPTIONS.omit_prereq:
+     ts = GetBuildProp("ro.build.date.utc", OPTIONS.info_dict)
+     ts_text = GetBuildProp("ro.build.date", OPTIONS.info_dict)
+-    script.AssertOlderBuild(ts, ts_text)
++    #script.AssertOlderBuild(ts, ts_text)
+ 
+   AppendAssertions(script, OPTIONS.info_dict, oem_dict)
+   device_specific.FullOTA_Assertions()
+@@ -632,6 +640,13 @@
+   system_items = ItemSet("system", "META/filesystem_config.txt")
+   script.ShowProgress(system_progress, 0)
+ 
++  script.Print("Verifying boot image...")
++  script.VerifyBootImage()
++  script.Print("Verifying toc1 image...")
++  script.VerifyToc(1)
++  script.Print("Verifying toc0 image...")
++  script.VerifyToc(0)
++
+   if block_based:
+     # Full OTA is done as an "incremental" against an empty source
+     # image.  This has the effect of writing new data from the package
+@@ -691,6 +706,39 @@
+   script.ShowProgress(0.05, 5)
+   script.WriteRawImage("/boot", "boot.img")
+ 
++  script.ShowProgress(0.1, 0)
++  print("pack uboot to OTA package...")
++  script.Print("Update boot source...")
++  bootloader_fex = common.GetFex("bootloader.fex",OPTIONS.target_tmp+str("/bootloader.fex"))
++  common.ZipWriteStr(output_zip, "bootloader.fex", bootloader_fex.data)
++  script.WriteRawFex("/dev/block/by-name/bootloader", "bootloader.fex")
++
++  env_fex = common.GetFex("env.fex",OPTIONS.target_tmp+str("/env.fex"))
++  common.ZipWriteStr(output_zip,"env.fex",env_fex.data)
++  script.WriteRawFex("/dev/block/by-name/env","env.fex")
++
++  verity_block = common.GetFex("verity_block.img",OPTIONS.target_tmp+str("/verity_block.img"))
++  common.ZipWriteStr(output_zip,"verity_block.img",verity_block.data)
++  script.WriteRawFex("/dev/block/by-name/verity_block", "verity_block.img")
++
++  toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  common.ZipWriteStr(output_zip,"toc1.fex",toc1.data)
++
++  toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  common.ZipWriteStr(output_zip,"toc0.fex",toc0.data)
++  uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  common.ZipWriteStr(output_zip,"uboot_nand.fex",uboot_nand.data)
++  uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"uboot_sdcard.fex",uboot_sdcard.data)
++  boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  common.ZipWriteStr(output_zip,"boot0_nand.fex",boot0_nand.data)
++  boot0_nand = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"boot0_sdcard.fex",boot0_nand.data)
++
++  script.BurnBoot(1);
++  script.BurnBoot(0);
++
++
+   script.ShowProgress(0.2, 10)
+   device_specific.FullOTA_InstallEnd()
+ 
+@@ -721,6 +769,191 @@
+   metadata["ota-required-cache"] = str(script.required_cache)
+   WriteMetadata(metadata, output_zip)
+ 
++def WriteOTABootTestPackage(input_zip, output_zip):
++  # TODO: how to determine this?  We don't know what version it will
++  # be installed on top of. For now, we expect the API just won't
++  # change very often. Similarly for fstab, it might have changed
++  # in the target build.
++  script = edify_generator.EdifyGenerator(3, OPTIONS.info_dict)
++
++  oem_props = OPTIONS.info_dict.get("oem_fingerprint_properties")
++  recovery_mount_options = OPTIONS.info_dict.get("recovery_mount_options")
++  oem_dict = None
++  if oem_props is not None and len(oem_props) > 0:
++    if OPTIONS.oem_source is None:
++      raise common.ExternalError("OEM source required for this build")
++    if not OPTIONS.oem_no_mount:
++      script.Mount("/oem", recovery_mount_options)
++    oem_dict = common.LoadDictionaryFromLines(
++        open(OPTIONS.oem_source).readlines())
++
++  metadata = {
++      "post-build": CalculateFingerprint(oem_props, oem_dict,
++                                         OPTIONS.info_dict),
++      "pre-device": GetOemProperty("ro.product.device", oem_props, oem_dict,
++                                   OPTIONS.info_dict),
++      "post-timestamp": GetBuildProp("ro.build.date.utc", OPTIONS.info_dict),
++  }
++
++  device_specific = common.DeviceSpecificParams(
++      input_zip=input_zip,
++      input_version=OPTIONS.info_dict["recovery_api_version"],
++      output_zip=output_zip,
++      script=script,
++      input_tmp=OPTIONS.input_tmp,
++      metadata=metadata,
++      info_dict=OPTIONS.info_dict)
++
++  has_recovery_patch = HasRecoveryPatch(input_zip)
++  block_based = OPTIONS.block_based and has_recovery_patch
++
++  metadata["ota-type"] = "BLOCK" if block_based else "FILE"
++
++  if not OPTIONS.omit_prereq:
++    ts = GetBuildProp("ro.build.date.utc", OPTIONS.info_dict)
++    ts_text = GetBuildProp("ro.build.date", OPTIONS.info_dict)
++    #script.AssertOlderBuild(ts, ts_text)
++
++  AppendAssertions(script, OPTIONS.info_dict, oem_dict)
++  device_specific.FullOTA_Assertions()
++
++  device_specific.FullOTA_InstallBegin()
++
++  system_progress = 0.75
++
++  script.Print("Verifying toc1 image...")
++  script.VerifyToc(1)
++  script.Print("Verifying toc0 image...")
++  script.VerifyToc(0)
++
++  script.ShowProgress(0.1, 0)
++  print("pack uboot to OTA package...")
++  script.Print("Update boot source...")
++
++  toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  common.ZipWriteStr(output_zip,"toc1.fex",toc1.data)
++
++  toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  common.ZipWriteStr(output_zip,"toc0.fex",toc0.data)
++  uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  common.ZipWriteStr(output_zip,"uboot_nand.fex",uboot_nand.data)
++  uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"uboot_sdcard.fex",uboot_sdcard.data)
++  boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  common.ZipWriteStr(output_zip,"boot0_nand.fex",boot0_nand.data)
++  boot0_nand = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  common.ZipWriteStr(output_zip,"boot0_sdcard.fex",boot0_nand.data)
++
++  script.BurnBoot(1);
++  script.BurnBoot(0);
++
++
++  script.ShowProgress(0.2, 10)
++  device_specific.FullOTA_InstallEnd()
++
++  if OPTIONS.extra_script is not None:
++    script.AppendExtra(OPTIONS.extra_script)
++
++
++  script.SetProgress(1)
++  script.AddToZip(input_zip, output_zip, input_path=OPTIONS.updater_binary)
++  metadata["ota-required-cache"] = str(script.required_cache)
++  WriteMetadata(metadata, output_zip)
++
++
++
++def WriteOTAKernelTestPackage(input_zip, output_zip):
++  # TODO: how to determine this?  We don't know what version it will
++  # be installed on top of. For now, we expect the API just won't
++  # change very often. Similarly for fstab, it might have changed
++  # in the target build.
++  script = edify_generator.EdifyGenerator(3, OPTIONS.info_dict)
++
++  oem_props = OPTIONS.info_dict.get("oem_fingerprint_properties")
++  recovery_mount_options = OPTIONS.info_dict.get("recovery_mount_options")
++  oem_dict = None
++  if oem_props is not None and len(oem_props) > 0:
++    if OPTIONS.oem_source is None:
++      raise common.ExternalError("OEM source required for this build")
++    if not OPTIONS.oem_no_mount:
++      script.Mount("/oem", recovery_mount_options)
++    oem_dict = common.LoadDictionaryFromLines(
++        open(OPTIONS.oem_source).readlines())
++
++  metadata = {
++      "post-build": CalculateFingerprint(oem_props, oem_dict,
++                                         OPTIONS.info_dict),
++      "pre-device": GetOemProperty("ro.product.device", oem_props, oem_dict,
++                                   OPTIONS.info_dict),
++      "post-timestamp": GetBuildProp("ro.build.date.utc", OPTIONS.info_dict),
++  }
++
++  device_specific = common.DeviceSpecificParams(
++      input_zip=input_zip,
++      input_version=OPTIONS.info_dict["recovery_api_version"],
++      output_zip=output_zip,
++      script=script,
++      input_tmp=OPTIONS.input_tmp,
++      metadata=metadata,
++      info_dict=OPTIONS.info_dict)
++
++  has_recovery_patch = HasRecoveryPatch(input_zip)
++  block_based = OPTIONS.block_based and has_recovery_patch
++
++  metadata["ota-type"] = "BLOCK" if block_based else "FILE"
++
++  if not OPTIONS.omit_prereq:
++    ts = GetBuildProp("ro.build.date.utc", OPTIONS.info_dict)
++    ts_text = GetBuildProp("ro.build.date", OPTIONS.info_dict)
++    #script.AssertOlderBuild(ts, ts_text)
++
++  AppendAssertions(script, OPTIONS.info_dict, oem_dict)
++  device_specific.FullOTA_Assertions()
++
++
++  # Dump fingerprints
++  script.Print("Target: %s" % CalculateFingerprint(
++      oem_props, oem_dict, OPTIONS.info_dict))
++
++  device_specific.FullOTA_InstallBegin()
++
++  system_progress = 0.75
++
++
++  script.Print("Verifying boot image...")
++  script.VerifyBootImage()
++
++  boot_img = common.GetBootableImage(
++      "boot.img", "boot.img", OPTIONS.input_tmp, "BOOT")
++
++  common.CheckSize(boot_img.data, "boot.img", OPTIONS.info_dict)
++  common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
++
++  script.ShowProgress(0.05, 5)
++  script.WriteRawImage("/boot", "boot.img")
++
++  script.ShowProgress(0.1, 0)
++  print("pack uboot to OTA package...")
++  script.Print("Update boot source...")
++
++  toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  common.ZipWriteStr(output_zip,"toc1.fex",toc1.data)
++
++  toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  common.ZipWriteStr(output_zip,"toc0.fex",toc0.data)
++
++  script.ShowProgress(0.2, 10)
++  device_specific.FullOTA_InstallEnd()
++
++  if OPTIONS.extra_script is not None:
++    script.AppendExtra(OPTIONS.extra_script)
++
++
++  script.SetProgress(1)
++  script.AddToZip(input_zip, output_zip, input_path=OPTIONS.updater_binary)
++  metadata["ota-required-cache"] = str(script.required_cache)
++  WriteMetadata(metadata, output_zip)
++
+ 
+ def WritePolicyConfig(file_name, output_zip):
+   common.ZipWrite(output_zip, file_name, os.path.basename(file_name))
+@@ -893,6 +1126,37 @@
+   else:
+     vendor_diff = None
+ 
++  source_bootloader = common.GetFex("bootloader.fex",OPTIONS.source_tmp+str("/bootloader.fex"))
++  target_bootloader = common.GetFex("bootloader.fex",OPTIONS.target_tmp+str("/bootloader.fex"))
++  updating_bootloader = (source_bootloader.data != target_bootloader.data)
++
++  source_env = common.GetFex("env.fex",OPTIONS.source_tmp+str("/env.fex"))
++  target_env = common.GetFex("env.fex",OPTIONS.target_tmp+str("/env.fex"))
++  updating_env = (source_env.data != target_env.data)
++
++  source_toc0 = common.GetFex("toc0.fex",OPTIONS.source_tmp+str("/toc0.fex"))
++  target_toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  updating_toc0 = (source_toc0.data != target_toc0.data)
++
++  source_toc1 = common.GetFex("toc1.fex",OPTIONS.source_tmp+str("/toc1.fex"))
++  target_toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  updating_toc1 = (source_toc1.data != target_toc1.data)
++
++  source_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.source_tmp+str("/boot0_nand.fex"))
++  target_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  source_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.source_tmp+str("/boot0_sdcard.fex"))
++  target_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  updating_boot0 = (source_boot0_nand.data != target_boot0_nand.data) or (source_boot0_sdcard.data != target_boot0_sdcard.data)
++  source_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.source_tmp+str("/uboot_nand.fex"))
++  target_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  source_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.source_tmp+str("/uboot_sdcard.fex"))
++  target_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  updating_uboot = (source_uboot_nand.data != target_uboot_nand.data) or (source_uboot_sdcard.data != target_uboot_sdcard.data)
++
++  source_verity = common.GetFex("verity_block.img",OPTIONS.source_tmp+str("/verity_block.img"))
++  target_verity = common.GetFex("verity_block.img",OPTIONS.target_tmp+str("/verity_block.img"))
++  updating_verity = (source_verity.data != target_verity.data)
++
+   AppendAssertions(script, OPTIONS.target_info_dict, oem_dict)
+   device_specific.IncrementalOTA_Assertions()
+ 
+@@ -1050,6 +1314,44 @@
+     else:
+       print "boot image unchanged; skipping."
+ 
++  if updating_bootloader:
++    print "bootloader fex changed; including."
++    common.ZipWriteStr(output_zip, "bootloader.fex", target_bootloader.data)
++    script.WriteRawFex("/dev/block/by-name/bootloader", "bootloader.fex")
++  else:
++    print "bootloader fex unchanged; skipping."
++
++  if updating_env:
++    print "env fex changed; including."
++    common.ZipWriteStr(output_zip,"env.fex",target_env.data)
++    script.WriteRawFex("/dev/block/by-name/env","env.fex")
++  else:
++    print "env fex unchanged; skipping."
++
++  if updating_uboot or updating_toc1:
++    print "uboot or toc1 fex changed; including."
++    common.ZipWriteStr(output_zip,"uboot_nand.fex",target_uboot_nand.data)
++    common.ZipWriteStr(output_zip,"uboot_sdcard.fex",target_uboot_sdcard.data)
++    common.ZipWriteStr(output_zip,"toc1.fex",target_toc1.data)
++    script.BurnBoot(1);
++  else:
++    print "uboot and toc1 fex unchanged; skipping."
++
++  if updating_boot0 or updating_toc0:
++    print "boot0 or toc0 fex changed; including."
++    common.ZipWriteStr(output_zip,"boot0_nand.fex",target_boot0_nand.data)
++    common.ZipWriteStr(output_zip,"boot0_sdcard.fex",target_boot0_sdcard.data)
++    common.ZipWriteStr(output_zip,"toc0.fex",target_toc0.data)
++    script.BurnBoot(0);
++  else:
++    print "boot0 or toc0 fex unchanged; skipping."
++
++  if updating_verity:
++    common.ZipWriteStr(output_zip,"verity_block.img",target_verity.data)
++    script.WriteRawFex("/dev/block/by-name/verity_block", "verity_block.img")
++  else:
++        print "verity_block skipping."
++
+   # Do device-specific installation (eg, write radio image).
+   device_specific.IncrementalOTA_InstallEnd()
+ 
+@@ -1514,6 +1816,8 @@
+   metadata["post-build-incremental"] = GetBuildProp(
+       "ro.build.version.incremental", OPTIONS.target_info_dict)
+ 
++  script.MarkOtaState("begin");
++
+   source_boot = common.GetBootableImage(
+       "/tmp/boot.img", "boot.img", OPTIONS.source_tmp, "BOOT",
+       OPTIONS.source_info_dict)
+@@ -1529,6 +1833,37 @@
+       "/tmp/recovery.img", "recovery.img", OPTIONS.target_tmp, "RECOVERY")
+   updating_recovery = (source_recovery.data != target_recovery.data)
+ 
++  source_bootloader = common.GetFex("bootloader.fex",OPTIONS.source_tmp+str("/bootloader.fex"))
++  target_bootloader = common.GetFex("bootloader.fex",OPTIONS.target_tmp+str("/bootloader.fex"))
++  updating_bootloader = (source_bootloader.data != target_bootloader.data)
++
++  source_env = common.GetFex("env.fex",OPTIONS.source_tmp+str("/env.fex"))
++  target_env = common.GetFex("env.fex",OPTIONS.target_tmp+str("/env.fex"))
++  updating_env = (source_env.data != target_env.data)
++
++  source_toc0 = common.GetFex("toc0.fex",OPTIONS.source_tmp+str("/toc0.fex"))
++  target_toc0 = common.GetFex("toc0.fex",OPTIONS.target_tmp+str("/toc0.fex"))
++  updating_toc0 = (source_toc0.data != target_toc0.data)
++
++  source_toc1 = common.GetFex("toc1.fex",OPTIONS.source_tmp+str("/toc1.fex"))
++  target_toc1 = common.GetFex("toc1.fex",OPTIONS.target_tmp+str("/toc1.fex"))
++  updating_toc1 = (source_toc1.data != target_toc1.data)
++
++  source_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.source_tmp+str("/boot0_nand.fex"))
++  target_boot0_nand = common.GetFex("boot0_nand.fex",OPTIONS.target_tmp+str("/boot0_nand.fex"))
++  source_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.source_tmp+str("/boot0_sdcard.fex"))
++  target_boot0_sdcard = common.GetFex("boot0_sdcard.fex",OPTIONS.target_tmp+str("/boot0_sdcard.fex"))
++  updating_boot0 = (source_boot0_nand.data != target_boot0_nand.data) or (source_boot0_sdcard.data != target_boot0_sdcard.data)
++  source_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.source_tmp+str("/uboot_nand.fex"))
++  target_uboot_nand = common.GetFex("uboot_nand.fex",OPTIONS.target_tmp+str("/uboot_nand.fex"))
++  source_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.source_tmp+str("/uboot_sdcard.fex"))
++  target_uboot_sdcard = common.GetFex("uboot_sdcard.fex",OPTIONS.target_tmp+str("/uboot_sdcard.fex"))
++  updating_uboot = (source_uboot_nand.data != target_uboot_nand.data) or (source_uboot_sdcard.data != target_uboot_sdcard.data)
++
++  source_verity = common.GetFex("verity_block.img",OPTIONS.source_tmp+str("/verity_block.img"))
++  target_verity = common.GetFex("verity_block.img",OPTIONS.target_tmp+str("/verity_block.img"))
++  updating_verity = (source_verity.data != target_verity.data)
++
+   # Here's how we divide up the progress bar:
+   #  0.1 for verifying the start state (PatchCheck calls)
+   #  0.8 for applying patches (ApplyPatch calls)
+@@ -1621,6 +1956,7 @@
+     script.CacheFreeSpaceCheck(max(size))
+ 
+   device_specific.IncrementalOTA_VerifyEnd()
++  script.MarkOtaState("passCheck");
+ 
+   if OPTIONS.two_step:
+     script.WriteRawImage("/boot", "recovery.img")
+@@ -1676,6 +2012,60 @@
+     else:
+       print "boot image unchanged; skipping."
+ 
++  if updating_bootloader:
++    print "bootloader fex changed; including."
++    common.ZipWriteStr(output_zip, "bootloader.fex", target_bootloader.data)
++    script.WriteRawFex("/dev/block/by-name/bootloader", "bootloader.fex")
++  else:
++    print "bootloader fex unchanged; skipping."
++
++  if updating_env:
++    print "env fex changed; including."
++    common.ZipWriteStr(output_zip,"env.fex",target_env.data)
++    script.WriteRawFex("/dev/block/by-name/env","env.fex")
++  else:
++    print "env fex unchanged; skipping."
++
++  if updating_uboot:
++    print "uboot fex changed; including."
++    common.ZipWriteStr(output_zip,"uboot_nand.fex",target_uboot_nand.data)
++    common.ZipWriteStr(output_zip,"uboot_sdcard.fex",target_uboot_sdcard.data)
++    script.BurnBoot(1);
++  else:
++    print "uboot fex unchanged; skipping."
++
++  if updating_boot0:
++    print "boot0 fex changed; including."
++    common.ZipWriteStr(output_zip,"boot0_nand.fex",target_boot0_nand.data)
++    common.ZipWriteStr(output_zip,"boot0_sdcard.fex",target_boot0_sdcard.data)
++    script.BurnBoot(0);
++  else:
++    print "boot0 fex unchanged; skipping."
++
++  if updating_toc0:
++    print "toc0 fex changed; including."
++    common.ZipWriteStr(output_zip,"toc0.fex",target_toc0.data)
++    script.BurnBoot(0);
++  else:
++    print "toc0 fex unchanged; skipping."
++
++  if updating_toc1:
++    print "toc1 fex changed; including."
++    common.ZipWriteStr(output_zip,"toc1.fex",target_toc1.data)
++    script.BurnBoot(1);
++  else:
++    print "toc1 fex unchanged; skipping."
++
++  if updating_verity:
++    common.ZipWriteStr(output_zip,"verity_block.img",target_verity.data)
++    script.WriteRawFex("/dev/block/by-name/verity_block", "verity_block.img")
++  else:
++        print "verity_block skipping."
++
++
++
++
++
+   system_items = ItemSet("system", "META/filesystem_config.txt")
+   if vendor_diff:
+     vendor_items = ItemSet("vendor", "META/vendor_filesystem_config.txt")
+@@ -1900,6 +2290,10 @@
+       OPTIONS.gen_verify = True
+     elif o == "--log_diff":
+       OPTIONS.log_diff = a
++    elif o == "--test_boot_ota":
++      OPTIONS.test_boot = True
++    elif o == "--test_kernel_ota":
++      OPTIONS.test_kernel = True
+     else:
+       return False
+     return True
+@@ -1929,6 +2323,8 @@
+                                  "stash_threshold=",
+                                  "gen_verify",
+                                  "log_diff=",
++                                 "test_boot_ota",
++                                 "test_kernel_ota",
+                              ], extra_option_handler=option_handler)
+ 
+   if len(args) != 2:
+@@ -2043,7 +2439,12 @@
+ 
+   # Generate a full OTA.
+   elif OPTIONS.incremental_source is None:
+-    WriteFullOTAPackage(input_zip, output_zip)
++    if OPTIONS.test_boot :
++        WriteOTABootTestPackage(input_zip, output_zip)
++    elif OPTIONS.test_kernel :
++        WriteOTAKernelTestPackage(input_zip, output_zip)
++    else:
++        WriteFullOTAPackage(input_zip, output_zip)
+ 
+   # Generate an incremental OTA. It will fall back to generate a full OTA on
+   # failure unless no_fallback_to_full is specified.
+@@ -2072,7 +2473,14 @@
+         raise
+       print "--- failed to build incremental; falling back to full ---"
+       OPTIONS.incremental_source = None
+-      WriteFullOTAPackage(input_zip, output_zip)
++      if OPTIONS.test_boot :
++          WriteOTABootTestPackage(input_zip, output_zip)
++      elif OPTIONS.test_kernel :
++          WriteOTAKernelTestPackage(input_zip, output_zip)
++      else:
++          WriteFullOTAPackage(input_zip, output_zip)
++
++
+ 
+   common.ZipClose(output_zip)
+ 
+Only in ../Desktop/android/build/tools/releasetools: prepare_verify.sh
+Only in ../Desktop/android/build/tools/releasetools: secureboot_sign_tools
+Only in ../Desktop/android/build/tools: verity
